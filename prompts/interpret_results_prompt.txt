@@ -1,0 +1,100 @@
+You have just completed a multi-phase Hamiltonian/Lindbladian learning analysis on experimental
+photoluminescence lifetime data from a color center in a photonic crystal nanocavity (`experimental_data/`).
+All results — ranked model tables, MAP parameter estimates, MCMC posterior samples,
+residual heatmaps, and per-phase JSON outputs — are in the analysis/ folder.
+
+Your task is to produce a final interpretive analysis report that is EXPLAINABLE and
+INTERPRETABLE to a physicist who did not run the fitting pipeline. This means every
+number must be explained in physical terms, every conclusion must be traceable to
+specific data features, and uncertainty must be quantified.
+
+Work through the following in order. Save all outputs to analysis/phase_5/.
+
+────────────────────────────────────────────────────────────────
+SECTION 1 — Read and synthesize the full analysis record
+────────────────────────────────────────────────────────────────
+
+Read every phase_N_summary.md, every phase_N_results.json, and the full model
+ranking table from the final phase. Do not skip any phase. Take note of:
+- The winning model: its identity, parameter count k, lnL_max, AICc, and Akaike weight
+- The runner-up models and their ΔAICc gaps
+- The chi²/dof values for ALL models, including the null model (M0)
+- The MAP parameter estimates and MCMC credible intervals for the winning model
+- Which MCMC chains converged and which did not
+
+────────────────────────────────────────────────────────────────
+SECTION 2 — Plain-language physical interpretation of the winning model
+────────────────────────────────────────────────────────────────
+
+Write a clear narrative explaining:
+1. What physical system the winning model describes, including all parameters.
+   - How does the observable you fit map to its respective Hamiltonian/Linbladian?
+2. What each fitted parameter means physically. For each parameter, state:
+   - Its physical interpretation in one sentence
+   - Whether the value is consistent with the literature range for this class of
+     color center and cavity type (cite the relevant parameter bounds from PLAN.md)
+   - Whether the value is surprising and, if so, why
+3. What the cavity sweep lab experiment teaches us: how the fitted Purcell rates Γᵢ(ωc) vary
+   across the detuning sweep, and how to interpret the experiment results through the lens of the model and parameters it predicts.
+4. What the model ranking implies about the emitter population.
+
+────────────────────────────────────────────────────────────────
+SECTION 3 — Quantifying the residual floor and diagnosing model misspecification
+────────────────────────────────────────────────────────────────
+
+Even though you identified a best-fit model, is it really a good fit of the lab experiment?
+
+Quantify this precisely:
+- Determine a metric for "actually captures the system" 
+- Report this metric for all the models you fit
+- What would this metric be if the model was perfect? Explain the gap between that ideal number and the actual numbers.
+
+Then, as a physicist expert in color center cavity QED, determine and enumerate the most plausible physical sources of the residual floor. 
+For each candidate, provide:
+  (a) A one-sentence physical explanation of the mechanism
+  (b) The qualitative signature it would produce in a 2D residual heatmap
+      (axis: time bin vs. cavity detuning step) — is it structured in time?
+      in detuning? both? neither?
+  (c) An estimate of its contribution to the metric established above.
+
+────────────────────────────────────────────────────────────────
+SECTION 4 — Augmented model: absorb the residual floor with an extra term
+────────────────────────────────────────────────────────────────
+
+Take the winning model and add the single most physically motivated extra term
+identified in Section 3. Implement and fit this augmented model. The goal is to quantify the effect of the residuals on the system compared to other terms in the model, and to provide some physical explanation.
+
+Choose the option (or combination) that is most physically motivated given the
+residual heatmap structure visible in the analysis outputs. Justify your choice.
+
+For the augmented model:
+  - Fit using the same analysis procedure you've been using.
+  - Report all the resulting key fitting metrics.
+  - Plot before-and-after comparisons to models you have already evaluated.
+  - Provide a physical interpretation.
+
+────────────────────────────────────────────────────────────────
+SECTION 5 — Final interpretive summary
+────────────────────────────────────────────────────────────────
+
+Write a self-contained, polished summary covering the following. Use equations.
+
+1. The identified Hamiltonian/Lindbladian: write out the master equation terms
+   that are "in" the winning model with their fitted parameter values. Be explicit
+   about which terms were tested and found unnecessary.
+
+2. What this implies about the experimental system.
+
+3. What remains unexplained (the residual floor): in one paragraph, state what
+   fraction of the total variance is explained by the winning model, what fraction
+   is absorbed by the augmented model, and what is most likely responsible for
+   the remainder.
+
+4. Limitations of this inference: explicitly state what cannot be concluded from
+   lifetime data alone, and the resulting inherent ambiguity.
+
+────────────────────────────────────────────────────────────────
+OUTPUT REQUIREMENTS
+────────────────────────────────────────────────────────────────
+
+Save to analysis/phase_N/ (where N is the next phase) all your work, just like the previous phases.The phase_N_summary.md must be readable as a standalone document.

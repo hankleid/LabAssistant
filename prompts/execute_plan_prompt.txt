@@ -1,0 +1,29 @@
+Objective: Identify the current progress of the discovery defined by your PLAN.md, implement the immediate next phase as a standalone Python script, and present all results of this phase.
+
+You must follow the workflow presented in `execution_checkpoints.json`. Always reference PLAN.md.
+
+All your work will be under the analysis/ folder.
+
+Step 1: State Audit
+- Review the existing phases and the `execution_checkpoints.json`.
+- Identify the first phase_id that does not yet have a corresponding complete phase_N folder.
+- Confirm state: Explicitly state: "Current progress: Phase [N-1] complete. Now generating phase_[N]." And create the phase_[N]/ folder.
+
+Performance Requirements:
+- You must prefer vectorized numpy operations over Python loops. Any loop over data dimensions (time bins, cavity steps) should be replaced with numpy broadcasting whenever possible.
+- You must parallelize whenver possible. Fitting multiple independent models by for-loop is too parallel and time inefficient — use concurrent.futures.ProcessPoolExecutor or multiprocessing.Pool to run calls for different models concurrently. You have 8 CPU cores; submit all models as separate tasks and collect results. Do not fit models sequentially.
+
+Step 2: Script Implementation (phase_N.py)
+- All code should be compatible with the `3p12` conda environment.
+- In phase_[N]/ write a standalone Python script named phase_[N].py based on the task_description for that phase.
+- To maintain scientific consistency, you must use the tools outlined in your toolbox, located in the tools/ folder.
+- You should refer back to tools/`experiment_background.txt` to get hints on fitting data.
+- When fitting experimental data, make a few attempts to make sure you have the most faithful fit.
+
+Step 3: Execution & Output Collection
+- Run the script using the terminal execution tool.
+- Ensure the script saves the following into phase_[N]/:
+    - Figures: All diagnostic plots required by the PLAN.md (e.g. fits, residual heatmaps).
+    - Data: JSON or CSV files containing the fitted parameters and/or key results.
+    - Metadata: A runtime_log.txt capturing the execution time and any convergence warnings.
+    - Phase Report: A Markdown file named phase_[N]_summary.md that describes this phase, what you set out to do, and the result of this phase. Also list all the Python tools in `tools/` that you used.

@@ -1,0 +1,8 @@
+Work through the newly created Python tools under `tools/`, which were created to support the `PLAN.md` and correspond to the experimental system summarized in `tools/experimental_background.txt`.
+
+Based on the experimental system details and the PLAN.md at hand, please fix any obvious errors with any of the Python tools. For example: major physics errors. You may double check physics with literature searching (see `tools/guide_for_literature_search.txt`).
+
+Also, make sure the computational methods are optimized with multiprocessing wherever possible, to help the computation speed. IMPORTANT: you must ensure the code is functional, especially when multiprocessing is involved.
+
+Functions you must NOT change:
+- `load_lifetime_data`
