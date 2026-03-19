@@ -34,6 +34,6 @@ This is the most important axis. The plan must be something a peer reviewer woul
 
 ---
 
-Please read `experiment_background.txt` for helpful information about the experiment.
+Invoke the `experiment-background` skill for helpful information about the experiment.
    
 After completing all three audits, rewrite PLAN.md with all fixes incorporated. Preserve the existing structure and citations; do not delete content unless it is factually incorrect. All new claims must be cited. When searching for references, use the `guide_for_literature_search.txt` for search strategy guidance. Remember to keep the plan specific but concise; do not exceed more than ~5 pages.

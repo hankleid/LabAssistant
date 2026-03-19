@@ -1,4 +1,6 @@
-Work through the newly created Python tools under `tools/`, which were created to support the `PLAN.md` and correspond to the experimental system summarized in `tools/experimental_background.txt`.
+Invoke the `experiment-background` skill before proceeding.
+
+Work through the newly created Python tools under `tools/`, which were created to support the `PLAN.md` and correspond to the experimental system described in the background above.
 
 Based on the experimental system details and the PLAN.md at hand, please fix any obvious errors with any of the Python tools. For example: major physics errors. You may double check physics with literature searching (see `tools/guide_for_literature_search.txt`).
 

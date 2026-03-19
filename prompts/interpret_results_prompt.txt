@@ -1,3 +1,5 @@
+Invoke the `experiment-background` skill before proceeding.
+
 You have just completed a multi-phase Hamiltonian/Lindbladian learning analysis on experimental
 photoluminescence lifetime data from a color center in a photonic crystal nanocavity (`experimental_data/`).
 All results — ranked model tables, MAP parameter estimates, MCMC posterior samples,

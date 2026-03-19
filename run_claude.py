@@ -6,7 +6,6 @@ import time
 
 prompts_dir, tools_dir = "prompts", "tools"
 system_prompt = open(f'{prompts_dir}/system_prompt.txt', 'r').read()
-exp_background = open(f'{tools_dir}/experiment_background.txt', 'r').read()
 make_plan_prompt = open(f'{prompts_dir}/make_plan_prompt.txt', 'r').read()
 revise_plan_prompt = open(f'{prompts_dir}/revise_plan_prompt.txt', 'r').read()
 gen_tools_prompt = open(f'{prompts_dir}/generate_tools_prompt.txt', 'r').read()
@@ -15,7 +14,7 @@ gen_exec_checkpoints_prompt = open(f'{prompts_dir}/generate_execution_checkpoint
 execute_phase_prompt = open(f'{prompts_dir}/execute_plan_prompt.txt').read()
 interpret_results_prompt = open(f'{prompts_dir}/interpret_results_prompt.txt').read()
 
-full_planning_prompt = f"You are measuring unknown physics in a known experimental system.\n\n{exp_background}{make_plan_prompt}"
+full_planning_prompt = f"You are measuring unknown physics in a known experimental system.\n\n{make_plan_prompt}"
 full_revise_plan_prompt = f"Read PLAN.md carefully in its entirety. Your task is to critically audit it on three axes and then revise it in-place. Do not summarize — edit PLAN.md directly to fix every problem you identify.\n\n---\n\n{revise_plan_prompt}"
 full_gen_tools_prompt = f"{gen_tools_prompt}\n\nSuggested Python modules: numpy, qutip, scipy.\n\nUse `conda activate 3p12` to use the right environment.\n\nAll your tools should go in LabAssistant/tools/."
 
@@ -30,6 +29,10 @@ def fmt_tool_call(name, inp):
         "Write": "file_path", "Glob": "pattern", "Grep": "pattern",
         "WebSearch": "query", "WebFetch": "url",
     }
+    if name == "Skill":
+        skill_name = inp.get("skill", "")
+        args = inp.get("args", "")
+        return f"  [Skill] {skill_name}" + (f' "{args}"' if args else "")
     key = primary.get(name)
     value = inp.get(key, "") if key else ""
     return f"  [{name}] {value}" if value else f"  [{name}] {inp}"
@@ -60,7 +63,7 @@ def fmt_tool_result(name, content, is_error):
     if name == "WebSearch":
         return fmt_websearch_result(prefix, text)
 
-    if name == "Read":
+    if name in ("Read", "Skill"):
         return ""
 
     indented = "\n".join(f"       {l}" for l in text.splitlines())
@@ -127,7 +130,8 @@ async def start_agent(user_prompt):
         options=ClaudeAgentOptions(
             model='claude-sonnet-4-6',
             system_prompt=system_prompt,
-            allowed_tools=["Read", "Edit", "Bash", "Glob", "Grep", "WebSearch", "WebFetch"],
+            setting_sources=["user", "project"],
+            allowed_tools=["Skill", "Read", "Edit", "Bash", "Glob", "Grep", "WebSearch", "WebFetch"],
             permission_mode="acceptEdits",
         ),
     ):

@@ -1,4 +1,6 @@
-We are studying a system experimentally whose full physics is unknown. Our goal is to identify the physics Hamiltonian/Lindbladian system which fits the experimental data most accurately. Given the experimental background (`tools/experiment_background.txt`), propose systematic methods for the following three steps. Do not fit ANY experimental data yet.
+Invoke the `experiment-background` skill before proceeding.
+
+We are studying a system experimentally whose full physics is unknown. Our goal is to identify the physics Hamiltonian/Lindbladian system which fits the experimental data most accurately. Given the experimental background above, propose systematic methods for the following three steps. Do not fit ANY experimental data yet.
 
 1) **Exploring candidate Hamiltonion/Lindbladian models to evaluate.** Use the experimental background I provided, your own expertise, and resources from the internet to create your method. To help guide your search, think about what phenomena and properties we care about in the color center community. For example, number of emitters, coupling to cavity, potential exotic effects, etc.
 

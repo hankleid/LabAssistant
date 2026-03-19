@@ -17,7 +17,7 @@ Step 2: Script Implementation (phase_N.py)
 - All code should be compatible with the `3p12` conda environment.
 - In phase_[N]/ write a standalone Python script named phase_[N].py based on the task_description for that phase.
 - To maintain scientific consistency, you must use the tools outlined in your toolbox, located in the tools/ folder.
-- You should refer back to tools/`experiment_background.txt` to get hints on fitting data.
+- Invoke the `experiment-background` skill to get hints on fitting data.
 - When fitting experimental data, make a few attempts to make sure you have the most faithful fit.
 
 Step 3: Execution & Output Collection
@@ -27,3 +27,7 @@ Step 3: Execution & Output Collection
     - Data: JSON or CSV files containing the fitted parameters and/or key results.
     - Metadata: A runtime_log.txt capturing the execution time and any convergence warnings.
     - Phase Report: A Markdown file named phase_[N]_summary.md that describes this phase, what you set out to do, and the result of this phase. Also list all the Python tools in `tools/` that you used.
+
+Step 4: Validation & Convergence
+    - Assess the final state of the phase using the appropriate SKILL. 
+    - Re-run anything that needs to be re-run.

@@ -1,9 +1,13 @@
+---
+name: experiment-background
+description: "Reference knowledge about the SnV- cavity QED experiment: system, data files, C/D transitions, angular coupling"
+---
 **What is known about the experimental system:**
 - SnV- color centers in diamond, inside a cryostat at 4 Kelvin.
 - We are measuring a 1d photonic crystal cavity which is etched into the diamond.
 - Inside the cavity mode there may be multiple emitters.
 - The emitters may be at different spatial positions, at different frequencies, and at different linewidths.
-- At 4K, SnV- color centers feature two ZPL lines: the “C” and the “D” transition. Please read **Information about C/D** thoroughly.
+- At 4K, SnV- color centers feature two ZPL lines: the "C" and the "D" transition. Please read **Information about C/D** thoroughly.
 
 **Information about the experiment:**
 - Gas tuning is used to tune the cavity resonance.
@@ -14,7 +18,7 @@ The instrument response has a finite decay timescale of order ~370 picoseconds p
 
 The resulting lifetime measurements are in `gas_tuning_lifetime_data.json`. We preprocessed the data for you in `load_lifetime_data` where the background is subtracted.
 
-Also provided is the spatial off-resonant PL map (`spatial_PL_counts.json`, `off_resonant_PL_spetrum.json`), and the Fano resonance fits for the cavity at every gas tuning step (`gas_tuning_cavity_resonance_fits.json`). 
+Also provided is the spatial off-resonant PL map (`spatial_PL_counts.json`, `off_resonant_PL_spetrum.json`), and the Fano resonance fits for the cavity at every gas tuning step (`gas_tuning_cavity_resonance_fits.json`).
 
 **Information about C/D:**
 In the off-resonant PL spectrum, you will be unable to discern which peaks correspond to C and which correspond to D transitions. That's why we have the lifetime data. The off-resonant PL spectrum rather tells us some rough upper bound on the number of transitions we might be able to couple, based on how many peaks there are in that PL spectrum (~N=5 maximum). Of course it's not guranteed that every peak couples to the cavity.
