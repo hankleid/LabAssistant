@@ -2,7 +2,7 @@
 
 Work through every step of the plan as if you were a graduate student sitting down to implement it tomorrow. Flag and fix anything that is vague, underspecified, or would fail in practice.
 
-- **Computational feasibility.** Make sure the workflow is feasible to compute.
+- **Computational feasibility.** IMPORTANT: Will this analysis conclude within 2 hours for an 8-core CPU machine? Prioritize evaluating as many models as possible -- instead, minimize the number of iterations/walkers/etc. necessary for converging results.
 
 - **Algorithm specification.** Every fitting step must name specific algorithms, not just a method category. Explain precisely how outputs of one stage seed the next.
 
@@ -10,7 +10,7 @@ Work through every step of the plan as if you were a graduate student sitting do
 
 ## Axis 2: Scientific Interest and Discovery Potential
 
-Evaluate whether the plan is likely to yield a both a technicall correct and scientifically interesting result.
+Evaluate whether the plan is likely to yield a both a technically correct and scientifically interesting result.
 
 - **Signature distinctiveness.** For the final model, identify the specific observable feature that distinguishes it from others. Describe what that feature looks like quantitatively in the data. If two models produce nearly identical observables within the experimental noise, flag them as non-distinguishable and propose how to break the degeneracy.
 
@@ -21,6 +21,8 @@ Evaluate whether the plan is likely to yield a both a technicall correct and sci
 ## Axis 3: Scientific Rigor and Community Trustworthiness
 
 This is the most important axis. The plan must be something a peer reviewer would consider sound, reproducible, and fully explainable. It must not contain any opaque or unjustified step.
+
+-**Physical validity.** Invoke the `experiment-background` skill, which lists **IMPORTANT: Known Physical Restrictions**. The plan MUST include a coherent strategy to account for such known physical restrictions in a helpful way. State how ALL physical restrictions will be accounted for in Step 2 of the plan.
 
 -**No errors.** Proofread the plan for reasoning and/or physics errors and correct them.
 
@@ -34,6 +36,4 @@ This is the most important axis. The plan must be something a peer reviewer woul
 
 ---
 
-Invoke the `experiment-background` skill for helpful information about the experiment.
-   
-After completing all three audits, rewrite PLAN.md with all fixes incorporated. Preserve the existing structure and citations; do not delete content unless it is factually incorrect. All new claims must be cited. When searching for references, use the `guide_for_literature_search.txt` for search strategy guidance. Remember to keep the plan specific but concise; do not exceed more than ~5 pages.
+After completing all three audits, rewrite PLAN.md with all fixes incorporated. Preserve the existing structure and citations; do not delete content unless it is factually incorrect. All new claims must be cited. When searching for references, dispatch a `search-literature` subagent.Remember to keep the plan specific but concise; do not exceed more than ~5 pages.

@@ -19,6 +19,8 @@ Each file must begin with a one-sentence header comment identifying the what log
 - **No global state**: Functions take explicit arguments and return explicit values.
 - **Usage**: An agent should be able to use the tools like an importable package.
 
+IMPORTANT: Check if there are any FIT NOTES in the experiment-background skill and be sure the tools implement these notes.
+
 ---
 
 ## Verification

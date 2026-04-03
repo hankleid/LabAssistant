@@ -2,6 +2,10 @@
 name: experiment-background
 description: "Reference knowledge about the SnV- cavity QED experiment: system, data files, C/D transitions, angular coupling"
 ---
+**Analysis goals**
+- How many emitters are present in the experimental data?
+- What is the nature of the coupling between such emitters and the cavity?
+
 **What is known about the experimental system:**
 - SnV- color centers in diamond, inside a cryostat at 4 Kelvin.
 - We are measuring a 1d photonic crystal cavity which is etched into the diamond.
@@ -21,15 +25,15 @@ The resulting lifetime measurements are in `gas_tuning_lifetime_data.json`. We p
 Also provided is the spatial off-resonant PL map (`spatial_PL_counts.json`, `off_resonant_PL_spetrum.json`), and the Fano resonance fits for the cavity at every gas tuning step (`gas_tuning_cavity_resonance_fits.json`).
 
 **Information about C/D:**
-In the off-resonant PL spectrum, you will be unable to discern which peaks correspond to C and which correspond to D transitions. That's why we have the lifetime data. The off-resonant PL spectrum rather tells us some rough upper bound on the number of transitions we might be able to couple, based on how many peaks there are in that PL spectrum (~N=5 maximum). Of course it's not guranteed that every peak couples to the cavity.
+In the off-resonant PL spectrum, you will be unable to discern which peaks correspond to C and which correspond to D transitions. That's why we have the lifetime data. The off-resonant PL spectrum rather tells us some rough upper bound on the number of transitions we might be able to couple, based on how many peaks there are in that PL spectrum (~N=4 maximum). Of course it's not guranteed that every peak couples to the cavity.
 
-This 1D photonic crystal cavity happens to be rotated 55 degrees from the <100> crystallographic axis, so there is preferential coupling to C over D due to angular alignment. Such angular component of g^2 is precisely (g_ang)^2 = | \mu \cdot E | ^ 2, which is:
+This 1D photonic crystal cavity happens to be rotated 55 degrees from the <100> crystallographic axis, and we need to consider differences in g_C and g_D of the same emitter due to angular alignment. Such angular component of g^2 is precisely (g_ang)^2 = | \mu \cdot E | ^ 2, which is:
     exactly [1/2 * sin(55)^2 * (1 + sin(2*\theta))] for g_C_ang (the 55 here comes from the C out of plane angle), and
     exactly [1/2 * (1 - sin(2*\theta))] for g_D_ang. See code below.
 Here, \theta = 55 degrees (absolute angle from <100>). Of course for one emitter with C and D transitions, the positional coupling component g_C_pos^2 and g_D_pos^2 are equal. You must use this information if you differentiate between C and D transitions in your models. (hint: g^2 = g_0 * g_pos^2 * g_ang^2) where g_0 contains Q, mode volume, etc - constant for all emitters in the same device.
 
 ```
-def angular_coupling_ratio(theta_deg=55.0):
+def angular_coupling_ratio(theta_deg=0.0):
     """Return (g_C_ang^2, g_D_ang^2) prefactors (unnormalised) for a cavity
     at angle *theta_deg* from the <100> axis."""
     theta = np.radians(theta_deg)
@@ -38,4 +42,29 @@ def angular_coupling_ratio(theta_deg=55.0):
     return g2_D/g2_C
 ```
 
-Also, the C and D peaks of one emitter should be roughly ~850 GHz, but importantly, some variation from this number is often present due to natural strain from the photonic interfaces. This you must also take into account if you differentiate between C and D transitions in your models.
+Also, the C and D peaks of one emitter should be between 800-1000 GHz apart (D is red relative to than C); variation of this number is often present due to natural strain from the photonic interfaces. This you must also take into account if you differentiate between C and D transitions in your models.
+
+**FIT NOTES: How to fit per-trace amplitude variation**
+Each lifetime trace may have a different overall photon count due to unrelated experimental factors. Treat per-trace amplitude as a nuisance parameter and eliminate it — analytically if your noise model permits, otherwise by normalisation. The C/D physics of interest (Purcell-enhanced decay rates and their cavity-wavelength dependence) is encoded entirely in the time-profile shape of each trace, not its absolute amplitude. For example:
+
+```
+def profile_amplitude(h_s, n_s):
+    """
+    Analytically profile out per-step Poisson amplitude: A_s* = sum(n_s) / sum(h_s).
+    """
+    denom = h_s.sum()
+    if denom <= 0:
+        return 0.0
+    return n_s.sum() / denom
+```
+
+**FIT NOTES: off-resonance lifetime**
+You should fix γ₀ = 1/τ_free as a hard constraint, rather than a free parameter for each emitter. Use the lifetime data which corresponds to the red-most cavity resonant wavelengths to extract γ₀. While fitting, the γ₀ for each emitter SHOULD NOT VARY more than 10% from this value.
+
+**FIT NOTES: avoid fitting emitters to degenerate wavelengths**
+For a multi emitter model, the wavelength of the different emitters should be distinguishable, not closely overlapping. The off-resonant PL spectrum provided to you in experimental_data/ should give you an idea where at least some of emitters are located in wavelength.
+
+**IMPORTANT: Known Physical Restrictions**
+- Use this as a FITTING CONSTRAINT on the relevant parameters: The lifetime measurement collects only photons within 619.5 ± 0.25 nm. Thus, any distinct lifetime features observed when the cavity is outside this window does not indicate an additional emitter; it must instead reflect another transition of the same emitter that shares the same excited state as a transition within the detection band. In other words, any emission enhancement peaks detected red of this range cannot be a C transition.
+- In fact, if you see an emission peak in the 619.5 ± 0.25 nm region, there MUST be a corresponding D transition. ONLY consider models which have BOTH C and D transitions, i.e. each emitter must have a C transition AND a D transition.
+- Since the instrument response is roughly lifetime 370 picoseconds, emitter lifetimes fitted to be below that number are not trustworthy.

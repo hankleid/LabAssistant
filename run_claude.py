@@ -1,8 +1,8 @@
 import asyncio
 import json
 import re
-from claude_agent_sdk import query, ClaudeAgentOptions, AssistantMessage, ResultMessage, UserMessage, ToolResultBlock
 import time
+from claude_agent_sdk import query, ClaudeAgentOptions, AssistantMessage, ResultMessage, UserMessage, ToolResultBlock
 
 prompts_dir, tools_dir = "prompts", "tools"
 system_prompt = open(f'{prompts_dir}/system_prompt.txt', 'r').read()
@@ -33,6 +33,9 @@ def fmt_tool_call(name, inp):
         skill_name = inp.get("skill", "")
         args = inp.get("args", "")
         return f"  [Skill] {skill_name}" + (f' "{args}"' if args else "")
+    if name == "Agent":
+        desc = inp.get("description", inp.get("prompt", "")[:80])
+        return f"  [Agent] {desc}"
     key = primary.get(name)
     value = inp.get(key, "") if key else ""
     return f"  [{name}] {value}" if value else f"  [{name}] {inp}"
@@ -119,43 +122,96 @@ def fmt_websearch_result(prefix, text):
     return f"{prefix} search result:\n{indented}"
 
 
+def log_paper_fetch(url: str, content, log_path='literature_search_log.jsonl'):
+    """Append one record to paper_fetch_log.jsonl if url looks like a paper."""
+    import datetime, re as _re
+    PAPER_PATTERNS = [
+        'arxiv.org/', 'ar5iv.labs.arxiv.org/', 'semanticscholar.org/',
+        'doi.org/', 'plos', 'pubmed',
+    ]
+    if not any(p in url for p in PAPER_PATTERNS):
+        return
+
+    if 'ar5iv.labs.arxiv.org/html/' in url:
+        method, full_text = 'ar5iv', True
+    elif 'arxiv.org/html/' in url:
+        method, full_text = 'html', True
+    elif 'arxiv.org/abs/' in url:
+        method, full_text = 'abs', False
+    elif 'semanticscholar.org' in url:
+        method, full_text = 'semantic_scholar', None
+    else:
+        method, full_text = 'doi', None
+
+    content_str = to_text(content)
+    content_length = len(content_str)
+    if full_text is None:
+        full_text = content_length > 5000
+
+    m = _re.search(r'(\d{4}\.\d{4,5})', url)
+    arxiv_id = m.group(1) if m else None
+
+    record = {
+        'timestamp': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        'url': url,
+        'arxiv_id': arxiv_id,
+        'method': method,
+        'full_text': full_text,
+        'content_length': content_length,
+    }
+    with open(log_path, 'a') as f:
+        f.write(json.dumps(record) + '\n')
+
+
 async def start_agent(user_prompt):
-    tool_names: dict[str, str] = {}  # tool_use_id -> tool name
+    tool_names: dict[str, str] = {}       # tool_use_id -> tool name
+    webfetch_urls: dict[str, str] = {}    # tool_use_id -> URL
+    subagent_names: dict[str, str] = {}   # parent_tool_use_id -> subagent label
 
     log("\n\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n\n")
+    start_time = time.monotonic()
 
-    # Agentic loop: streams messages as Claude works
     async for message in query(
-        prompt= user_prompt,
+        prompt=user_prompt,
         options=ClaudeAgentOptions(
             model='claude-sonnet-4-6',
             system_prompt=system_prompt,
             setting_sources=["user", "project"],
-            allowed_tools=["Skill", "Read", "Edit", "Bash", "Glob", "Grep", "WebSearch", "WebFetch"],
+            allowed_tools=["Agent", "Skill", "Read", "Edit", "Bash", "Glob", "Grep", "WebSearch", "WebFetch"],
             permission_mode="acceptEdits",
         ),
     ):
-        # print("message")
         if isinstance(message, AssistantMessage):
+            is_subagent = message.parent_tool_use_id is not None
+            prefix = f"  [sub:{subagent_names.get(message.parent_tool_use_id, message.parent_tool_use_id[:8])}] " if is_subagent else ""
             for block in message.content:
                 if hasattr(block, "text") and block.text:
-                    log(">> " + block.text.replace("\n", "\n   "))
+                    log(prefix + ">> " + block.text.replace("\n", "\n   "))
                 elif hasattr(block, "name"):
                     tool_names[block.id] = block.name
-                    log(fmt_tool_call(block.name, block.input))
+                    if block.name == "WebFetch":
+                        webfetch_urls[block.id] = block.input.get("url", "")
+                    if block.name == "Agent":
+                        label = block.input.get("description", block.input.get("prompt", "")[:40])
+                        subagent_names[block.id] = label
+                    log(prefix + fmt_tool_call(block.name, block.input))
 
         elif isinstance(message, UserMessage):
             if isinstance(message.content, list):
                 for block in message.content:
                     if isinstance(block, ToolResultBlock):
                         name = tool_names.get(block.tool_use_id, "Tool")
+                        if name == "WebFetch" and not block.is_error:
+                            url = webfetch_urls.get(block.tool_use_id, "")
+                            log_paper_fetch(url, block.content)
                         result = fmt_tool_result(name, block.content, block.is_error)
                         if result:
                             log(result)
 
         elif isinstance(message, ResultMessage):
+            elapsed = time.monotonic() - start_time
             cost = f"  ${message.total_cost_usd:.4f}" if message.total_cost_usd else ""
-            log(f"\nDone ({message.subtype}){cost}")
+            log(f"\nDone ({message.subtype}){cost}  [{elapsed:.1f}s]")
 
 
 print("starting...")
@@ -164,6 +220,6 @@ print("starting...")
 # asyncio.run(start_agent(full_gen_tools_prompt))
 # asyncio.run(start_agent(revise_tools_prompt))
 # asyncio.run(start_agent(gen_exec_checkpoints_prompt))
-# asyncio.run(start_agent(execute_phase_prompt))
-asyncio.run(start_agent(interpret_results_prompt))
+asyncio.run(start_agent(execute_phase_prompt))
+# asyncio.run(start_agent(interpret_results_prompt))
 

@@ -10,9 +10,11 @@ Search for and thoroughly read physics papers relevant to: **$ARGUMENTS**
 
 ## Search Protocol
 
+**Never fetch `arxiv.org/search/` or any arXiv search page — those return no results reliably. Always use `WebSearch` (Google) to discover papers.**
+
 Follow this priority order strictly for every paper you retrieve:
 
-1. **Find the arXiv ID.** Most physics papers are available as preprints on arXiv. Search results usually surface the arXiv URL directly.
+1. **Use `WebSearch` to find paper titles and arXiv IDs.** Search Google with natural language queries like `"Tavis-Cummings disorder cavity QED arXiv"`. The results will surface arXiv URLs, titles, and authors directly. Run multiple searches with varied phrasing to broaden coverage.
 
 2. **Fetch the full paper as HTML using `arxiv.org/html/ARXIV_ID`**
    (NOT `arxiv.org/abs/` which only gives the abstract, and NOT `arxiv.org/pdf/` which returns an encoded PDF — not readable. Never fetch these URLs for paper content.)
@@ -36,25 +38,10 @@ Follow this priority order strictly for every paper you retrieve:
 
 **IMPORTANT**: A WebSearch result snippet is not the same as reading the paper. For any paper that contains equations, algorithms, or experimental details you need, you must actually fetch and read it — do not rely on the search summary.
 
-## Outputs
+## Outputs (mandatory - always do this first)
 
 Return a structured summary of each paper found, including:
 - Full citation (authors, title, year, arXiv ID or DOI)
 - Key results relevant to the query
 - Specific equations or parameter values if applicable
 
-## Logging (mandatory — always do this last)
-
-After completing the search, append one JSON record to `literature_search_log.jsonl` using Bash.
-One compact line per invocation, no pretty-printing:
-
-```bash
-echo '{"timestamp":"<ISO8601>","query":"<ARGUMENTS>","papers":[{"title":"...","arxiv_id":"...","method":"<html|ar5iv|semantic_scholar|abs|failed>","full_text":true},...],"n_found":<int>,"n_full_text":<int>}' >> literature_search_log.jsonl
-```
-
-Field definitions:
-- `method`: the retrieval path that actually succeeded (only use `"failed"` if no paper content beyond the title was obtained at all)
-- `full_text`: `true` if you read the full paper, `false` if abstract-only or not found
-- `n_full_text`: count of papers where `full_text` is true
-
-Escape any double quotes inside string values with `\"`. Do not skip this step.
