@@ -1,0 +1,2013 @@
+
+
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+
+  [Skill] experiment-background  [Read] /root/repo/.claude/skills/explore-data/SKILL.md  [Read] /root/repo/.claude/skills/search-literature/SKILL.md  [Read] /Users/oatpix/Desktop/LabAssistant/.claude/skills/explore-data/SKILL.md  [Read] /Users/oatpix/Desktop/LabAssistant/.claude/skills/search-literature/SKILL.md>> Good. Now I'll dispatch the data exploration and literature search in parallel before writing the plan.  [Agent] Explore experimental data files  [sub:Explore experimental data files]   [Glob] **/*.{json,csv,npy,hdf5,mat,txt,dat}  [sub:Explore experimental data files]   [Glob] tools/**/*.py  -> [Glob]:
+       tools/data_io.py  -> [Glob]:
+       .claude/settings.local.json
+       prompts/interpret_results_prompt.txt
+       prompts/make_plan_prompt.txt
+       prompts/revise_plan_prompt.txt
+       prompts/generate_tools_prompt.txt
+       prompts/revise_tools_prompt.txt
+       prompts/generate_execution_checkpoints_prompt.txt
+       prompts/execute_plan_prompt.txt
+       experimental_data/lifetime_data.dat
+       prompts/system_prompt.txt
+       log.txt  [sub:Explore experimental data files]   [Read] /Users/oatpix/Desktop/LabAssistant/tools/data_io.py  [sub:Explore experimental data files]   [Read] /Users/oatpix/Desktop/LabAssistant/experimental_data/lifetime_data.dat  [Agent] Literature search: Hamiltonian learning cavity QED color centers  [sub:Explore experimental data files]   [Bash] python3 -c "
+import numpy as np
+
+# Read raw file to inspect header
+with open('experimental_data/lifetime_data.dat', 'rb') as f:
+    raw = f.read(500)
+print('RAW BYTES (first 500):')
+print(repr(raw))
+"  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [ToolSearch] {'query': 'WebSearch WebFetch', 'max_results': 5}  -> [ToolSearch]:
+       {'type': 'tool_reference', 'tool_name': 'WebFetch'}  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [ToolSearch] {'query': 'WebSearch', 'max_results': 3}  -> [ToolSearch]:
+       {'type': 'tool_reference', 'tool_name': 'WebSearch'}  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] Hamiltonian learning quantum optics experiment arXiv  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] Bayesian Hamiltonian learning open quantum systems arXiv  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] cavity QED single emitter strong coupling lifetime oscillations arXiv  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] Tavis-Cummings disorder solid state emitters cavity QED arXiv  -> [Bash]:
+       RAW BYTES (first 500):
+       b'#\r\n%Time%Gated%Ungated\r\n@ ns@ @ \r\n0 7 3\r\n10 2 2\r\n20 2 1\r\n30 1 0\r\n40 2 2\r\n50 3 1\r\n60 2 2\r\n70 4 1\r\n80 1 1\r\n90 4 0\r\n100 6 0\r\n110 9 0\r\n120 4 2\r\n130 1 0\r\n140 3 2\r\n150 2 0\r\n160 2 0\r\n170 2 2\r\n180 3 0\r\n190 2 0\r\n200 3 0\r\n210 3 1\r\n220 2 2\r\n230 5 1\r\n240 7 3\r\n250 4 1\r\n260 1 0\r\n270 1 0\r\n280 1 0\r\n290 3 0\r\n300 3 1\r\n310 1 1\r\n320 3 0\r\n330 6 0\r\n340 4 3\r\n350 4 1\r\n360 5 1\r\n370 3 2\r\n380 5 3\r\n390 5 1\r\n400 4 0\r\n410 7 0\r\n420 5 1\r\n430 3 1\r\n440 3 0\r\n450 5 0\r\n460 0 3\r\n470 3 1\r\n480 2 0\r\n490 3 1\r\n500 5 1\r\n510 6 1\r\n520 4 2\r\n'  -> 1 result(s):
+       1. Web search results for query: "Hamiltonian learning quantum optics experiment arXiv"
+          https://arxiv.org/pdf/1703.05402
+          Based on the search results, I found several relevant papers on Hamiltonian learning in quantum optics experiments: ## Main Result: Experimental Quantum Hamiltonian Learning The most directly relevant result is "Experimental Quantum Hamiltonian Learning," which interfaces a silicon-photonics quantum simulator with an electron spin in a diamond nitrogen-vacancy centre to learn the latter's Hamiltonian via Bayesian inference. The researchers learned the salient Hamiltonian parameter with an uncertainty of approximately 10^-5. With the help of a quantum simulator and Bayesian inference, it is possible to determine the unknown Hamiltonian of a quantum system, and an experiment demonstrates this using a photonic quantum simulator and a solid-state system. ## Related Work The search also revealed other recent papers on Hamiltonian learning: - A photonic classical shadow protocol demonstrated on integrated quantum processing units includes applications to Hamiltonian measurement and learning complex photonic states. - A Hamiltonian learning strategy has been demonstrated that surpasses the standard quantum limit in quantum Hamiltonian learning while using only separable probe states, local measurements, and no dynamical control. All of these papers on Hamiltonian learning in quantum optics are available on arXiv and represent recent advances in characterizing and learning quantum systems experimentally.  -> 1 result(s):
+       1. Web search results for query: "cavity QED single emitter strong coupling lifetime oscillations arXiv"
+          https://arxiv.org/pdf/1412.0335
+          I've performed the web search for your query about cavity QED, single emitters, strong coupling, lifetime oscillations, and arXiv papers. Here are the key results: ## Main Findings: The search returned several relevant papers and research on cavity QED systems with single emitters in the strong coupling regime:  -> 1 result(s):
+       1. Web search results for query: "Bayesian Hamiltonian learning open quantum systems arXiv"
+          https://arxiv.org/abs/1703.05402
+          I found several relevant papers on arxiv related to Bayesian Hamiltonian learning and open quantum systems. Here are the key results: ## Main Papers Found:  -> 1 result(s):
+       1. Web search results for query: "Tavis-Cummings disorder solid state emitters cavity QED arXiv"
+          https://arxiv.org/html/2112.15469
+          Based on the search results, here's what I found about research on the Tavis-Cummings model with disorder in solid-state emitters and cavity QED: ## Key Research Findings Research using the Quantum Master Equation and Effective Hamiltonian approaches studies energy band formation and wavefunction properties in the open quantum Tavis-Cummings-Hubbard framework, exploring conditions for polariton creation and (de)localization under experimentally relevant values of disorder in emitter frequencies, cavity resonance frequencies, and emitter-cavity coupling rates. The spectrally disordered Tavis-Cummings-Hubbard model (TCHM) targets applications in technologically mature solid-state platforms and is reflective of state-of-the-art parameters achieved in silicon carbide and diamond color center hosts. ## Disorder Effects and Superradiance Research studying the interplay between superradiance and spectral disorder in a dynamically modulated Tavis-Cummings model demonstrates that the effective cooperativity of the superradiant mode can be multiplicatively enhanced with a quantum control protocol modulating the resonant frequency of the optical mode. ## Integrability and Localization Disordered Tavis-Cummings models admit two sources of disorder: in the coupling between spins and the cavity and in the energy shifts of individual spins, with exact solvability in the limit of homogeneous energy shift and inhomogeneous coupling. ## Recent Experimental Work Recent demonstrations show few-emitter cavity QED systems with a silicon carbide whispering gallery mode resonator hosting silicon vacancy color centers, where the simultaneous presence of spectral and spatial disorder gives rise to emergent chirality.  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] V_Si silicon carbide cavity QED color center ring resonator arXiv  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] non-exponential decay cavity QED emitter biexponential lifetime arXiv  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] model selection quantum systems AIC BIC information criterion arXiv  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] superradiance subradiance dark state cavity QED color center lifetime arXiv  -> 1 result(s):
+       1. Web search results for query: "non-exponential decay cavity QED emitter biexponential lifetime arXiv"
+          https://arxiv.org/html/2601.05884
+          I've found several relevant results related to your search query about non-exponential decay in cavity QED systems. Here are the key findings: ## Main Results: A recent paper discusses how decoherence-driven dynamics leads to power-law decay rather than standard exponential decay, with dynamically disordered photonic environments causing photon diffusion that produces robust power-law decay on short timescales, revealing a non-Markovian mechanism for non-exponential decay in waveguide QED. This work by Longhi was published in January 2026 (arXiv:2601.05884). Another recent paper demonstrates that strong non-Markovian dynamics arise from photon reabsorption and interference effects, leading to pronounced deviations from exponential decay, with the emergence of exceptional points in these non-Markovian waveguide-QED environments (arXiv:2604.05473, from April 2026). Regarding biexponential lifetimes more broadly, a framework has been developed to explain the widely observed biexponential decay of photoluminescence from neutral excitons in low dimensional semiconductor emitters (arXiv:2408.12192). These papers demonstrate the rich decay dynamics that occur in cavity QED systems beyond simple exponential behavior, particularly when considering non-Markovian effects and decoherence.  -> 1 result(s):
+       1. Web search results for query: "V_Si silicon carbide cavity QED color center ring resonator arXiv"
+          https://nqp.stanford.edu/research/semiconductor-quantum-systems-diamond-silicon-carbide-and-gallium-arsenide-cavity-qed
+          Based on the web search results, I found several relevant papers and research on V_Si silicon carbide cavity QED color center systems: ## Recent Research Findings A recent study demonstrates a high-finesse silicon carbide whispering gallery mode resonator hosting an ensemble of silicon vacancy color centers. This work demonstrates a few-emitter cavity QED system capable of realizing new Hamiltonians in quantum optics based on breaking of symmetries and the realization of an in situ Kerr nonlinearity. The silicon vacancy (V_Si) color centers are monoatomic defects in a uniaxially symmetric 4H-SiC crystal that exist in only two lattice configurations, which are spectrally distinct. ## Previous Demonstrations Near-transform-limited V_Si defects have been successfully integrated into micro-disk resonators fabricated on a CMOS-compatible 4H-SiCOI platform, achieving a single-emitter cooperativity of up to 0.8 and observing optical superradiance from pairs of color centers coupled to the same cavity mode. ## Key Properties The silicon vacancy (V_Si) in silicon carbide exhibits Stark tuning properties and holds promise for optical quantum information processing technologies. The cubic configuration (k-V_Si) has an optical transition at 916 nm. The search results show active research in this field, with multiple arXiv papers and published work on cavity QED systems incorporating V_Si color centers in silicon carbide resonators.  -> 1 result(s):
+       1. Web search results for query: "model selection quantum systems AIC BIC information criterion arXiv"
+          https://arxiv.org/html/2304.10949
+          I've retrieved search results for your query on model selection, quantum systems, AIC, BIC, and information criteria from arXiv. Here's a summary of the findings: ## Key Results **Quantum Information Criteria for Model Selection:** A quantum-oriented information criterion has been proposed that evaluates a quantum state in terms of the quantum relative entropy instead of the KL divergence. Since the quantum relative entropy is independent of measurements, the proposed criterion can measure the intrinsic validity of the model. **Classical Information Criteria in Quantum Context:** The Akaike information criterion (AIC) and the Bayesian information criterion (BIC) have been applied to models consisting of states of fixed rank and datasets from multiple ions experiments. However, classical approaches using the KL divergence and AIC are based on fixed measurement processes and do not fully extract information from the target quantum system for the best model selection. **Quantum Generalizations:** Quantum information criteria have been developed for statistical model selection in terms of quantum relative entropy, as a quantum generalization of the classical information criteria AIC and TIC, which evaluate an estimated model based on the KL divergence. The search results include several arXiv papers on this topic, including arXiv:2304.10949 on quantum information criteria for quantum state estimation, and arXiv:1405.6329 on quantum model averaging.  -> 1 result(s):
+       1. Web search results for query: "superradiance subradiance dark state cavity QED color center lifetime arXiv"
+          https://jila-pfc.colorado.edu/sites/default/files/2022-03/2022-PineiroOrioli-PhysRevX.12.011054.pdf
+          I've performed the web search for your query on superradiance, subradiance, dark states, cavity QED, color centers, and lifetime research on arXiv. Here's a summary of the relevant findings: ## Key Research Areas Found **Superradiance and Subradiance in Cavity QED:** Multilevel atoms can harbor eigenstates that are perfectly dark to cavity decay even within the subspace of permutationally symmetric states. Dark states' long-lived character should be experimentally observable in current optical cavity experiments operating with alkaline-earth atoms or with engineered Raman-dressed transitions. **Color Centers and Quantum Dots:** Collective super- and subradiant dynamics occur between distant optical quantum emitters, with emission dynamics exhibiting super- and subradiance originating from either constructive (bright line) or destructive (dark line) interference of the field emitted into photonic crystal waveguides. **Dark States and Entanglement:** A method exists to create and store scalable and long-lived entangled spin-squeezed states within a manifold of many-body cavity dark states using collective emission of light from multilevel atoms inside an optical cavity. **Experimental Challenges:** Subradiant states remain less explored due to their inherently dark state nature, though subradiance holds significant potential as a quantum resource exploiting long-lived and large-scale entanglement, and demonstrations of steady-state subradiant states in quantum dots coupled to cavities have been achieved. The search results include several relevant arXiv papers and published works on these topics.  [sub:Explore experimental data files]   [Bash] python3 -c "
+import numpy as np
+
+path = 'experimental_data/lifetime_data.dat'
+
+# Read header lines
+with open(path, 'r') as f:
+    lines = f.readlines()
+
+print('=== HEADER (first 4 lines) ===')
+for i, l in enumerate(lines[:4]):
+    print(f'  Line {i}: {repr(l)}')
+
+print(f'\n=== TOTAL LINES: {len(lines)} ===')
+print(f'Data rows (lines 4+): {len(lines)-4}')
+
+print('\n=== LAST 5 LINES ===')
+for l in lines[-5:]:
+    print(f'  {repr(l)}')
+
+# Load with loader
+data = np.loadtxt(path, skiprows=4)
+print(f'\n=== DATA SHAPE: {data.shape} ===')
+print(f'dtype: {data.dtype}')
+print(f'Columns: Time(ps), Gated, Ungated (inferred from header)')
+
+t = data[:, 0]
+gated = data[:, 1]
+ungated = data[:, 2]
+
+print(f'\n--- Column 0 (Time) ---')
+print(f'  Min: {t.min()}, Max: {t.max()}, Step: {np.diff(t).mean():.2f} (units: ps from header)')
+print(f'  Range in ns: {t.min()/1e3:.4f} to {t.max()/1e3:.4f} ns')
+print(f'  N points: {len(t)}')
+
+print(f'\n--- Column 1 (Gated counts) ---')
+print(f'  Min: {gated.min()}, Max: {gated.max()}, Median: {np.median(gated)}, Mean: {gated.mean():.2f}')
+print(f'  Zeros: {(gated==0).sum()}, Negatives: {(gated<0).sum()}')
+
+print(f'\n--- Column 2 (Ungated counts) ---')
+print(f'  Min: {ungated.min()}, Max: {ungated.max()}, Median: {np.median(ungated)}, Mean: {ungated.mean():.2f}')
+print(f'  Zeros: {(ungated==0).sum()}, Negatives: {(ungated<0).sum()}')
+
+print(f'\n--- NaN checks ---')
+print(f'  NaNs in data: {np.isnan(data).sum()}')
+
+# Run the actual loader to inspect fit window
+start_t = 10.09  # ns
+end_t = start_t + 9  # ns
+all_times_ns = t / 1e3
+all_counts = ungated
+mask = (all_times_ns >= start_t) & (all_times_ns <= end_t)
+t_fit = all_times_ns[mask] - start_t
+c_fit = all_counts[mask]
+
+print(f'\n=== LOADER OUTPUT (fit window: {start_t} - {end_t} ns) ===')
+print(f'  Points in window: {mask.sum()}')
+print(f'  Time range (relative): {t_fit.min():.4f} to {t_fit.max():.4f} ns')
+print(f'  Step size: {np.diff(t_fit).mean()*1e3:.2f} ps')
+print(f'  Ungated counts in window: min={c_fit.min()}, max={c_fit.max()}, median={np.median(c_fit)}, mean={c_fit.mean():.2f}')
+print(f'  Peak value: {c_fit.max()} at t={t_fit[c_fit.argmax()]:.4f} ns')
+
+# Also check gated in same window
+c_gated_fit = gated[mask]
+print(f'  Gated counts in window:   min={c_gated_fit.min()}, max={c_gated_fit.max()}, median={np.median(c_gated_fit)}, mean={c_gated_fit.mean():.2f}')
+
+# Find the big peak region
+peak_idx = np.argmax(ungated)
+print(f'\n=== GLOBAL PEAK (Ungated) ===')
+print(f'  Peak at index {peak_idx}, time={t[peak_idx]/1e3:.4f} ns, counts={ungated[peak_idx]}')
+print(f'  Context window ±5 rows around peak:')
+for i in range(max(0,peak_idx-5), min(len(t), peak_idx+6)):
+    print(f'    t={t[i]/1e3:.4f} ns  gated={gated[i]}  ungated={ungated[i]}')
+"
+  -> [Bash]:
+       === HEADER (first 4 lines) ===
+         Line 0: '#\n'
+         Line 1: '%Time%Gated%Ungated\n'
+         Line 2: '@ ns@ @ \n'
+         Line 3: '0 7 3\n'
+       
+       === TOTAL LINES: 3003 ===
+       Data rows (lines 4+): 2999
+       
+       === LAST 5 LINES ===
+         '29950 0 0\n'
+         '29960 0 0\n'
+         '29970 0 0\n'
+         '29980 0 0\n'
+         '29990 0 0\n'
+       
+       === DATA SHAPE: (2999, 3) ===
+       dtype: float64
+       Columns: Time(ps), Gated, Ungated (inferred from header)
+       
+       --- Column 0 (Time) ---
+         Min: 10.0, Max: 29990.0, Step: 10.00 (units: ps from header)
+         Range in ns: 0.0100 to 29.9900 ns
+         N points: 2999
+       
+       --- Column 1 (Gated counts) ---
+         Min: 0.0, Max: 347.0, Median: 3.0, Mean: 22.02
+         Zeros: 802, Negatives: 0
+       
+       --- Column 2 (Ungated counts) ---
+         Min: 0.0, Max: 108.0, Median: 1.0, Mean: 6.44
+         Zeros: 1258, Negatives: 0
+       
+       --- NaN checks ---
+         NaNs in data: 0
+       
+       === LOADER OUTPUT (fit window: 10.09 - 19.09 ns) ===
+         Points in window: 901
+         Time range (relative): 0.0000 to 9.0000 ns
+         Step size: 10.00 ps
+         Ungated counts in window: min=0.0, max=108.0, median=9.0, mean=18.86
+         Peak value: 108.0 at t=0.6400 ns
+         Gated counts in window:   min=3.0, max=347.0, median=30.0, mean=67.46
+       
+       === GLOBAL PEAK (Ungated) ===
+         Peak at index 1072, time=10.7300 ns, counts=108.0
+         Context window ±5 rows around peak:
+           t=10.6800 ns  gated=335.0  ungated=88.0
+           t=10.6900 ns  gated=311.0  ungated=82.0
+           t=10.7000 ns  gated=347.0  ungated=91.0
+           t=10.7100 ns  gated=326.0  ungated=54.0
+           t=10.7200 ns  gated=335.0  ungated=88.0
+           t=10.7300 ns  gated=316.0  ungated=108.0
+           t=10.7400 ns  gated=313.0  ungated=82.0
+           t=10.7500 ns  gated=331.0  ungated=91.0
+           t=10.7600 ns  gated=318.0  ungated=79.0
+           t=10.7700 ns  gated=313.0  ungated=86.0
+           t=10.7800 ns  gated=335.0  ungated=102.0  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2410.17942  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2501.05350v1  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2112.15469  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2408.12192  -> [WebFetch]:
+       # Paper Extraction Summary
+       
+       **Title:** A learning agent-based approach to the characterization of open quantum systems
+       
+       **Authors:** Lorenzo Fioroni, Ivan Rojkov, Florentin Reiter
+       
+       **Year:** 2025
+       
+       **arXiv ID:** 2501.05350
+       
+       ## Key Methods for Learning Open Quantum Systems (oQMLA)
+       
+       The framework extends the Quantum Model Learning Agent to open systems by employing the Lindblad master equation. It uses a "double-nested optimization process" combining Bayesian inference for parameter estimation with a genetic algorithm for model exploration.
+       
+       ## Lindblad Formalism
+       
+       The approach models Markovian dynamics through: "∂ρ/∂t = Σᵢ αᵢ ℋ[hᵢ](ρ) + Σₖ Γₖ 𝒟[Lₖ](ρ)" where coherent evolution involves commutators and dissipative evolution uses jump operators (Lindblad superoperators).
+       
+       ## Model Selection and Comparison
+       
+       Models are ranked using Root Mean Squared Error (RMSE) as a fitness function: "f(m) = 1/RMSE ensures monotonic growth with model performance." This provides unbiased evaluation across different model branches and executions.
+       
+       ## Relevant Results
+       
+       The paper demonstrates two-qubit system characterization with fitness values ~180 corresponding to mean prediction errors below 6‰. Hardware implementation on IBM's `ibm_lagos` superconducting quantum computer characterized CNOT gate noise, though achieving lower fitness scores (~30) due to increased complexity.
+       
+       **Note:** This paper focuses on general open quantum systems rather than cavity QED or lifetime data specifically.  -> [WebFetch]:
+       # Document Analysis: Polariton Creation in Coupled Cavity Arrays
+       
+       **Title:** "Polariton Creation in Coupled Cavity Arrays with Spectrally Disordered Emitters"
+       
+       **Authors:** J T Patton, V A Norman, E C Mann, B Puri, R T Scalettar, M Radulaski
+       
+       **Year:** 2021 (arXiv version 5)
+       
+       **arXiv ID:** 2112.15469
+       
+       ## Key Results on Disordered Emitters
+       
+       The research demonstrates that "polariton creation in an array of lossy cavities can be achieved via integration of an increased number of emitters per cavity even in disordered ensembles." The authors establish conditions where disorder in emitter frequencies can be tolerated through collective coupling effects.
+       
+       ## Tavis-Cummings-Hubbard Model with Disorder
+       
+       The core Hamiltonian is:
+       
+       **H_TCHM = Σ{ω_c,n a†_n a_n + Σ_m[ω_e,n,m σ⁺σ⁻ + g_n,m(a†σ⁻ + σ⁺a)] - J(a†a_{n+1} + h.c.)}**
+       
+       The effective Hamiltonian incorporating losses adds: **-i/2 Σ{κ_n a†a_n + Σ_m γ_n,m σ⁺σ⁻}**
+       
+       ## Novel Metrics
+       
+       Two participation ratios characterize disorder effects:
+       - **Nodal participation ratio (P_N):** measures wavefunction delocalization across cavity-emitter nodes
+       - **Polaritonic participation ratio (P_P):** quantifies light-matter hybridization
+       
+       ## Critical Finding
+       
+       Spectral disorder localization occurs when "disorder in resonances in a coupled cavity array localizes polaritons if the difference in frequencies between neighboring cavities exceeds the cavity hopping rate."  -> [WebFetch]:
+       # Learning Markovian Open Quantum Systems from Experimental Data
+       
+       ## Document Information
+       - **Title:** Learning the dynamics of Markovian open quantum systems from experimental data
+       - **Authors:** Stewart Wallace, Yoann Altmann, Brian D. Gerardot, Erik M. Gauger, Cristian Bonato
+       - **Institution:** Heriot-Watt University, Edinburgh
+       - **Year:** 2024
+       - **arXiv ID:** 2410.17942v3
+       
+       ## Abstract Summary
+       The paper presents "a Bayesian algorithm to identify explainable processes generating open quantum system dynamics" using Lindblad master equations. The approach processes experimental measurements to produce ranked interpretable models, demonstrated on single and paired quantum emitters with capabilities to identify cooperative emission effects.
+       
+       ## Key Methods
+       
+       **Primary Algorithm:** Reversible-jump Markov Chain Monte Carlo (rj-MCMC) for exploring varying-dimensionality model spaces
+       
+       **Core Framework:** The Gorini–Kossakowski–Sudarshan–Lindblad (GKSL) formalism, expressed as:
+       
+       ```
+       ρ̇ = -i[H,ρ] + Σⱼ γⱼ(LⱼρLⱼ† - {Lⱼ†Lⱼ,ρ}/2)
+       ```
+       
+       Where:
+       - H = system Hamiltonian
+       - Lⱼ = Lindblad operators (dissipative processes)
+       - γⱼ = decay rates
+       
+       **Model Selection:** Bayesian inference with complexity penalties to prevent overfitting; models ranked by sampling frequency (proportional to likelihood)
+       
+       ## Operator Space Construction
+       
+       For single emitters (d=2): 10 possible operator combinations
+       For two emitters (d=4): 105 unique operators (equally-weighted combinations of up to 2 basis elements from canonical basis)
+       
+       ## Key Results
+       
+       **Single Emitter:** Algorithm recovers expected coherent driving (σₓᴴ) and spontaneous decay (σ₋ᴸ)
+       
+       **Two Emitters:** Identifies two principal model classes with asymmetric excitation/emission pathways, achieving superior data fit without requiring dephasing terms previously deemed essential
+       
+       ## Advantages Over Alternatives
+       - Requires no complete quantum state preparation or full tomographic measurements
+       - Produces physically interpretable elementary processes (versus "black box" neural networks)
+       - Quantifies uncertainties in recovered parameters
+       - Handles tomographically incomplete data  [sub:Explore experimental data files]   [Bash] python3 -c "
+import numpy as np
+
+path = 'experimental_data/lifetime_data.dat'
+data = np.loadtxt(path, skiprows=4)
+t = data[:, 0] / 1e3   # ps -> ns
+gated = data[:, 1]
+ungated = data[:, 2]
+
+# Characterize temporal structure: where is signal vs background?
+# Divide into thirds
+n = len(t)
+thirds = [t[:n//3], t[n//3:2*n//3], t[2*n//3:]]
+g_thirds = [gated[:n//3], gated[n//3:2*n//3], gated[2*n//3:]]
+u_thirds = [ungated[:n//3], ungated[n//3:2*n//3], ungated[2*n//3:]]
+
+print('=== SIGNAL VS BACKGROUND REGIONS ===')
+for i, (ts, gs, us) in enumerate(zip(thirds, g_thirds, u_thirds)):
+    print(f'  Segment {i+1}: t={ts.min():.2f}-{ts.max():.2f} ns')
+    print(f'    Gated:   mean={gs.mean():.2f}, max={gs.max():.0f}')
+    print(f'    Ungated: mean={us.mean():.2f}, max={us.max():.0f}')
+
+# More fine-grained: where does gated signal spike?
+threshold_g = 50
+spike_mask = gated > threshold_g
+print(f'\n=== GATED: SPIKE REGION (counts > {threshold_g}) ===')
+print(f'  N points above threshold: {spike_mask.sum()}')
+print(f'  Time range: {t[spike_mask].min():.3f} to {t[spike_mask].max():.3f} ns')
+
+# Estimate dynamic range
+bg_region_g = gated[t > 20]
+bg_region_u = ungated[t > 20]
+print(f'\n=== BACKGROUND REGION (t > 20 ns) ===')
+print(f'  Gated background:   mean={bg_region_g.mean():.2f}, std={bg_region_g.std():.2f}')
+print(f'  Ungated background: mean={bg_region_u.mean():.2f}, std={bg_region_u.std():.2f}')
+
+# Decay region for ungated (fit window)
+start_t = 10.09
+end_t = start_t + 9
+mask = (t >= start_t) & (t <= end_t)
+t_fit = t[mask] - start_t
+u_fit = ungated[mask]
+
+# Rough exponential decay check: log-linear region
+nonzero = u_fit > 0
+print(f'\n=== DECAY CHARACTERIZATION (ungated, fit window) ===')
+print(f'  Non-zero points: {nonzero.sum()} / {len(u_fit)}')
+
+# Find peak and estimate decay
+peak_idx = np.argmax(u_fit)
+after_peak = u_fit[peak_idx:]
+t_after = t_fit[peak_idx:]
+print(f'  Peak at t={t_fit[peak_idx]:.3f} ns, counts={u_fit[peak_idx]:.0f}')
+print(f'  Half-max value: {u_fit[peak_idx]/2:.1f}')
+
+# Rough half-life estimate
+half_max = u_fit[peak_idx] / 2
+above_half = after_peak > half_max
+if above_half.sum() > 1:
+    t_half = t_after[above_half][-1]
+    print(f'  Approximate half-life: {t_half - t_fit[peak_idx]:.2f} ns')
+
+# Dynamic range
+peak_ungated = u_fit.max()
+bg_u = ungated[t > 20].mean()
+print(f'  Peak ungated: {peak_ungated:.0f} counts')
+print(f'  Background (t>20ns): {bg_u:.2f} counts')
+print(f'  Dynamic range (signal/bg): {peak_ungated/max(bg_u,0.01):.0f}x')
+
+peak_gated = gated[mask].max()
+bg_g = gated[t > 20].mean()
+print(f'  Peak gated: {peak_gated:.0f} counts')
+print(f'  Gated dynamic range: {peak_gated/max(bg_g,0.01):.0f}x')
+"
+  -> [Bash]:
+       === SIGNAL VS BACKGROUND REGIONS ===
+         Segment 1: t=0.01-9.99 ns
+           Gated:   mean=1.48, max=13
+           Ungated: mean=0.50, max=6
+         Segment 2: t=10.00-19.99 ns
+           Gated:   mean=61.70, max=347
+           Ungated: mean=17.21, max=108
+         Segment 3: t=20.00-29.99 ns
+           Gated:   mean=2.88, max=22
+           Ungated: mean=1.61, max=26
+       
+       === GATED: SPIKE REGION (counts > 50) ===
+         N points above threshold: 311
+         Time range: 10.090 to 13.570 ns
+       
+       === BACKGROUND REGION (t > 20 ns) ===
+         Gated background:   mean=2.87, std=4.03
+         Ungated background: mean=1.61, std=3.49
+       
+       === DECAY CHARACTERIZATION (ungated, fit window) ===
+         Non-zero points: 893 / 901
+         Peak at t=0.640 ns, counts=108
+         Half-max value: 54.0
+         Approximate half-life: 1.06 ns
+         Peak ungated: 108 counts
+         Background (t>20ns): 1.61 counts
+         Dynamic range (signal/bg): 67x
+         Peak gated: 347 counts
+         Gated dynamic range: 121x  -> [WebFetch]:
+       # Framework for Extracting Photophysical Process Rates from Biexponential Photon Emission
+       
+       **Title:** A framework for extracting the rates of photophysical processes from biexponentially decaying photon emission data
+       
+       **Authors:** Jill M. Cleveland, Tory A. Welsch, Eric Y. Chen, D. Bruce Chase, Matthew F. Doty, Hanz Y. Ramírez
+       
+       **Year:** 2024
+       
+       **arXiv ID:** 2408.12192v1
+       
+       ## Biexponential Decay Framework
+       
+       The authors develop an analytical model explaining why semiconductor nanostructures exhibit biexponential photoluminescence decay. The framework accounts for carrier trapping in optically inactive states, which creates delayed emission pathways alongside direct radiative recombination.
+       
+       ## Rate Equations & System Structure
+       
+       The model involves five quantum states: ground state |G⟩, excited state |E⟩, bright exciton |X⟩, trapping state |T⟩, and dissipative state |D⟩. Under resonant excitation conditions, the population dynamics are described by:
+       
+       **Normalized exciton population:**
+       > "NX(t) = AX⁻e^(−Γ₋t) + AX⁺e^(−Γ₊t)"
+       
+       where Γ₊ and Γ₋ represent fast and slow decay rates extracted from biexponential fits.
+       
+       ## Key Photophysical Processes
+       
+       The model incorporates six transition rates:
+       - **ΓXG, ΓXD:** radiative and nonradiative decay from exciton state
+       - **ΓXT, ΓTX:** trapping and detrapping rates
+       - **ΓTD, ΓDG:** transitions involving the dissipative state
+       
+       ## Critical Formula for Radiative Lifetime
+       
+       > "ΓXG = ΦΓ₊Γ₋ / (Γ₋AX⁺ + Γ₊AX⁻)"
+       
+       This equation enables extraction of radiative decay rates from measured photoluminescence quantum yield (Φ) and biexponential fit parameters.
+       
+       ## High-Temperature Approximation
+       
+       Under conditions where ΓXT ≈ ΓTX, the model yields:
+       
+       > "ΓPL = Γ₄ − (Γ₊ − Γ₋)√(AX⁺AX⁻)"
+       
+       This provides explicit values for the photoluminescence decay rate without requiring additional approximations.
+       
+       ## Experimental Application
+       
+       The authors validate their framework using CdSeTe/CdS heterostructure nanocrystals with two sample variants designed to differ in carrier trapping behavior, demonstrating practical extraction of previously inaccessible carrier dynamics parameters.  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2504.09324  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2304.10949  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://ar5iv.labs.arxiv.org/html/2107.04583  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2211.11619  -> [WebFetch]:
+       # Research Paper Summary
+       
+       **Title:** Mesoscopic cavity quantum electrodynamics with phase-disordered emitters in a Kerr nonlinear resonator
+       
+       **Authors:** Daniil M. Lukin, Bennet Windt, Miguel Bello, Dominic Catanzaro, Melissa A. Guidry, and others
+       
+       **Year:** 2025
+       
+       **arXiv ID:** 2504.09324
+       
+       ## Key Physics of the SiC Cavity QED System
+       
+       The platform utilizes "silicon vacancy color centers" in silicon carbide coupled to whispering gallery mode resonators. The researchers achieved strong coupling between individual atoms and the cavity with "the largest reported for an atomic defect coupled to a cavity," reaching 4g/κ = 3.2.
+       
+       ## Disorder Effects
+       
+       The system exhibits "phase-disordered emitters" where coupling phases φₙ vary spatially around the resonator. A disorder parameter ξ_φ quantifies this effect: when ξ_φ = 1 (no disorder), photon statistics remain symmetric between clockwise and counter-clockwise modes. Maximum disorder (ξ_φ = 0) produces "suppressed cross-correlations" between the two directions.
+       
+       ## Hamiltonian Structure
+       
+       The system Hamiltonian comprises three components: emitter energies, cavity modes with inter-mode backscattering coupling (g_bs), and position-dependent atom-cavity interactions with complex coupling strengths. Additionally, a four-photon Kerr nonlinearity enables parametric pair generation.
+       
+       ## Decay Rates and Experimental Parameters
+       
+       Key measured rates include:
+       - Emitter-cavity coupling: g = 202 MHz
+       - Cavity decay rate: κ = 289 MHz  
+       - Emitter decay rate: γ = 65 MHz
+       - Loaded Q-factor: Q_L = 1.13 × 10⁶
+       
+       ## Purcell Enhancement
+       
+       In the Purcell-enhanced regime, the "emitter lifetime" measured 1.3 ns, corresponding to "Purcell-enhanced decay rate Γ of 122 MHz."
+       
+       ## Collective Emission Phenomena
+       
+       Rather than observing traditional superradiance/subradiance, the work demonstrates "emergent chirality"—asymmetric directional emission—arising from the interplay between spectral disorder and spatial phase distributions in the two-mode configuration.  -> [WebFetch]:
+       # Quantum Information Criteria for Model Selection in Quantum State Estimation
+       
+       **Title:** Quantum information criteria for model selection in quantum state estimation
+       
+       **Authors:** Hiroshi Yano, Naoki Yamamoto
+       
+       **Year:** (Not explicitly stated in content; appears to be recent research)
+       
+       **ArXiv ID:** Not provided in excerpt
+       
+       ---
+       
+       ## Key Quantum Information Criteria
+       
+       ### QAIC_LL (Log-Likelihood Approach)
+       ```
+       QAIC_LL = −2ℓ_LL(θ̂_C) + p + Tr(Ĵ_Q(θ̂_C)Î_C(θ̂_C)^−1)
+       ```
+       
+       ### QTIC_shadow (Classical Shadow Approach)
+       ```
+       QTIC_shadow = −2ℓ_shadow(ρ̂_n; θ̂_Q) + 2Tr(Î_Q^emp(θ̂_Q)Ĵ_Q^emp(θ̂_Q)^−1)
+       ```
+       
+       ---
+       
+       ## Differences from Classical Criteria
+       
+       The paper proposes "a quantum-oriented information criterion that evaluates a quantum state in terms of the quantum relative entropy instead of the KL divergence." Unlike classical AIC (based on Kullback-Leibler divergence), these criteria incorporate:
+       
+       - **Quantum cross entropy:** The negative of `Tr(ρ log σ(θ̂))` rather than classical log-likelihood
+       - **Quantum Fisher information:** Reflecting measurement limitations absent in classical settings
+       - **Measurement-dependent bias:** The trace term involving quantum vs. classical Fisher matrices accounts for non-optimal measurement choices
+       
+       ---
+       
+       ## Application to Model Selection
+       
+       The criteria enable practitioners to "select a valid model by evaluating the trade-off between fitting-level to data and model complexity." Two estimation approaches are presented:
+       
+       1. **Log-likelihood method:** Uses classical measurement outcomes with maximum likelihood estimation
+       2. **Classical shadow method:** Reconstructs quantum snapshots from measurement data, enabling direct quantum cross-entropy estimation
+       
+       Models are ranked by lower criterion values; the paper demonstrates this through numerical simulations evaluating generalization performance on unseen data.
+       
+       ---
+       
+       ## Key Formula for Model Ranking
+       
+       Lower values indicate better models. When comparing hierarchical model families, differences in criterion values across candidates guide selection, analogous to classical AIC comparison procedures.  -> [WebFetch]:
+       # Paper Summary: Non-exponential Decay in Open Quantum Systems
+       
+       **Title:** "Probing the Non-exponential Decay Regime in Open Quantum Systems"
+       
+       **Authors:** S. M. Wang, W. Nazarewicz, A. Volya, Y. G. Ma
+       
+       **Year:** 2023
+       
+       **arXiv ID:** Not explicitly provided in document
+       
+       ---
+       
+       ## Key Physics Concepts
+       
+       The research examines how quantum systems deviate from the classical exponential radioactive decay law. While "the exponential decay law is the result of somewhat delicate approximations" and cannot be exact, most observations have only confirmed early-time deviations.
+       
+       **Central Finding:** At sufficiently long times, decaying systems transition from exponential behavior to power-law decay (∝ 1/t^n), driven by non-resonant scattering components in the initial wave function.
+       
+       ---
+       
+       ## Causes of Deviation
+       
+       The authors identify three mechanisms producing non-exponential behavior:
+       
+       1. **Threshold Effects:** Near-threshold resonances with comparable energy (E_r) and decay width (Γ) show rapid transitions to power-law regimes
+       2. **Spectral Function Structure:** The shape of ρ(E) near threshold depends critically on orbital angular momentum and centrifugal barriers, deviating from Breit-Wigner forms
+       3. **Configuration Mixing:** In multi-body decays, interference between different asymptotic configurations produces energy-dependent deviations
+       
+       ---
+       
+       ## Relevant Timescales
+       
+       The survival probability shows: **𝒮(t) = |⟨Ψ(0)|Ψ(t)⟩|²**
+       
+       For near-threshold states with E_r ≈ Γ, the exponential-to-power-law transition occurs within ~20 half-lives.  -> [WebFetch]:
+       # Paper Summary
+       
+       **Title:** "Beyond the Tavis-Cummings model: revisiting cavity QED with atomic ensembles"
+       
+       **Authors:** Martin Blaha, Aisling Johnson, Arno Rauschenbeutel, Jürgen Volz
+       
+       **Year:** 2021
+       
+       **arXiv ID:** 2107.04583
+       
+       ## How This Paper Goes Beyond the Tavis-Cummings Model
+       
+       The paper demonstrates that the standard Tavis-Cummings (TC) model breaks down when "the single-pass optical depth of the atomic ensemble approaches OD≈1." The authors develop a more general theoretical framework accounting for cascaded atom-light interactions, where the cavity field is successively modified by interactions with each atom rather than treating all atoms as a single collective entity.
+       
+       ## Key Results on Ensemble Emitters in Cavities
+       
+       The research reveals qualitative differences from TC predictions:
+       
+       - The collective coupling strength continues to grow without saturation, contradicting TC predictions that the splitting cannot exceed the free spectral range
+       - Additional resonances emerge near the atomic resonance for large atom numbers, absent in TC descriptions
+       - These arise because "the single-pass phase shift of the cavity field induced by the atoms is in principle not limited"
+       
+       ## Validity Conditions
+       
+       The paper establishes quantitative conditions for TC model validity:
+       
+       **Condition 1:** νFSR ≫ gN
+       
+       **Condition 2:** νFSR ≫ gN²/γl
+       
+       For spatially extended ensembles with large inter-emitter distances, simplified form: **βN ≪ 1/2**
+       
+       ## Decay Dynamics
+       
+       The framework distinguishes between two scenarios:
+       
+       1. **Small separations (< λ/2π):** Collectively enhanced decay rate γN = Nγ; TC model generally applies
+       2. **Large separations:** Individual decay unchanged (γl,N = γl) while collective coupling increases as gN = √N·ḡ1
+       
+       ## Cooperative Emission
+       
+       The paper notes that "the amplitudes for emission into free space now add up incoherently and the emission rate remains unchanged" for spatially extended ensembles, whereas near-field effects in dense configurations lead to different behavior.
+       
+       ## Disorder and Individual Emitter Modifications
+       
+       The collective coupling strength incorporates spatial inhomogeneity: "gN = (∑g1,n²)^(1/2) ≡ √N·ḡ1" where ḡ1 represents the root-mean-square of individual coupling strengths, allowing treatment of position-dependent cavity field variations.  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] optical superradiance pair color centers silicon carbide microresonator arXiv 2022  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] Purcell effect biexponential decay single photon emitter cavity spectral diffusion arXiv  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] quantum model learning agent QMLA Hamiltonian inference experimental data arXiv  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] V_Si silicon vacancy SiC optical lifetime Purcell photonic crystal arXiv  -> 1 result(s):
+       1. Web search results for query: "optical superradiance pair color centers silicon carbide microresonator arXiv 2022"
+          https://arxiv.org/abs/2202.04845
+          I found the paper you were looking for! Here are the key details: The paper is titled "Optical superradiance of a pair of color centers in an integrated silicon-carbide-on-insulator microresonator", with arXiv identifier 2202.04845, published February 10, 2022. The research demonstrates the integration of near-transform-limited silicon vacancy (V_Si) defects into microdisk resonators fabricated in a CMOS-compatible 4H-Silicon Carbide-on-Insulator platform. The researchers achieved a single-emitter cooperativity of up to 0.8 as well as optical superradiance from a pair of color centers coupled to the same cavity mode. They investigated the effect of multimode interference on the photon scattering dynamics from this multi-emitter cavity quantum electrodynamics system. The authors include Daniil M. Lukin, Melissa A. Guidry, Joshua Yang, and others from Stanford's E. L. Ginzton Laboratory, Linköping University, and the National Institutes for Quantum Science and Technology.  -> [Agent]:
+       Here is the structured summary:
+       
+       ---
+       
+       ## Data Exploration Summary
+       
+       ### Step 1 — Files Discovered
+       
+       - **Data file:** `/Users/oatpix/Desktop/LabAssistant/experimental_data/lifetime_data.dat`
+       - **Loader script:** `/Users/oatpix/Desktop/LabAssistant/tools/data_io.py` — function `load_timeresolved_data(path)`
+       - No other data files present (previously listed `.json` files have been deleted per git status)
+       
+       ---
+       
+       ### Step 2 — Loader Script
+       
+       `tools/data_io.py` contains one function, no `__main__` block. It:
+       1. Loads the `.dat` file with `np.loadtxt(..., skiprows=4)`
+       2. Converts column 0 from ps to ns
+       3. Selects column 2 (Ungated counts)
+       4. Applies a time window mask: `10.09 ns <= t <= 19.09 ns` (9 ns window)
+       5. Returns `(t - 10.09, counts)` — i.e. time zeroed to window start
+       
+       ---
+       
+       ### Step 3 — Dataset Report
+       
+       **File:** `experimental_data/lifetime_data.dat`
+       
+       **Format & Shape**
+       - Plain-text ASCII, Windows line endings (CRLF)
+       - 4-line header, then 2,999 data rows x 3 columns
+       - dtype: float64
+       
+       **Header**
+       ```
+       #
+       %Time%Gated%Ungated
+       @ ns@ @
+       ```
+       (Note: the "@ns" unit marker applies to column 0; columns 1 and 2 are counts with no unit label)
+       
+       **Columns**
+       
+       | Col | Name | Units | Description |
+       |-----|------|-------|-------------|
+       | 0 | Time | ps (raw), ns after loader conversion | TCSPC time bin center |
+       | 1 | Gated | counts | Photon counts, time-gated channel |
+       | 2 | Ungated | counts | Photon counts, ungated channel |
+       
+       **Axes / Sampling**
+       - Time axis: 10 ps to 29,990 ps (0.01 to 29.99 ns), uniform 10 ps step
+       - Total sweep: 30 ns window, 2,999 bins
+       
+       **Value Ranges**
+       
+       | Channel | Min | Max | Median | Mean |
+       |---------|-----|-----|--------|------|
+       | Gated | 0 | 347 | 3 | 22.0 |
+       | Ungated | 0 | 108 | 1 | 6.4 |
+       
+       **Loader Output (fit window only)**
+       - Window: 10.09 – 19.09 ns (relative: 0 – 9 ns), 901 points, 10 ps step
+       - Ungated counts in window: min=0, max=108, median=9, mean=18.9
+       - Gated counts in window: min=3, max=347, median=30, mean=67.5
+       
+       ---
+       
+       ### Step 4 — Cross-Checks and Anomalies
+       
+       **Signal structure (temporal)**
+       - The signal is entirely confined to the second third of the sweep: **10.09 – 13.57 ns** (absolute) is where counts exceed background in both channels
+       - Segment 1 (0–10 ns): near-zero counts (gated mean 1.5, ungated mean 0.5) — pre-signal background
+       - Segment 2 (10–20 ns): strong signal; gated mean 61.7, ungated mean 17.2
+       - Segment 3 (20–30 ns): returns to background (gated mean 2.9, ungated mean 1.6)
+       
+       **Decay properties (ungated channel)**
+       - Peak at t = 10.73 ns absolute (0.64 ns relative to loader window start)
+       - Approximate half-life: ~1.06 ns — consistent with a sub-nanosecond to few-nanosecond fluorescence/photoluminescence lifetime (physically plausible for color center or quantum dot emitter)
+       - Dynamic range: ~67x (ungated), ~121x (gated) over background
+       
+       **Background / noise floor**
+       - Background (t > 20 ns): gated mean = 2.87 ± 4.03, ungated mean = 1.61 ± 3.49 counts
+       - Background std exceeds mean in both channels — Poissonian noise regime, counts are small integers
+       - No NaN values; no negative counts (physically consistent)
+       
+       **Zero counts**
+       - Ungated: 1,258 / 2,999 bins are zero (42%) — concentrated in pre-signal and post-decay regions
+       - Gated: 802 / 2,999 bins are zero (27%)
+       
+       **Gated vs. Ungated relationship**
+       - Gated peak (347 counts) is ~3.2x larger than ungated peak (108 counts) at the same time point (~10.7 ns), suggesting the gating window enhances signal collection efficiency or suppresses a competing background outside the gate
+       - Both channels show the same temporal location of the peak — no timing offset anomaly
+       
+       **Loader window choice**
+       - The loader selects `t = 10.09 ns` as the window start, which is 0.01 ns before the first significant signal rise (spike region starts at 10.09 ns). This is well-chosen to capture the full rising edge and 9 ns of decay.
+       - Only 8 of 901 bins in the window have zero counts (essentially full coverage of the decay)
+       
+       ---
+       
+       ### Analysis Plan Implications
+       
+       1. **Primary fit target:** Ungated column, loader-extracted window (0–9 ns relative), 901 points at 10 ps resolution
+       2. **Model:** Exponential decay (possibly multi-exponential given the ~1 ns half-life implies a ~1.4 ns 1/e lifetime); IRF convolution likely needed if the 10 ps binning resolves the instrument response
+       3. **Background subtraction:** Use the t > 20 ns region as a flat background baseline (mean ~1.6 ungated, ~2.9 gated); background is Poisson-limited with no obvious structure
+       4. **Gated channel:** Higher SNR (peak 347 vs. 108) — consider using for fitting or cross-validation
+       5. **Caution:** The pre-peak baseline within the fit window is essentially zero — confirm this is not an artifact of the gate timing before assuming it represents no early-time signal
+       agentId: a474840c3f5d17280 (use SendMessage with to: 'a474840c3f5d17280' to continue this agent)
+       <usage>total_tokens: 15839
+       tool_uses: 7
+       duration_ms: 99400</usage>  -> 1 result(s):
+       1. Web search results for query: "V_Si silicon vacancy SiC optical lifetime Purcell photonic crystal arXiv"
+          https://pubs.acs.org/doi/10.1021/acs.nanolett.4c03233
+          I've found several highly relevant research papers on this topic. Here are the key findings from the search results: ## Silicon Vacancy Centers in SiC with Purcell Enhancement Silicon vacancy (V_Si) centers in 4H-silicon carbide have emerged as strong candidates for quantum networking applications due to their robust electronic and optical properties, including a long spin coherence lifetime and bright, stable emission. ### Plasmonic Cavity Approach Recent work demonstrated the integration of V_Si centers with a plasmonic nanocavity to Purcell enhance the emission, with plasmonic cavities supporting a nanoscale mode volume and exhibiting a measured Purcell factor of up to 48. ### Photonic Crystal Cavities Researchers have fabricated 1D nanobeam photonic crystal cavities in 4H-silicon carbide with embedded silicon vacancy centers, achieving Purcell enhancement of two closely spaced defect zero-phonon lines (ZPL), with enhancements of >80-fold measured using multiple techniques. ### Fabry-Pérot Cavity Integration Purcell enhancement of single V2 centers in a few-micron-thick 4H-SiC membrane has been demonstrated by integrating the membrane in a fiber-based Fabry-Pérot cavity. ### Optical Lifetime The natural lifetime from V_Si emitters in bulk crystal is known to be 6.8 ns. Several of these results have been published or preprinted on arXiv, including papers covering spin dynamics characterization and cavity quantum electrodynamics applications.  -> 1 result(s):
+       1. Web search results for query: "Purcell effect biexponential decay single photon emitter cavity spectral diffusion arXiv"
+          https://arxiv.org/html/2602.18153
+          I've found several relevant arXiv papers on this topic. Here are the key findings: ## Biexponential Decay in Purcell-Enhanced Single Photon Emitters The bi-exponential decay behavior stems from a meta-stable decay level which is involved during the relaxation of charge-carriers into the s-shell before recombination, and is not observed when the s-shell is directly populated under strictly resonant excitation. ## Related Research on Cavity-Enhanced Single Photon Emitters Several recent papers address related aspects:  -> 1 result(s):
+       1. Web search results for query: "quantum model learning agent QMLA Hamiltonian inference experimental data arXiv"
+          https://arxiv.org/abs/2112.08409
+          I found several relevant research papers on the Quantum Model Learning Agent (QMLA) and Hamiltonian inference. Here are the key findings: ## Main QMLA Research The Quantum Model Learning Agent (QMLA) is an algorithm to reverse engineer Hamiltonian descriptions of a target system. The protocol is tested on simulated experiments and is shown to identify the true model in the majority of instances when provided with limited a priori information and control of the experimental setup. The protocol can explore Ising, Heisenberg and Hubbard families of models in parallel, reliably identifying the family which best describes the system dynamics. ## Performance on Experimental Data When using experimental data, 74% of protocol instances retrieve models that are deemed plausible. An automated protocol demonstrates its capabilities to infer the correct Hamiltonian in a nitrogen-vacancy centre set-up. ## Extension to Open Quantum Systems Recent research has extended QMLA to open quantum systems. The QMLA method has been revised to the case of open quantum systems by modeling their Markovian dynamics using the Lindblad master equation, resulting in the framework called open Quantum Model Learning Agent (oQMLA). ## Key Resources The QMLA framework is available as a Python implementation on GitHub, which is described as "a framework for the reverse engineering of Hamiltonian models of quantum systems through machine learning."  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2202.04845  !! [WebFetch]:
+       Request failed with status code 404  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2112.08409  !! [WebFetch]:
+       Request failed with status code 404  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2307.13648  !! [WebFetch]:
+       Request failed with status code 404  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2407.05951  !! [WebFetch]:
+       Request failed with status code 404  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://ar5iv.labs.arxiv.org/html/2202.04845  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://ar5iv.labs.arxiv.org/html/2112.08409  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://ar5iv.labs.arxiv.org/html/2307.13648  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://ar5iv.labs.arxiv.org/html/2407.05951  -> [WebFetch]:
+       REDIRECT DETECTED: The URL redirects to a different host.
+       
+       Original URL: https://ar5iv.labs.arxiv.org/html/2407.05951
+       Redirect URL: https://arxiv.org/abs/2407.05951
+       Status: 307 Temporary Redirect
+       
+       To complete your request, I need to fetch content from the redirected URL. Please use WebFetch again with these parameters:
+       - url: "https://arxiv.org/abs/2407.05951"
+       - prompt: "Extract: title, authors, year, arXiv ID, Purcell factors for V_Si in SiC plasmonic cavity, measured lifetimes with and without cavity."  -> [WebFetch]:
+       REDIRECT DETECTED: The URL redirects to a different host.
+       
+       Original URL: https://ar5iv.labs.arxiv.org/html/2307.13648
+       Redirect URL: https://arxiv.org/abs/2307.13648
+       Status: 307 Temporary Redirect
+       
+       To complete your request, I need to fetch content from the redirected URL. Please use WebFetch again with these parameters:
+       - url: "https://arxiv.org/abs/2307.13648"
+       - prompt: "Extract: title, authors, year, key results about V_Si spin dynamics, optical lifetimes, transition structure, decay rate data."  -> [WebFetch]:
+       # Research Paper Extract
+       
+       **Title:** Optical superradiance of a pair of color centers in an integrated silicon-carbide-on-insulator microresonator
+       
+       **Authors:** Daniil M. Lukin, Melissa A. Guidry, Joshua Yang, Misagh Ghezellou, Sattwik Deb Mishra, Hiroshi Abe, Takeshi Ohshima, Jawad Ul-Hassan, Jelena Vučković
+       
+       **Year:** 2022
+       
+       ## Key Experimental Results
+       
+       **Cooperativity:**
+       - Single-emitter cooperativity reached 0.6 for emitter A and 0.8 for emitter B, calculated from measured Purcell enhancement and linewidths
+       
+       **V_Si Lifetimes:**
+       - On-resonance with cavity: 4.2 ns (emitter A) and 3.5 ns (emitter B)
+       - Off-resonance with cavity: 10.7 ns (emitter A) and 11.1 ns (emitter B)
+       - Bulk lifetime reference: 11.3 ns
+       
+       **Purcell Enhancement:**
+       - Emitter A: factor of 2.7 (measured Purcell enhancement F = 28)
+       - Emitter B: factor of 3.2 (measured Purcell enhancement F = 37)
+       - Theoretical maximum for device: 77
+       
+       **Superradiance Observations:**
+       The research demonstrates "second-order correlation of the photon emission along one waveguide direction displays bunching at zero time delay, a signature of superradiance"
+       
+       **Spectral Properties:**
+       - Optical linewidths: 54.3 MHz (emitter A) and 63.4 MHz (emitter B) on-resonance
+       - Spectral stability: wandering below 500 MHz over one hour  -> [WebFetch]:
+       # Quantum Model Learning Agent - Key Information
+       
+       **Title:** Quantum Model Learning Agent: characterisation of quantum systems through machine learning
+       
+       **Authors:** Brian Flynn, Antonio A. Gentile, Nathan Wiebe, Raffaele Santagati, Anthony Laing
+       
+       **Year:** 2021 (arXiv:2112.08409)
+       
+       ## QMLA Algorithm Overview
+       
+       The QMLA operates as a forest search through candidate Hamiltonian models. It systematically evaluates proposed models against experimental data from a target quantum system to identify which interactions actually govern the system's dynamics.
+       
+       ## Core Methodology
+       
+       **Model Structure:** Each model is characterized by constituent terms and their parameters: "H^′=α⃗′·T⃗′" representing a sum of interaction terms multiplied by scalar coefficients.
+       
+       **Iterative Process:** The algorithm follows a three-step cycle repeated across multiple "branches":
+       - Train candidate models via Quantum Hamiltonian Learning (QHL)
+       - Consolidate models through comparative evaluation
+       - Generate new candidates based on top performers
+       
+       ## Model Comparison Methods
+       
+       **Bayes Factors:** The primary comparison metric uses Bayesian statistical evidence. The ratio compares likelihoods: "B_ij = Pr(D|Ĥ_i;E) / Pr(D|Ĥ_j;E)" quantifying relative model superiority.
+       
+       **Log-Likelihood Scoring:** Models receive total log-likelihood scores reflecting how well parameters explain experimental outcomes across all training experiments.
+       
+       ## Model Ranking Strategy
+       
+       Rankings employ an "Elo-rating scheme" borrowed from competitive games. Models compete pairwise with Bayes factors determining point transfers. Selection probabilities for breeding new candidates remain "proportional to R_i after all comparisons."
+       
+       ## Key Results
+       
+       - Identifies true models in 72% of cases across 250,000+ candidate models
+       - Achieves F₁-score ≥0.88 in all instances tested
+       - Explores <0.2% of model space while finding near-optimal solutions
+       
+       ## Real Data Application
+       
+       The paper emphasizes potential for characterizing actual quantum devices, particularly for identifying spurious interactions and validating device operation, though demonstrations use simulated systems.  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/abs/2307.13648  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/abs/2407.05951  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] Jaynes-Cummings vacuum Rabi oscillations decay lifetime time-resolved photoluminescence strong coupling arXiv  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] dark state spin shelving single emitter kink lifetime decay curve arXiv  -> [WebFetch]:
+       # Analysis of arXiv:2307.13648
+       
+       **Title:** "The silicon vacancy centers in SiC: determination of intrinsic spin dynamics for integrated quantum photonics"
+       
+       **Authors:** Di Liu, Florian Kaiser, Vladislav Bushmakin, Erik Hesselmeier, Timo Steidl, Takeshi Ohshima, Nguyen Tien Son, Jawad Ul-Hassan, Öney O. Soykal, Jörg Wrachtrup
+       
+       **Year:** 2023 (submitted July 25, 2023)
+       
+       ## Key Findings on V_Si Spin Dynamics:
+       
+       **Electronic Structure:** The research characterizes the negatively-charged silicon vacancy (V_Si⁻) in 4H-SiC through comprehensive fine-structure modeling, incorporating intersystem-crossing and deshelving processes.
+       
+       **Decay Rates:** The team obtained "all previously unknown spin-selective radiative and non-radiative decay rates" through carefully designed spin-dependent measurements.
+       
+       **Quantum Photonics Application:** Results demonstrate feasibility for generating entangled states, with researchers proposing that "up to 3-photon GHZ/cluster states are readily within reach using the existing nanophotonic cavity technology."
+       
+       ## Document Scope:
+       The paper contains 37 pages with 6 figures and supplementary information. While the abstract mentions determining spin dynamics and decay characteristics, specific numerical values for optical lifetimes, transition wavelengths, or spin-orbit coupling magnitudes are not detailed in this abstract excerpt.  -> [WebFetch]:
+       # Paper Summary
+       
+       **Title:** "Purcell enhancement and spin spectroscopy of silicon vacancy centers in silicon carbide using an ultra-small mode-volume plasmonic cavity"
+       
+       **Authors:** Jae-Pil So, Jialun Luo, Jaehong Choi, Brendan McCullian, Gregory D. Fuchs
+       
+       **Year:** 2024 (submitted July 8, 2024)
+       
+       ## Key Findings
+       
+       **Purcell Factor:** The research demonstrates "an increase in the spontaneous emission rate with a measured Purcell factor of up to 48."
+       
+       **Measured Lifetimes:** The abstract does not provide specific numerical values for lifetimes with and without the cavity.
+       
+       **Coupling Constants:** Not specified in the abstract.
+       
+       **Non-Exponential Decay:** No information provided regarding non-exponential decay behavior.
+       
+       ## Additional Context
+       
+       The work integrates V_Si centers with plasmonic nanocavities, achieving nanoscale mode volumes. The research also shows improved optical stability of spin-preserving resonant optical transitions. The paper spans 27 pages in manuscript format including supplementary material.  -> 1 result(s):
+       1. Web search results for query: "Jaynes-Cummings vacuum Rabi oscillations decay lifetime time-resolved photoluminescence strong coupling arXiv"
+          https://arxiv.org/html/2507.05837
+          I've completed the web search for your query on Jaynes-Cummings vacuum Rabi oscillations and related topics. Here are the key findings: ## Key Research Results Recent work examines wave/particle duality in the open driven Jaynes–Cummings model in its strong-coupling limit, with special emphasis on the vacuum Rabi resonance. ### Time-Resolved Observations Time-domain observation of vacuum Rabi oscillations has been reported in a single quantum dot strongly coupled to a nanocavity under incoherent optical carrier injection, using a photonic crystal nanocavity with a quality factor exceeding 80,000 to resolve ultrafast vacuum Rabi oscillations through photoluminescence-based experiments. Femtosecond optical spectroscopy has been used to directly observe vacuum Rabi oscillations associated with coupled exciton-photon mode splitting in a semiconductor quantum microcavity, where impulsive excitation produces beats in time-resolved emission with decay corresponding to approximately twice the cavity lifetime. ### Decay and Lifetime Dynamics Time-domain vacuum Rabi oscillations are substantially modified by changes in pump wavelength and intensity, with modifications induced primarily by changes in carrier capture and dephasing dynamics in the quantum dot, as well as changes in bare-cavity emission. ### Strong Coupling Regime The strong-coupling regime of cavity quantum electrodynamics has been achieved for real atoms in optical cavities, artificial atoms in circuit QED, and quantum-dot systems, with vacuum Rabi splitting being a signature of strong coupling. The arXiv results include a recent July 2025 paper and foundational studies on cavity QED systems exploring quantum phenomena relevant to quantum information applications.  -> 1 result(s):
+       1. Web search results for query: "dark state spin shelving single emitter kink lifetime decay curve arXiv"
+          https://arxiv.org/html/2511.23301
+          I've performed a web search for your query. The results returned several arXiv papers related to quantum emitters, spin systems, and decay dynamics, though not all specifically match all the terms in your search simultaneously. Here are the most relevant results:  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://ar5iv.labs.arxiv.org/html/1803.05618  -> [WebFetch]:
+       REDIRECT DETECTED: The URL redirects to a different host.
+       
+       Original URL: https://ar5iv.labs.arxiv.org/html/1803.05618
+       Redirect URL: https://arxiv.org/abs/1803.05618
+       Status: 307 Temporary Redirect
+       
+       To complete your request, I need to fetch content from the redirected URL. Please use WebFetch again with these parameters:
+       - url: "https://arxiv.org/abs/1803.05618"
+       - prompt: "Extract: title, authors, year, arXiv ID, key physics of time-resolved vacuum Rabi oscillations in quantum dot-nanocavity, decay equations, oscillation frequencies, coupling constants, cavity/emitter rates, any biexponential or oscillatory decay formulas."  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/pdf/1707.04065  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] Jaynes-Cummings model decay dynamics coupled emitter cavity photoluminescence lifetime formula oscillation arXiv  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] "spectral diffusion" "cavity QED" single emitter lifetime broadening Purcell arXiv  -> [WebFetch]:
+       I appreciate your request, but I need to be honest: the content provided appears to be a corrupted or improperly encoded PDF file. The text shows binary/compression artifacts (FlateDecode streams, hex characters, and malformed character sequences) rather than readable document content.
+       
+       From what's visible in the metadata structure, I can see this is an 8-page PDF document, but I cannot reliably extract:
+       
+       - **Title** (not readable from corrupted content)
+       - **Authors** (not visible)
+       - **Year** (not visible)
+       - **arXiv ID** (not visible)
+       - **Physics details** about photo-induced blinking, dark state shelving, decay curves, shelving rates, or model equations (content is unreadable)
+       
+       **Recommendation:** Please provide either:
+       1. A properly formatted PDF file that can be decoded
+       2. The plain text or HTML version of the document
+       3. A direct link to the arXiv paper (if available)
+       
+       Once I have readable content, I can extract the specific technical information you're seeking regarding solid-state emitter photodynamics with proper citation and character limits.
+       
+       [Binary content (application/pdf, 1.2MB) also saved to /Users/oatpix/.claude/projects/-Users-oatpix-Desktop-LabAssistant/359e8a85-8972-4a3f-ace5-e033f4b8085f/tool-results/webfetch-1775755064192-k14grq.pdf]  -> 1 result(s):
+       1. Web search results for query: ""spectral diffusion" "cavity QED" single emitter lifetime broadening Purcell arXiv"
+          https://arxiv.org/html/2506.01917
+          I've successfully performed the web search for your query on spectral diffusion, cavity QED, single emitter lifetime broadening, and Purcell effect. The search returned several highly relevant arXiv papers and academic sources: ## Key Results:  -> 1 result(s):
+       1. Web search results for query: "Jaynes-Cummings model decay dynamics coupled emitter cavity photoluminescence lifetime formula oscillation arXiv"
+          https://en.wikipedia.org/wiki/Jaynes%E2%80%93Cummings_model
+          I've completed the web search for your query on the Jaynes-Cummings model and related topics. Here's a summary of what I found: ## Key Findings **Model Overview:** The Jaynes-Cummings model (JCM) is a pivotal theoretical object in quantum optics, describing the quintessential interaction between light and matter at the quantum level. It models the simplest quantum emitter, a two-level system (TLS), interacting with a single electromagnetic degree of freedom, a discrete mode of a photonic cavity. **Decay Dynamics:** To account for cavity leakage and atomic decay, the JC Hamiltonian can be extended with a Lindblad term that describes the interaction with the environment. The master equation for the density operator includes terms describing cavity photon decay (κ) and atomic decay (γ). **Oscillation and Lifetime Behavior:** When the field is initially prepared in a coherent state, the Jaynes–Cummings model predicts collapse and revival of the atomic inversion. Initially, coherent Rabi oscillations decay due to interference among different photon-number components, but at later times the oscillations periodically revive. When the decay rates κ and γ are small compared to the Rabi frequency, the JC model is in the strong-coupling regime, where the coherent oscillations are visible despite the dissipation. On the contrary, if κ or γ are large, the oscillations are damped and eventually disappear, which corresponds to the weak-coupling regime. The search results include several arXiv papers on modified Jaynes-Cummings models, time-dependent coupling variations, and cavity QED dynamics beyond the standard model.  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/abs/1803.05618  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://ar5iv.labs.arxiv.org/html/1707.04065  -> [WebFetch]:
+       REDIRECT DETECTED: The URL redirects to a different host.
+       
+       Original URL: https://ar5iv.labs.arxiv.org/html/1707.04065
+       Redirect URL: https://arxiv.org/abs/1707.04065
+       Status: 307 Temporary Redirect
+       
+       To complete your request, I need to fetch content from the redirected URL. Please use WebFetch again with these parameters:
+       - url: "https://arxiv.org/abs/1707.04065"
+       - prompt: "Extract: title, authors, year, arXiv ID, key physics of photo-induced blinking and dark state shelving in solid state emitters, any model for multiexponential decay from shelving/dark states, rate equations."  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2403.10960  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/1306.4787  -> [WebFetch]:
+       # Time-Resolved Vacuum Rabi Oscillations Study
+       
+       **Title:** "Time-resolved vacuum Rabi oscillations in a quantum dot-nanocavity system"
+       
+       **Authors:** K. Kuruma, Y. Ota, M. Kakuda, S. Iwamoto, Y. Arakawa
+       
+       **Year:** 2018 (submitted March 15, 2018; published in Phys. Rev. B 97, 235448)
+       
+       **Key Abstract Details:**
+       
+       The researchers demonstrated time-domain observation of vacuum Rabi oscillations using "a single quantum dot strongly coupled to a nanocavity under incoherent optical carrier injection." They employed a photonic crystal nanocavity with "a very high quality factor of >80,000."
+       
+       **Technical Parameters:**
+       The document does not explicitly state values for the coupling constant (g), cavity decay (κ), or emitter decay (γ). However, the abstract notes that "time-domain vacuum Rabi oscillations were largely modified when changing the pump wavelength and intensity," indicating sensitivity to experimental conditions affecting these parameters.
+       
+       **Analysis Method:**
+       The team analyzed measurements "by fitting to simulation curves obtained with a cavity quantum electrodynamics model," revealing that modifications were "mainly induced by the change in the carrier capture and dephasing dynamics in the quantum dot."
+       
+       **Significance:**
+       This work demonstrates that "vacuum Rabi oscillations can be utilized as a highly sensitive probe for quantum dot dynamics," offering advantages over conventional spectral-domain measurements.  !! [WebFetch]:
+       Request failed with status code 404  -> [WebFetch]:
+       # Research Article Summary
+       
+       **Title:** Investigation of Purcell enhancement of quantum dots emitting in the telecom O-band with an open fiber-cavity
+       
+       **Authors:** J. Maisch, J. Grammel, N. Tran, M. Jetter, S. L. Portalupi, D. Hunger, P. Michler
+       
+       **Year:** 2024
+       
+       **arXiv ID:** 2403.10960v3
+       
+       ---
+       
+       ## Spectral Diffusion Effects
+       
+       The document does not explicitly address spectral diffusion's impact on Purcell enhancement. However, it notes that "the lifetime shortening differed for different emitters and also for different measurements at the same emitter" due to "altering noise conditions," suggesting temporal fluctuations affected measurements.
+       
+       ## Biexponential Decay Analysis
+       
+       The study employs **monoexponential fitting only**: "Mono-exponential functions of the form f(t)=A exp(−t/τ_dec)+c_bg were used to fit the decays." No biexponential analysis appears in the results.
+       
+       ## Key Findings
+       
+       **Maximum Purcell Enhancement:** Decay time reduction of 2.46(2), corresponding to an effective Purcell factor F_P,eff = 1.54(2)
+       
+       **Critical Equations:**
+       
+       The effective Purcell factor accounting for cavity length fluctuations:
+       
+       F_P,eff = (R_σ Δν_cav) / [γ₀(R_σ + Δν_cav)]
+       
+       where R_σ incorporates rms-jitter σ through complementary error functions.
+       
+       **Cavity Parameters:** Finesse ~1788 (fiber 1) and ~3062 (fiber 2); cavity linewidth Δν_cav = 12.2 GHz; emitter linewidth Δν_em = 7.4 GHz  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/abs/1707.04065  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://ar5iv.labs.arxiv.org/html/1306.4787  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] two-level system cavity photon time-resolved emission Wigner-Weisskopf modified decay Purcell formula arXiv  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] SiC silicon carbide color center cavity cooperativity strong coupling Purcell lifetime nanocavity arXiv 2023 2024  -> [WebFetch]:
+       # Paper Summary: Photo-induced Blinking in Solid State Quantum Systems
+       
+       **Title:** Photo-induced blinking in a solid state quantum system
+       
+       **Authors:** Amanuel M. Berhane, Carlo Bradac, Igor Aharonovich
+       
+       **Year:** 2017
+       
+       **arXiv ID:** 1707.04065
+       
+       ## Key Physics Findings
+       
+       The research examines an unusual phenomenon where single photon emitters in gallium nitride exhibit light-activated blinking behavior. The authors attribute this to "modification in the transition kinetics of the emitter, via the introduction of additional laser-activated states."
+       
+       The investigators employed second-order correlation measurements and fluorescence trajectory analysis to characterize the dynamics. Their measurements revealed power-dependent decay rates and characteristic off-time blinking patterns associated with trap states.
+       
+       The work provides insights into how laser irradiance alters emission characteristics by creating additional electronic pathways that periodically interrupt photon output, advancing understanding of solid-state quantum emitter behavior under intense illumination conditions.
+       
+       **Published in:** Physical Review B 96, 041203(R) (2017)  -> [WebFetch]:
+       # Article Summary
+       
+       **Title:** Route from spontaneous decay to complex multimode dynamics in cavity QED
+       
+       **Authors:** Dmitry O. Krimer, Matthias Liertzer, Stefan Rotter, Hakan E. Türeci
+       
+       **Year:** 2013
+       
+       **arXiv ID:** 1306.4787
+       
+       ## Key Research Focus
+       
+       This paper examines how a two-level emitter's decay behavior transitions across three dynamical regimes as coupling strength increases within an open multimode cavity. The researchers employ a Green's function technique suited for open photonic structures to characterize these crossovers.
+       
+       ## Three Distinct Regimes
+       
+       1. **Weak coupling:** "overdamped decay with a time scale given by the Purcell modified decay rate"
+       2. **Moderate coupling:** underdamped oscillations featuring vacuum Rabi frequency effects
+       3. **Strong multimode coupling:** pulsed revivals occurring at cavity round-trip timescales
+       
+       ## Central Equation
+       
+       The dynamics follow a Volterra equation for the excited state amplitude:
+       
+       **ċ(t) = −(γ/π) ∫₀ᵗ dt′ ∫₀^∞ dω F(ω)e^(-i(ω−ωₐ)(t−t′)) c(t′)**
+       
+       where F(ω) represents the spectral function incorporating local density of photonic states.
+       
+       ## Critical Parameter
+       
+       The "nonlinear Lamb shift" emerges as the crucial parameter governing transitions between these regimes, enabling unified description across coupling strengths.  -> 1 result(s):
+       1. Web search results for query: "two-level system cavity photon time-resolved emission Wigner-Weisskopf modified decay Purcell formula arXiv"
+          https://arxiv.org/abs/2001.09737v4
+          Based on the web search results, I found a highly relevant paper on arXiv that addresses your query: ## Key Finding The arXiv paper 2001.09737 "Visualizing the emission of a single photon with frequency and time resolved spectroscopy" covers Wigner and Weisskopf's full analytical description of the emission of a single photon by a two-level system, using the basis of frequency modes. The work demonstrates an accurate measurement of a time resolved fluorescence spectrum, with high sensitivity to the off-resonant frequencies and ultrafast dynamics describing the photon creation. The experimental technique was implemented in a superconducting waveguide Quantum Electrodynamics (wQED) platform using transmon qubits as quantum emitters, with the photon portraits agreeing quantitatively with the predictions of the input-output theory and qualitatively with Wigner-Weisskopf theory. The paper directly addresses the theoretical framework you're interested in and provides experimental validation of the Wigner-Weisskopf model in a cavity quantum electrodynamics setting, which is relevant to understanding modifications of spontaneous decay and the Purcell formula in structured electromagnetic environments. **arXiv link:** https://arxiv.org/abs/2001.09737  -> 1 result(s):
+       1. Web search results for query: "SiC silicon carbide color center cavity cooperativity strong coupling Purcell lifetime nanocavity arXiv 2023 2024"
+          https://pubs.acs.org/doi/10.1021/acs.nanolett.0c00339
+          I've found several highly relevant research papers on SiC color centers coupled to optical cavities. Here are the key findings: ## Recent Key Results A single neutral divacancy in 4H silicon carbide was coupled to a photonic crystal cavity with suspended cavities having quality factors exceeding 5,000, achieving a Purcell factor of ~50 and shortened excited-state lifetime. This work also demonstrated coherent control of the divacancy ground state spin inside the cavity nanostructure with extended coherence through dynamical decoupling. More recently, silicon vacancy (VSi) centers in 4H-SiC were integrated with a plasmonic nanocavity, demonstrating plasmonic cavities with nanoscale mode volume and a measured Purcell factor of up to 48. ## Strong Coupling and Cooperativity In multimode cavity QED experiments with silicon carbide-on-insulator devices, researchers demonstrated a single-emitter cooperativity of up to 0.8 as well as optical superradiance from a pair of color centers coupled to the same cavity mode. Another recent work demonstrated Purcell enhancement of single V2 centers in a 4H-SiC membrane integrated in a fiber-based Fabry-Pérot cavity, achieving an effective cooperativity of 0.30 corresponding to a 13.3-fold enhancement of the coherent zero-phonon line. These results from 2020-2024 show significant progress in achieving strong coupling regimes and understanding the dynamics of SiC color centers in nanophotonic cavities.  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://ar5iv.labs.arxiv.org/html/2001.09737  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/abs/2003.00042  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] two emitter multimode cavity QED SiC silicon carbide 2023 2024 arXiv Stanford Vuckovic  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] Lindblad master equation open quantum system photoluminescence lifetime fitting decay model arXiv  -> [WebFetch]:
+       # Purcell Enhancement of Single SiC Color Center - Key Information
+       
+       **Title:** "Purcell enhancement of a single silicon carbide color center with coherent spin control"
+       
+       **Authors:** A.L. Crook, C.P. Anderson, K.C. Miao, A. Bourassa, H. Lee, S.L. Bayliss, D.O. Bracher, X. Zhang, H. Abe, T. Ohshima, E.L. Hu, D.D. Awschalom
+       
+       **Year:** 2020 (submitted February 28, 2020)
+       
+       **arXiv ID:** 2003.00042
+       
+       ## Key Results
+       
+       **Purcell Factor:** Approximately 50 when a single neutral divacancy couples to the photonic crystal cavity
+       
+       **Cavity Quality Factor:** Exceeding 5,000
+       
+       **Observable Effects:** The enhancement manifests as "increased photoluminescence into the zero-phonon line and a shortened excited-state lifetime"
+       
+       **Spin Control:** The researchers demonstrated "coherent control of the divacancy ground state spin inside the cavity nanostructure" with extended coherence via dynamical decoupling
+       
+       **System Details:** The platform utilizes the neutral divacancy in 4H silicon carbide polytype, featuring an optically addressable spin-1 ground state with near-infrared emission. Suspended cavities were fabricated using nanolithographic techniques combined with dopant-selective photoelectrochemical etching.
+       
+       The specific lifetime measurements before/after coupling and exact cooperativity values are not detailed in the abstract provided.  -> [WebFetch]:
+       # Single Photon Emission from Two-Level Systems: Key Findings
+       
+       ## Document Metadata
+       - **Title:** "Visualizing the emission of a single photon with frequency and time resolved spectroscopy"
+       - **Authors:** Sharafiev et al.
+       - **Year:** 2020
+       - **arXiv ID:** 2001.09737
+       
+       ## Wigner-Weisskopf Framework
+       
+       The foundational theoretical picture describes a qubit decaying in free space. The joint atom-field wavefunction evolves as:
+       
+       $$|\psi(t)\rangle = e^{-t(\gamma/2 - i\omega_q)}|e,0\rangle + |g\rangle\sum_{\mathbf{k}}f_{\mathbf{k}}(t)|1_{\mathbf{k}}\rangle$$
+       
+       where the frequency-dependent amplitude coefficient is:
+       
+       $$f_{\mathbf{k}}(t) = \frac{g_{\mathbf{k}}e^{-it\omega_{\mathbf{k}}}}{i\gamma/2 + (\omega_{\mathbf{k}} - \omega_q)} \cdot (1 - e^{-t(\gamma/2 - i(\omega_{\mathbf{k}} - \omega_q))})$$
+       
+       Here γ represents "the qubit spontaneous emission rate," and the couplings g_k shape the emitted photon.
+       
+       ## Physical Interpretation
+       
+       The authors emphasize that the single-photon "portrait" represents "the frequency-time evolution of electric field amplitude" during emission. This visualization demonstrates how spectral broadening reflects the time-energy uncertainty principle during the initial emission phase.
+       
+       ## Experimental Implementation
+       
+       The measurement protocol reconstructs these theoretical predictions using superconducting transmon qubits in a waveguide cavity, employing quantum-limited parametric amplification to filter individual frequency components.  -> 1 result(s):
+       1. Web search results for query: "Lindblad master equation open quantum system photoluminescence lifetime fitting decay model arXiv"
+          https://en.wikipedia.org/wiki/Lindbladian
+          I've completed the web search for your query. Here's a summary of the most relevant results: ## Key Findings **Recent arXiv Research:** A recent arXiv paper (2410.17942) compares three models for the dynamics of two emitters data, plotting visual depictions with arrows representing relevant Lindbladian processes and corresponding fits of experimental data including lifetime measurements. The work applies algorithms to characterize the optical emission dynamics of quantum emitters and succeeds in finding minimal Lindblad models for the two-emitters system. **Theoretical Framework:** The Lindblad quantum master equation is a Markovian evolution equation for an open quantum system's density matrix, ensuring complete positivity and trace preservation, derived from microscopic system-environment interactions using approximations like the Born, Markov, and secular approximations to accurately model dissipative and decoherence processes. **Applications to Photoluminescence:** Understanding the interaction of a quantum system with its environment is necessary for understanding spontaneous emission of light from excited atoms. In quantum optics, the analysis of spontaneous emission on a two-level system conducts to the Lindblad equation. **Educational Resources:** The Lindblad (or Gorini-Kossakowski-Sudarshan-Lindblad) Master Equation plays a key role as the most general generator of Markovian dynamics in quantum systems, with papers presenting this equation together with its derivation and methods of resolution. The search returned several foundational papers on arXiv and related resources that connect Lindblad master equations to open quantum systems, decay dynamics, and photoluminescence applications.  -> 1 result(s):
+       1. Web search results for query: "two emitter multimode cavity QED SiC silicon carbide 2023 2024 arXiv Stanford Vuckovic"
+          https://link.aps.org/doi/10.1103/PhysRevX.13.011005
+          Based on the search results, I found the paper you're looking for. Here's a summary of the key findings: ## Two-Emitter Multimode Cavity QED in SiC The work reports on the integration of near-transform-limited silicon vacancy (VSi) defects into microdisk resonators fabricated in a CMOS-compatible 4H-silicon carbide-on-insulator platform, demonstrating a single-emitter cooperativity of up to 0.8 as well as optical superradiance from a pair of color centers coupled to the same cavity mode. The researchers investigated the effect of multimode interference on the photon scattering dynamics from this multiemitter cavity quantum electrodynamics system. **Publication Details:** The paper was published in Physical Review X, Volume 13, Issue 1, on January 19, 2023. The authors include Daniil M. Lukin, Melissa A. Guidry, Joshua Yang, Misagh Ghezellou, Sattwik Deb Mishra, Hiroshi Abe, Takeshi Ohshima, Jawad Ul-Hassan, and Jelena Vučković. This work from Stanford's Nanoscale and Quantum Photonics Lab demonstrates an important milestone in integrating quantum emitters into scalable thin-film photonics for quantum information processing applications.  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2501.04583  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2312.03833  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] Wiebe Granade Ferrie Cory quantum Hamiltonian learning Bayesian arXiv 2012 2014  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] Bayesian model comparison log evidence cavity QED lifetime data physics analysis arXiv  -> [WebFetch]:
+       # Paper Summary
+       
+       **Title:** Purcell Enhancement of Silicon Vacancy Centers in 4H-Silicon Carbide Integrated into a Fiber-Based Fabry-Pérot Cavity
+       
+       **Authors:** Not explicitly listed in provided excerpt, but acknowledgements mention J.H., D.H., J.W., J.U.H., and G.A.
+       
+       **Year:** 2025 (generated March 28, 2025)
+       
+       **arXiv ID:** 2501.04583v3
+       
+       ## Key Physics Content
+       
+       This work demonstrates cavity quantum electrodynamics (QED) with silicon vacancy (V₂) color centers in 4H-SiC membranes coupled to fiber-based Fabry-Pérot microcavities.
+       
+       ## Main Results
+       
+       **Cavity Performance:**
+       - Achieved finesse of approximately 40,000 at optimal wavelengths
+       - Membrane surface roughness: ~400 pm RMS
+       - Minimal losses from membrane integration
+       
+       **Emitter Coupling & Dynamics:**
+       - Observed "13.3-fold enhancement of photons scattered into the zero-phonon line" through Purcell effect
+       - Measured optical lifetime reduction from 7.3 ns (free space) to 5.6 ns (cavity-resonant)
+       - Effective Purcell factor: 0.30
+       - Single-photon purity demonstrated with g²(0) = 0.024
+       
+       **Count Rates:**
+       - Detected up to 30 kcounts/s from individual emitters in the zero-phonon line
+       - Authors project >10× improvement possible with optimized detectors and laser power
+       
+       The work establishes SiC as a viable platform for spin-photon interfaces in quantum networks.  -> [WebFetch]:
+       # Research Paper Summary
+       
+       **Title:** Integrability, multifractality, and two-photon dynamics in disordered Tavis-Cummings models
+       
+       **Authors:** Agnieszka Wierzchucka, Francesco Piazza, Pieter W. Claeys
+       
+       **Year:** 2023
+       
+       **arXiv ID:** 2312.03833v1
+       
+       ## Key Results
+       
+       The researchers establish exact solvability for the Tavis-Cummings model in the two-excitation sector with disordered couplings. They demonstrate three distinct eigenstate classes exhibiting different localization properties:
+       
+       1. **Dark states** - localized on multiple noncontiguous sites with minimal light-matter interaction
+       2. **Doublet polaritons** - exhibit multifractality across multiple sectors
+       3. **Triplet polaritons** - isolated, nondegenerate states
+       
+       ## Disorder Effects
+       
+       The study reveals that disorder in coupling strengths splits degenerate dark and doublet states into bands while preserving triplet states as isolated eigenstates. Importantly, "multifractality and semilocalization [properties are] closely tied to the integrable points" and remain robust to perturbations breaking integrability.
+       
+       ## Dynamics & Cavity QED
+       
+       The authors establish relaxation timescales for permutation symmetry scaling as √N, indicating that collective spin descriptions remain valid for extended durations. This supports descriptions of dynamics despite disorder presence, with implications for photon bunching and two-photon blockade phenomena in cavity systems.  -> 1 result(s):
+       1. Web search results for query: "Bayesian model comparison log evidence cavity QED lifetime data physics analysis arXiv"
+          https://arxiv.org/pdf/physics/0304102
+          I've performed a web search for your query. The results returned several relevant papers on arXiv related to Bayesian model comparison and log evidence, though none specifically focused on cavity QED lifetime data. Here's what I found: **Key Results:**  -> 1 result(s):
+       1. Web search results for query: "Wiebe Granade Ferrie Cory quantum Hamiltonian learning Bayesian arXiv 2012 2014"
+          https://arxiv.org/abs/1207.1655
+          Based on the search results, I found several key papers by the authors you mentioned. Here's what the search revealed: ## Key Papers Found **1. Robust Online Hamiltonian Learning (2012)** This paper by Christopher E. Granade, Christopher Ferrie, Nathan Wiebe, and D. G. Cory combines two machine learning methodologies—sequential Monte Carlo and Bayesian experimental design—and applies them to inferring dynamical parameters of quantum systems. The paper was first uploaded on July 6, 2012. **2. Hamiltonian Learning and Certification Using Quantum Resources (2013-2014)** This paper by Nathan Wiebe, Christopher Granade, Christopher Ferrie, and D. G. Cory provides an algorithm that can efficiently infer the Hamiltonian of a large but untrusted quantum simulator using a trusted quantum simulator. **3. Quantum Hamiltonian Learning Using Imperfect Quantum Resources (2013-2014)** This paper by Nathan Wiebe, Christopher Granade, Christopher Ferrie, and David G. Cory addresses the robustness of quantum Hamiltonian learning, demonstrating that it can tolerate substantial amounts of depolarizing noise and noise from other realistic models. These papers represent foundational work in using Bayesian inference and machine learning techniques for characterizing quantum systems through Hamiltonian parameter estimation.  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://ar5iv.labs.arxiv.org/html/1207.1655  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/abs/1611.10189  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] SiC V_Si silicon vacancy four-level system intersystem crossing optical lifetime spin-orbit arXiv  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] cavity QED ensemble emitters inhomogeneous broadening modified decay rate cooperativity effective arXiv  -> [WebFetch]:
+       # Paper Summary: Bayesian Data Analysis Tools for Atomic Physics
+       
+       **Title:** Bayesian data analysis tools for atomic physics
+       
+       **Author:** Martino Trassinelli (E10)
+       
+       **Year:** 2016 (submitted); 2017 (published)
+       
+       **arXiv ID:** 1611.10189
+       
+       ## Key Content
+       
+       **Model Comparison Methods:**
+       The paper presents "the Bayesian evidence, a model dependent quantity that allows to assign probabilities to different hypotheses from the analysis of a same data set." This framework enables comparing competing models through probabilistic assessment rather than traditional hypothesis testing.
+       
+       **Practical Applications:**
+       The research demonstrates these techniques through two concrete cases: investigating whether a satellite line exists in an atomic spectrum, and determining the most probable spectral profile from limited data.
+       
+       **Implementation:**
+       The author developed "Nested fit," described as "a Fortran90/Python code developed during the last years for analysis of atomic spectra" utilizing nested sampling algorithms for probability distribution calculations.
+       
+       **Note on Decay Data:** The abstract and content provided do not specifically address lifetime or decay data analysis applications. The focus remains on spectral line analysis in atomic physics contexts.
+       
+       **Publication:** Published in *Nuclear Instruments and Methods B* 408, 301-312 (2017)  -> 1 result(s):
+       1. Web search results for query: "cavity QED ensemble emitters inhomogeneous broadening modified decay rate cooperativity effective arXiv"
+          https://www.academia.edu/17331555/Strongly_coupling_a_cavity_to_inhomogeneous_ensembles_of_emitters_Potential_for_long_lived_solid_state_quantum_memories
+          I've found several relevant research papers and articles on cavity QED with ensemble emitters and inhomogeneous broadening. Here's a summary of the key research available: ## Main Topics Found: **1. Cavity Protection and Quantum Memory:** Under certain conditions, coupling to a cavity protects the polaritonic state from inhomogeneous broadening, resulting in longer storage time for quantum memories based on emitter ensembles. **2. Modified Decay Rates and Cooperativity:** Two spectrally indistinguishable ions have an effective cavity-mediated dissipation with rate Γc = 4g²/κ, and the decay rate of a quantum emitter placed in an optical resonator can be strongly modified from its bare free space value due to cavity-induced modification of the optical density of states. **3. Inhomogeneous Broadening Effects:** Inhomogeneous broadening and decoherence have largely confined collective quantum effects to ultracold atomic systems and a few solid-state platforms where emitters can be precisely tuned into resonance. **4. Many-Body Cavity QED:** Studies examine how large, inhomogeneously broadened ensembles of solid-state emitters coupled with high cooperativity to nanophotonic resonators behave under strong excitation. **5. Purcell Effect Enhancement:** Collective excitations in emitter ensembles show a strong enhancement of cavity cooperativity around subradiant antiresonances. The search retrieved multiple arXiv papers and peer-reviewed publications on these topics, including work on cavity QED with molecular defects, rare-earth ions, and collective quantum effects in driven inhomogeneous systems.  -> [WebFetch]:
+       # Robust Online Hamiltonian Learning - Document Summary
+       
+       **Title:** Robust Online Hamiltonian Learning
+       
+       **Authors:** Christopher E. Granade, Christopher Ferrie, Nathan Wiebe, D.G. Cory
+       
+       **Year:** 2012
+       
+       **arXiv ID:** 1207.1655
+       
+       ## Key Bayesian Methods for Quantum Hamiltonian Learning
+       
+       The paper combines "sequential Monte Carlo and Bayesian experimental design" to infer dynamical parameters of quantum systems. The approach enables online learning during experiments without requiring post-processing storage.
+       
+       ## Sequential Monte Carlo Approach
+       
+       The SMC algorithm approximates posterior distributions using particles with weights. As described in the document, particles are updated sequentially: "the weights at each step are iteratively calculated from the previous step" through Bayes rule applications. Resampling occurs when effective sample size falls below thresholds to prevent particle degeneracy.
+       
+       ## Model Comparison Methods
+       
+       Models are evaluated using:
+       - **Information gain utility function:** Minimizes expected entropy in posterior distributions
+       - **Negative variance utility:** Optimizes mean squared error performance
+       - **Bayesian Cramer-Rao bound (BCRB):** Provides lower bounds on achievable estimation error, allowing the algorithm to "certify its own performance"
+       
+       ## Likelihood and Model Evidence Equations
+       
+       For a single qubit example with dephasing:
+       
+       **Pr(0|ω;t) = e^(-t/T₂)cos²(ωt/2) + (1-e^(-t/T₂))/2**
+       
+       The posterior combines likelihood with priors via Bayes rule: "Pr(x|D;C) = Pr(D|x;C)Pr(x)/Pr(D|C)"
+       
+       ## Applications
+       
+       The method addresses practical quantum characterization challenges, including learning parameters when "additional noise processes are present and unknown" and handling hyperparameter estimation for varying experimental parameters.  -> 1 result(s):
+       1. Web search results for query: "SiC V_Si silicon vacancy four-level system intersystem crossing optical lifetime spin-orbit arXiv"
+          https://www.nature.com/articles/s41534-024-00861-6
+          I've performed the web search for your query about SiC V_Si silicon vacancy systems. Here are the key findings: ## Main Research Areas Found The search results reveal several relevant papers and studies on this topic: ### Recent Comprehensive Study (2024) The negatively charged silicon vacancy center (V_Si^-) in silicon carbide (SiC) is an emerging color center for quantum technology, with research establishing the intrinsic spin dynamics of the V_Si^- center at the cubic lattice site (V2) in 4H-SiC through electronic fine structure modeling including intersystem-crossing and deshelving mechanisms. ### Key Physics Mechanisms Research has identified complete pictures of metastable-state doublets involved in intersystem crossing and spin polarization with coupling mechanisms including spin-orbit, dynamic pseudo-Jahn Teller, and optical deshelving. ### Four-Level System and ISC The spin polarization process in silicon vacancy defects is enabled by a combination of optical driving, spin-orbit coupling, and interaction with vibrational modes. Intersystem crossing rates from excited state to metastable state and from metastable state to ground state have been characterized, with the excited state lifetime approximately 6 ns. ### Related arXiv Papers The search identified several relevant arXiv preprints, including: - arXiv:2307.13648 - "The silicon vacancy centers in SiC: determination of intrinsic spin dynamics for integrated quantum photonics" - arXiv:1811.01398 - "Spin polarization through Intersystem Crossing in the silicon vacancy of silicon carbide" - arXiv:2602.14818 - "Unraveling the electronic structure of silicon vacancy centers in 4H-SiC" These papers comprehensively address the electronic structure, optical lifetimes, spin-orbit coupling, and intersystem crossing mechanisms you're interested in.  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://ar5iv.labs.arxiv.org/html/1811.03442  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/abs/1811.01398  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2309.16641  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/abs/1101.1842  -> [WebFetch]:
+       # Paper Extraction Summary
+       
+       **Title:** Spin polarization through Intersystem Crossing in the silicon vacancy of silicon carbide
+       
+       **Authors:** Wenzheng Dong, M. W. Doherty, Sophia E. Economou
+       
+       **Year:** 2018 (submitted); published 2019 in Phys. Rev. B 99, 184102
+       
+       **arXiv ID:** 1811.01398
+       
+       ## Key Findings on V_Si Intersystem Crossing:
+       
+       The abstract indicates the research develops "a theoretical description of the spin polarization process by using the intersystem crossing of the silicon vacancy defect," which involves "optical driving, spin-orbit coupling, and interaction with vibrational modes."
+       
+       The work demonstrates that "different spin projections of the ground state manifold can be polarized" through distinct optical drives, enabling analysis of multiple spin polarization channels.
+       
+       **Note:** The provided content is an arXiv abstract page only. Specific quantitative data on rate equations, excited state lifetimes, metastable state lifetimes, biexponential decay behavior, and spin-dependent rates are not available in this excerpt. Access to the full PDF would be necessary to extract those detailed numerical results.  -> [WebFetch]:
+       # Enhanced Collective Purcell Effect in Coupled Quantum Emitters
+       
+       **Title:** Enhanced collective Purcell effect of coupled quantum emitter systems
+       
+       **Authors:** D. Plankensteiner, C. Sommer, M. Reitz, H. Ritsch, C. Genes
+       
+       **Year:** 2017
+       
+       **arXiv ID:** 1811.03442
+       
+       ## Key Results
+       
+       The research demonstrates that "collective excitations in ensembles of dipole-dipole coupled quantum emitters show a disentanglement between the coherent coupling to the cavity mode and spontaneous free space decay."
+       
+       ### Collective Purcell Enhancement Mechanism
+       
+       The authors show that subradiant collective states achieve dramatically enhanced cooperativity through what they term "subradiantly enhanced cooperativity." The effective cooperativity is defined as:
+       
+       **C_eff(Δ_e) = G^T G / (κ γ_eff(Δ_e))**
+       
+       where the effective decay rate γ_eff is decoupled from the coupling strength G^T G, enabling substantial enhancement.
+       
+       ### Scaling with Number of Emitters
+       
+       For equidistant chains of closely-spaced emitters (d = 0.1λ_e), the subradiant cooperativity demonstrates approximately **N⁴ scaling**, compared to linear scaling for independent emitters. The authors note that "the lowest decay rate theoretically possible reduces exponentially with the number of emitters," with practical robust states scaling as N⁻³, combined with collective coupling enhancement of N, yielding the observed N⁴ behavior.
+       
+       ### Modified Purcell Factor
+       
+       For single emitters, the Purcell factor relates directly to cooperativity: **F_p = 4C**  -> [WebFetch]:
+       # Paper Summary: Cavity Coupling to Inhomogeneous Emitter Ensembles
+       
+       **Title:** Strongly coupling a cavity to inhomogeneous ensembles of emitters: potential for long lived solid-state quantum memories
+       
+       **Authors:** I. Diniz, S. Portolan, R. Ferreira, J.M. Gérard, P. Bertet, A. Auffèves
+       
+       **Year:** 2011
+       
+       **arXiv ID:** 1101.1842
+       
+       ## Key Results
+       
+       The research demonstrates that "their coherence depends crucially on the shape of the distribution and not only on its width." This finding reveals that broadening characteristics fundamentally impact polaritonic state behavior.
+       
+       **Protection from Broadening:** The authors discovered that cavity coupling can provide protection against inhomogeneous broadening effects, enabling "longer storage time for a quantum memory based on emitters ensembles."
+       
+       **Dark State Formation:** When two distinct emitter ensembles couple to the resonator, "they support a peculiar collective dark state, also very attractive for the storage of quantum information."
+       
+       The work theoretically investigates how continuous emitter distributions interact with cavity modes, examining how inhomogeneous broadening influences polaritonic peak coherence and decay dynamics. The results suggest that properly structured emitter distributions can mitigate broadening-induced decoherence, offering promising applications for solid-state quantum memory architectures.  -> [WebFetch]:
+       # Paper Summary
+       
+       **Title:** "Anomalous Purcell decay of strongly driven inhomogeneous emitters coupled to a cavity"
+       
+       **Authors:** Michael T. Solomon, Martin Koppenhöfer, Mikhail Mamaev, Cheng Ji, Gregory Grant, Ignas Masiulionis, Sean E. Sullivan, F. Joseph Heremans, Supratik Guha, David D. Awschalom, Aashish A. Clerk, Alan M. Dibos
+       
+       **Year:** 2024 (arXiv:2309.16641v2, posted 07 Mar 2024)
+       
+       **arXiv ID:** 2309.16641
+       
+       ## Key Physics
+       
+       The research demonstrates a counterintuitive phenomenon: at high pump powers and zero cavity-laser detuning, the Purcell enhancement factor decreases by approximately threefold compared to weak-drive predictions. This "anomalous" suppression emerges from the interplay between strong driving, inhomogeneous broadening, and cavity-mediated spin interactions.
+       
+       ## Main Mechanism
+       
+       The central insight involves cavity-mediated coupling between spins with different detunings. Under strong driving, off-resonant spins develop coherence while resonant spins become depolarized. These detuned spins then drive resonant spins through the cavity field, creating long-lived excitations that decay more slowly than expected from standard Purcell theory.
+       
+       ## Core Equations
+       
+       The Tavis-Cummings Hamiltonian governs the system:
+       
+       *"H^ = Δc a† a + Σ δj σ^z/2 + Σ gj(a† σ^− + a σ^+) − i√κc βin(a† − a)"*
+       
+       Decay dynamics are described by semiclassical equations of motion for cavity field, spin coherence, and populations.
+       
+       ## What "Anomalous" Means
+       
+       Normally, Purcell enhancement should peak at cavity resonance. Here, at high power, the decay rate exhibits a "double-peaked" detuning profile with suppression at zero detuning—opposite to weak-drive behavior.
+       
+       ## Decay Behavior
+       
+       Experiments and simulations reveal non-exponential or stretched-exponential decay characterized by the function: *"A exp[−(t/τ₁)^d] + B exp(−t/τ₂) + C"*, where the stretching exponent captures the distribution of ion-cavity coupling strengths.  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] arXiv 2202.04845 "two-emitter" SiC cavity superradiance lifetime multimode interference Lukin Vuckovic  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] Tavis-Cummings two emitters cavity decay rate collective superradiant subradiant modes formula arXiv  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2602.14818  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2403.02402v1  -> 1 result(s):
+       1. Web search results for query: "arXiv 2202.04845 "two-emitter" SiC cavity superradiance lifetime multimode interference Lukin Vuckovic"
+          https://arxiv.org/pdf/2202.04845
+          I found the paper you requested. Here's information about arXiv 2202.04845: **Paper Title:** "Optical superradiance of a pair of color centers in an integrated silicon-carbide-on-insulator microresonator" **Authors:** Daniil M. Lukin, Melissa A. Guidry, Joshua Yang, Misagh Ghezellou, Sattwik Deb Mishra, Hiroshi Abe, Takeshi Ohshima, Jawad Ul-Hassan, and Jelena Vučković **Main Contributions:** The paper reports on the integration of near-transform-limited silicon vacancy (V_Si) defects into microdisk resonators fabricated in a CMOS-compatible 4H-Silicon Carbide-on-Insulator platform, demonstrating a single-emitter cooperativity of up to 0.8 as well as optical superradiance from a pair of color centers coupled to the same cavity mode. **Key Focus:** The work investigates the effect of multimode interference on the photon scattering dynamics from this multi-emitter cavity quantum electrodynamics system. **Significance:** These results are crucial for the development of quantum networks in silicon carbide and bridge the classical-quantum photonics gap by uniting optically-coherent spin defects with wafer-scalable, state-of-the-art photonics. The paper was submitted on February 10, 2022.  -> 1 result(s):
+       1. Web search results for query: "Tavis-Cummings two emitters cavity decay rate collective superradiant subradiant modes formula arXiv"
+          https://arxiv.org/pdf/2108.08397
+          I've completed the web search for your query. Here are the key findings: The search results reveal several relevant papers discussing the Tavis-Cummings model applied to superradiant and subradiant modes in cavity systems with multiple emitters: **Key Results:**  -> [WebFetch]:
+       # Summary of Nonperturbative Cavity QED Paper
+       
+       **Title:** "Nonperturbative cavity quantum electrodynamics: is the Jaynes-Cummings model still relevant?"
+       
+       **Authors:** Daniele De Bernardis, Alberto Mercurio, Simone De Liberato
+       
+       **Year:** 2024
+       
+       **arXiv ID:** 2403.02402v1
+       
+       ## Key Results About Beyond-JCM Physics
+       
+       The paper demonstrates that the Jaynes-Cummings model (JCM) fails in the ultrastrong coupling (USC) regime where the vacuum Rabi frequency becomes comparable to bare system frequencies. The authors show the JCM's validity is bounded by the parameter ζ = 4Ω²ᵣ/(ωcωeg), with USC occurring when ζ ~ O(1).
+       
+       ## New Physics Beyond JCM
+       
+       **Virtual photon population:** The ground state accumulates photons beyond the RWA: "⟨GR|a†a|GR⟩ ∝ (ΩR/ωc)² + O((ΩR/ωc)⁴)" representing non-perturbative vacuum phenomena.
+       
+       **Counter-rotating terms:** Breaking the rotating-wave approximation reveals simultaneous photon-atom excitation creation, enabling "multi-photon non-linear processes" and "tunneling resonances" for multi-photon Fock state generation.
+       
+       **Gauge invariance problems:** Hilbert space truncation breaks gauge invariance—Coulomb gauge shows errors at small coupling while dipole gauge tolerates higher coupling strengths depending on system anharmonicity.
+       
+       ## Decay Dynamics
+       
+       The paper reveals critical issues with standard open-system descriptions. Standard Lindblad equations fail in USC because they assume a white reservoir with density of states at negative energies, causing unphysical ground state decay.
+       
+       The solution involves "dressed" master equations operating in the energy eigenbasis rather than bare basis, ensuring ground state stability and proper energy conservation across all coupling regimes.  -> [WebFetch]:
+       # Silicon Vacancy Centers in 4H-SiC: Electronic Structure Study
+       
+       **Title:** "Unraveling the electronic structure of silicon vacancy centers in 4H-SiC"
+       
+       **Authors:** Ali Tayefeh Younesi, Minh Tuan Luu, Christopher Linderälv, Vytautas Žalandauskas, Marianne Etzelmüller Bathen, Nguyen Tien Son, Takeshi Ohshima, Gergő Thiering, Lukas Razinkovas, Ronald Ulbricht
+       
+       **Year:** 2026
+       
+       **arXiv ID:** 2602.14818
+       
+       ## Key Results on V_Si Electronic Structure
+       
+       **Optical Transition Energies:**
+       - V1 (h-site): 1.439 eV
+       - V1' (h-site): 1.444 eV  
+       - V2 (k-site): 1.353 eV
+       - V2' (k-site, newly identified): 1.378 eV (25 meV above V2)
+       - Spin-doublet D1 transitions: ~0.7 eV range
+       - Spin-doublet D2 transitions: ~1.1 eV range
+       
+       **Excited State Lifetimes:**
+       The research reports "a bi-exponential decay with a fast component associated with the upper intersystem crossing (7 ns and 8 ns for V_h and V_k, respectively), and a slow component governed by the lower intersystem crossing (220 ns for V_h and 160 ns for V_k)."
+       
+       **Crystal-field Splittings:**
+       - V_h quartet: 5 meV splitting
+       - V_k quartet: 25 meV splitting (T1↔E)
+       - V_h spin-doublet: 4 meV (T2 splitting)
+       - V_k spin-doublet: 10 meV (T2 splitting)
+       
+       **Intersystem Crossing:** Upper ISC timescales of 7-8 ns; lower ISC timescales of 160-220 ns enable the spin-polarization cycle central to quantum applications.  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://ar5iv.labs.arxiv.org/html/1412.2392  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2108.08397  !! [WebFetch]:
+       Request failed with status code 404  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] arXiv 1703.05402 experimental quantum Hamiltonian learning NV center photonic simulator Bayesian  -> [WebFetch]:
+       # Dicke Superradiance in Artificial Atoms: Key Research Summary
+       
+       **Title:** "Observation of Dicke Superradiance for Two Artificial Atoms in a Cavity with High Decay Rate"
+       
+       **Authors:** J. A. Mlynek, A. A. Abdumalikov Jr, C. Eichler, A. Wallraff (Department of Physics, ETH Zürich)
+       
+       **Year:** 2014 | **arXiv ID:** 1412.2392
+       
+       ---
+       
+       ## Key Results
+       
+       The researchers demonstrated "a close to ideal realization of Dicke's original two-spin Gedankenexperiment" using superconducting qubits. They explicitly observed superradiance in two distinct ways: through time-resolved power measurements and by reconstructing the photon number density matrix of the emitted field.
+       
+       ## Decay Rate Formulas
+       
+       For a **single qubit** in the bad cavity limit (κ ≫ g ≫ Γₙᵣ):
+       - Decay rate: Γκ = κg²/|κ/2 + iΔᵣ|²
+       
+       For **two-qubit superradiant state** |ee⟩:
+       - Enhanced decay following: ΔP(t) = 2P₀e^(-2Γ̄κt)(1 + 2Γ̄κt) - 2P̄(t)
+       
+       For **two-qubit equal superposition state** in phase:
+       - Decay following: ΔP(t) = P₀e^(-2Γ̄κt)(3/2 + Γ̄κt) - P̄(t)
+       
+       ## Experimental Parameters
+       
+       - Non-radiative decay rates: Γₙᵣ/2π ≈ (0.040, 0.042) MHz
+       - Pure dephasing rates: Γ*/2π ≈ (0.25, 0.27) MHz
+       - Coupling rates: g/2π ≈ (3.5, 3.7) MHz
+       - Cavity decay rate: κ/2π ≈ 43 MHz
+       - Cavity frequency: 7.064 GHz
+       
+       ## Measured Lifetime Changes
+       
+       Single photon emission probability decreased exponentially. For two excited qubits (|ee⟩), they observed enhanced initial decay rate that accelerated over time, contrasting with single-qubit exponential decay patterns.  -> 1 result(s):
+       1. Web search results for query: "arXiv 1703.05402 experimental quantum Hamiltonian learning NV center photonic simulator Bayesian"
+          https://arxiv.org/abs/1703.05402
+          Based on the search results, I found comprehensive information about arXiv paper 1703.05402: ## Experimental Quantum Hamiltonian Learning (arXiv 1703.05402) This paper, titled "Experimental Quantum Hamiltonian Learning," was authored by Jianwei Wang and 10 other authors and submitted to arXiv on March 15, 2017. ### Key Research The study interfaces two different quantum systems through a classical channel - a silicon-photonics quantum simulator and an electron spin in a diamond nitrogen-vacancy centre - and uses the former to learn the latter's Hamiltonian via Bayesian inference. ### Results The researchers learned the salient Hamiltonian parameter with an uncertainty of approximately 10⁻⁵. Furthermore, an observed saturation in the learning algorithm suggests deficiencies in the underlying Hamiltonian model. ### Broader Context The work addresses central challenges in quantum technology development: efficiently characterising quantum systems, verifying operations of quantum devices and validating underpinning physical models. Machine-learning enhanced by quantum simulators has been proposed as a route to improve the computational cost of performing these studies. The paper was subsequently published in Nature Physics in 2017 and represents an important experimental demonstration of quantum-enhanced techniques for characterizing physical systems.  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://ar5iv.labs.arxiv.org/html/1703.05402  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2002.06169  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] "gas tuning" OR "gas adsorption" cavity resonance frequency tuning color center quantum emitter arXiv  !! [WebFetch]:
+       Request failed with status code 404  -> [WebFetch]:
+       # Experimental Quantum Hamiltonian Learning - Key Information
+       
+       **Title:** Experimental Quantum Hamiltonian Learning
+       
+       **Authors:** Jianwei Wang, Stefano Paesani, Raffaele Santagati, Sebastian Knauer, Antonio A. Gentile, Nathan Wiebe, Maurangelo Petruzzella, Jeremy L. O'Brien, John G. Rarity, Anthony Laing, Mark G. Thompson
+       
+       **Year:** 2017
+       
+       **arXiv ID:** 1703.05402
+       
+       ## Bayesian Inference Methods
+       
+       The paper employs "Sequential Monte-Carlo algorithms (SMC)" as an approximate Bayesian technique. A finite set of parameter points ("particles") represents the probability distribution, which updates via Bayes' rule using likelihood functions.
+       
+       ## Learning Mechanism
+       
+       The silicon-photonics simulator learns the NV⁻ center's electron spin Hamiltonian through a closed-loop system: experimental data from the diamond NV⁻ center feeds into the photonic device, which simulates candidate Hamiltonian models and computes likelihoods, enabling posterior distribution updates.
+       
+       ## Likelihood Functions
+       
+       **For QLE (Quantum Likelihood Estimation):** 
+       The likelihood is defined as |⟨ψ|e^(-iH(x)t)|ψ⟩|², computed via entanglement-based techniques measuring projections on σₓ and σᵧ eigenbases.
+       
+       **For IQLE (Interactive QLEstimation):**
+       The likelihood involves |⟨ψ|e^(iH(x₋)t)e^(-iH(x)t)|ψ⟩|², enabling longer evolution times.
+       
+       ## Model Evidence Assessment
+       
+       The paper uses the "Bayes factor K," defined as the ratio of average likelihoods between competing models. They obtained K=560 favoring an improved two-parameter chirped model over the simpler single-parameter baseline, providing "strong evidence" for model improvement.  -> 1 result(s):
+       1. Web search results for query: ""gas tuning" OR "gas adsorption" cavity resonance frequency tuning color center quantum emitter arXiv"
+          https://www.nature.com/articles/ncomms14267
+          I found several relevant results related to cavity resonance frequency tuning with quantum emitters and color centers. Here are the key findings: ## Gas Adsorption for Cavity Tuning Gas adsorption and surface desorption and oxidation have been used to tune individual miniature optical resonators. However, while thermal, electrical and mechanical tuning of optical micro-resonators has also been demonstrated, these approaches produce non-permanent effects and are difficult to scale up. ## Cavity Tuning with Color Centers A particularly relevant recent result involves low-power piezoelectric tuning of hybrid diamond cavities, which can simulate optical resonance shifts up to ∼760 GHz and color center fluorescence tuning of 5 GHz independent of cavity tuning. This work demonstrates tuning methods for color center quantum emitters in diamond photonic cavities. ## Cavity-Quantum Emitter Systems Open microcavities offer efficient mode-matching to external optics, optimal positioning of the emitter, and the ability to tune to and selectively enhance specific optical transitions. Additionally, tuning of quantum dot emission energies can be achieved through electrical tuning via the quantum-confined Stark effect, strain tuning, magnetic field tuning and temperature tuning. The search results contain information from Nature Communications, AIP Publishing, and recent 2024-2025 publications on these topics, though the specific arXiv papers from your query were not returned in these results.  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] condensed nitrogen gas tuning photonic crystal cavity optical resonance cold cryogenic quantum dot arXiv  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] open quantum system model comparison Bayesian evidence log marginal likelihood decay rate fitting physics arXiv  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://ar5iv.labs.arxiv.org/html/1309.0876  -> 1 result(s):
+       1. Web search results for query: "condensed nitrogen gas tuning photonic crystal cavity optical resonance cold cryogenic quantum dot arXiv"
+          https://pubs.acs.org/doi/10.1021/acsphotonics.5c00606
+          Based on the search results, I found several relevant papers on related topics. Here are the key findings: ## Relevant Research **Reversible Tuning Using Condensed Gas:** A recent arXiv paper demonstrates reversible tuning of nanowire quantum dot emission frequency by more than 300 GHz with sub-GHz precision through gas condensation that is then partially reversed with localized laser ablation, which finely adjusts stress applied to the quantum dots. More specifically, wavelength tuning is achieved by straining the QD with deposited nitrogen ice. **Strain Tuning of Quantum Dots in Photonic Crystal Cavities:** Research demonstrates reversible strain-tuning of a quantum dot strongly coupled to a photonic crystal cavity, with an average redshift of 0.45 nm achieved with an electric field of 15 kV/cm applied to a piezo-electric actuator, enabling tuning of a quantum dot into resonance with a photonic crystal cavity in the strong coupling regime. **Gas-Based Cavity Tuning:** Another study performs spatially dependent tuning of a GaInP photonic crystal cavity using laser heating, measuring cavity resonance shift for different pump positions and ambient gases (He and N₂), finding that the temperature profile width depends strongly on the thermal conductivity of the ambient gas. The search results suggest that condensed nitrogen ice tuning of quantum dots in photonic structures is an active area of research, particularly for achieving precise frequency control at cryogenic temperatures.  -> 1 result(s):
+       1. Web search results for query: "open quantum system model comparison Bayesian evidence log marginal likelihood decay rate fitting physics arXiv"
+          https://link.springer.com/chapter/10.1007/978-3-642-00834-4_5
+          I've performed a web search for your query. The results contain several relevant research papers and articles, though the most directly applicable appears to be a recent arXiv paper on quantum open system identification. The most pertinent result is a study that addresses deriving accurate models from measured time-series data in open quantum systems, noting that system identification poses significant challenges because powerful methods from systems engineering can perform poorly beyond weak damping by failing to incorporate essential constraints required for quantum evolution, and that common methods are typically multi-step, resulting in non-convex optimization problems, but solving these by formulating quantum system identification as a polynomial optimization problem to enable global optimization methods. Additionally, the search returned results on: - Bayesian model comparison using marginal likelihood, which is the probability of observed data given a model and serves as the normalizing constant of Bayes' theorem - Quantum walk models as alternatives to Markov processes for modeling dynamics, with open system models providing ways to incorporate both types of processes The results appear to cover Bayesian inference methods, quantum system modeling, and open quantum systems, though a more specific search focused on arXiv preprints might yield more targeted results for your particular topic combination involving decay rate fitting and Bayesian evidence.  -> [WebFetch]:
+       # Hamiltonian Learning and Certification Using Quantum Resources
+       
+       **Title:** Hamiltonian Learning and Certification Using Quantum Resources
+       
+       **Authors:** Nathan Wiebe, Christopher Granade, Christopher Ferrie, D. G. Cory
+       
+       **Year:** 2013
+       
+       **arXiv ID:** 1309.0876
+       
+       ## Key Methods for Hamiltonian Learning
+       
+       The paper presents an algorithm combining **Bayesian inference with Sequential Monte Carlo (SMC)** approximation to efficiently learn unknown Hamiltonians. The core approach uses a trusted quantum simulator to certify an untrusted analog quantum simulator.
+       
+       ### Three Experimental Classes:
+       1. **Classical Likelihood Evaluation (CLE)** - classical computation of likelihoods
+       2. **Quantum Likelihood Evaluation (QLE)** - trusted quantum simulator estimates probabilities
+       3. **Interactive Quantum Likelihood Evaluation (IQLE)** - employs state-swapping and inversion to overcome the Loschmidt echo limitation
+       
+       ## Bayesian Framework
+       
+       Rather than explicit Bayes factors, the method uses **Bayes rule for sequential updating**:
+       
+       > "Pr(x̄ⱼ|D) ∝ Pr(D|x̄ⱼ)Pr(x̄ⱼ)"
+       
+       This posterior distribution, represented by weighted particles in SMC, progressively narrows uncertainty about Hamiltonian parameters.
+       
+       ## Model Certification/Ranking
+       
+       Models are ranked through their **posterior weights**. The algorithm adaptively designs experiments using the **Particle Guess Heuristic (PGH)**, which:
+       - Samples trial Hamiltonian parameters from the current posterior
+       - Selects evolution times inversely proportional to parameter uncertainty
+       - Eliminates incorrect hypotheses through likelihood-based reweighting
+       
+       ## Critical Equations
+       
+       **Likelihood function for IQLE:**
+       > "Pr(D|x̄ᵢ) = |⟨D|eⁱᴴ₋ₜe⁻ⁱᴴ⁽ˣ̄ᵢ⁾ₜ|ψ⟩|²"
+       
+       **Cost scaling:**
+       > "Cost = Nsteps(δ) × Cost(update;ϵ)"
+       
+       The algorithm demonstrates **exponential error reduction** with polynomial samples for Ising models.  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2203.17164  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] Purcell enhanced V2 SiC silicon vacancy Fabry-Perot fiber cavity lifetime Purcell factor 2024 2025 arXiv  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] "route" "spontaneous decay" "cavity QED" multimode overdamped underdamped Purcell Krimer Tureci arXiv  -> 1 result(s):
+       1. Web search results for query: ""route" "spontaneous decay" "cavity QED" multimode overdamped underdamped Purcell Krimer Tureci arXiv"
+          https://arxiv.org/abs/1306.4787
+          I found the paper you're looking for! The paper is titled "Route from spontaneous decay to complex multimode dynamics in cavity QED" and is available on arXiv. The paper is authored by Dmitry O. Krimer, Matthias Liertzer, Stefan Rotter, and Hakan E. Tureci, and it studies the non-Markovian quantum dynamics of an emitter inside an open multimode cavity, focusing on the case where the emitter is resonant with high-frequency cavity modes. The research examines the crossovers between three distinct regimes as the coupling strength is gradually increased: (i) overdamped decay with a time scale given by the Purcell modified decay rate, (ii) underdamped oscillations with a time scale given by the effective vacuum Rabi frequency, and (iii) pulsed revivals. The final multimode strong coupling regime gives rise to quantum revivals of the atomic inversion on a time scale associated with the cavity round-trip time. The paper's arXiv identifier is [1306.4787], and it was published in Physical Review A in March 2014.  -> 1 result(s):
+       1. Web search results for query: "Purcell enhanced V2 SiC silicon vacancy Fabry-Perot fiber cavity lifetime Purcell factor 2024 2025 arXiv"
+          https://pubs.acs.org/doi/10.1021/acs.nanolett.4c03233
+          Based on the search results, I found highly relevant information about your query. Here's what the research shows: ## Key Finding: V2 Centers in SiC with Fiber-Based Fabry-Pérot Cavity The research integrates V2 centers inside a SiC membrane into a fiber-based Fabry-Pérot microcavity. This is an arXiv paper (2501.04583) from January 2025 that directly matches your search query. ### Cavity Performance The SiC material shows excellent suitability for membrane fabrication, evidenced by low surface roughness (σ_RMS ~ 400 pm), high reproducibility, and a high cavity finesse of approximately 40,000. ### Purcell Enhancement Results The Purcell factor was investigated by measuring the optical lifetime as a function of cavity-emitter detuning, revealing a 13.3-fold enhancement of photons scattered into the zero-phonon line (ZPL). A reduced lifetime was observed when the emitter was resonant with the cavity due to the Purcell effect. ### Single-Emitter Characterization At cryogenic temperatures, individual emitters coupling to cavity modes were observed, with their single-emitter character confirmed by measuring the second-order autocorrelation function. This appears to be recent work published in Optica Quantum 2025, representing significant progress in achieving deterministic spin-photon interactions for quantum networking applications with SiC defect centers.  -> [WebFetch]:
+       # Document Summary: Quantum Open System Identification
+       
+       **Title:** "Quantum open system identification via global optimization: optimally accurate Markovian models of open systems from time-series data"
+       
+       **Authors:** Zakhar Popovych, Kurt Jacobs, Georgios Korpas, Jakub Marecek, Denys I. Bondar
+       
+       **Year:** 2024 (December 16, 2024)
+       
+       **arXiv ID:** 2203.17164v2
+       
+       ## Key Methods for Open Quantum System Identification
+       
+       The paper presents a novel approach using **polynomial optimization via moment/sum-of-squares hierarchies** to identify Markovian master equations from time-series density matrix data. Rather than employing traditional gradient-based methods that may become trapped in local minima, this technique guarantees convergence to global optima.
+       
+       ### Core Methodology
+       
+       The authors formulate system identification as minimizing:
+       
+       > "the difference between exp(𝒦_{C,H}Δt)ρⱼ and ρⱼ₊₁ when summed over all j"
+       
+       They employ the **Gorini-Kossakowski-Sudarshan-Lindblad (GKSL) master equation** in its unique parameterization form, which avoids non-uniqueness problems inherent in standard Lindblad representations.
+       
+       ## Model Comparison Approach
+       
+       The study compares three strategies:
+       1. **Polynomial optimization** with the general Kossakowski master equation form
+       2. **Simplified Lindblad ansatz** (four decoherence operators) via polynomial optimization
+       3. **Traditional optimization** (NLOPT's SLSQP algorithm) and linear system identification methods (DMD, ERA)
+       
+       Performance metrics use **infidelity** (1 - fidelity) between predicted and exact evolution, tested against 20 Bloch sphere states.
+       
+       ## Decay Rate and Lindblad Parameter Identification
+       
+       For the spin-boson model, the damping strength is characterized by:
+       
+       > "γ ≡ g²/(2π)" where "γ gives the decay rate"
+       
+       The simplified Lindblad ansatz employs **two primary parameters**: a damping coefficient *r* and a dephasing rate *p*, applied across x, y, z Pauli bases.
+       
+       ## Key Finding
+       
+       Even for moderately strong damping (Q=3.16), Markovian models achieve infidelity below 10⁻³, substantially better than traditional optimization methods, confirming global optimality of polynomial approaches.  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/abs/1306.4787  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] Jaynes-Cummings time-domain emission decay formula emitter cavity coupling g kappa gamma overdamped underdamped  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] dark state metastable spin shelving V_Si SiC biexponential lifetime ISC intersystem crossing non-exponential optical decay  -> [WebFetch]:
+       # Cavity QED Dynamics Paper Summary
+       
+       **Title:** "Route from spontaneous decay to complex multimode dynamics in cavity QED"
+       
+       **Authors:** Dmitry O. Krimer, Matthias Liertzer, Stefan Rotter, Hakan E. Tureci
+       
+       **Year:** 2013 (submitted); 2014 (published in Physical Review A)
+       
+       **arXiv ID:** 1306.4787
+       
+       ## Three Dynamical Regimes
+       
+       The paper identifies three distinct regimes as coupling strength increases:
+       
+       1. **Overdamped Purcell decay** — Relaxation governed by "the Purcell modified decay rate"
+       
+       2. **Underdamped vacuum Rabi oscillations** — Oscillatory behavior with "a time scale given by the effective vacuum Rabi frequency"
+       
+       3. **Multimode revival** — Pulsed revivals producing "quantum revivals of the atomic inversion on a time scale associated with the cavity round-trip time"
+       
+       ## Critical Parameter
+       
+       The authors emphasize that "the crucial parameter to capture the crossovers between these regimes is the nonlinear Lamb shift," which their formalism accounts for exactly.
+       
+       ## Methodology
+       
+       The study employs "a Green's function technique suited for open photonic structures" to analyze non-Markovian quantum dynamics of an emitter in an open multimode cavity, focusing on resonance with high-frequency modes.  -> 1 result(s):
+       1. Web search results for query: "Jaynes-Cummings time-domain emission decay formula emitter cavity coupling g kappa gamma overdamped underdamped"
+          https://daniele-pybectn.github.io/Computational_quantum_optics_lectures/lecture2/jaynes_cummings.html
+          Based on the search results, here's what I found regarding the Jaynes-Cummings model with dissipation and its time-domain decay dynamics: ## Master Equation and Decay Parameters The master equation for the density operator includes Lindblad dissipators with κ describing cavity decay and γ describing atomic spontaneous emission. The general form is: $\dot{\rho} = -\frac{i}{\hbar}[\hat{H},\rho] + \kappa \mathcal{D}[\hat{a}]\rho + \gamma \mathcal{D}[\hat{\sigma}_-]\rho$ where the Lindblad dissipator is defined as $\mathcal{D}[\hat{O}]\rho = \hat{O}\rho\hat{O}^{\dagger} - \frac{1}{2}\{\hat{O}^{\dagger}\hat{O},\rho\}$. ## Coupling Regimes The system behavior depends on the relationship between coupling strength (g), cavity decay (κ), and atomic decay (γ): - When κ and γ are small compared to the Rabi frequency, the JC model is in the strong-coupling regime, where coherent oscillations are visible despite dissipation. - If κ or γ are large, the oscillations are damped and eventually disappear, corresponding to the weak-coupling regime. ## Time-Domain Decay Characteristics Theory predicts a cosine at frequency 2g, blurred by an exponential envelope $e^{-\kappa t/2}$ in vacuum Rabi oscillations starting from an initial state with one atomic excitation and zero cavity photons. Additionally, the bad-cavity regime is characterized by κ ≫ g²/κ ≫ γ, which is often used for single-photon generation applications. The search results provide the fundamental framework but don't contain explicit closed-form solutions specifically distinguishing overdamped versus underdamped regimes in detailed time-domain formulas.  -> 1 result(s):
+       1. Web search results for query: "dark state metastable spin shelving V_Si SiC biexponential lifetime ISC intersystem crossing non-exponential optical decay"
+          https://en.wikipedia.org/wiki/Intersystem_crossing
+          I've performed the web search with your query. Here are the relevant results: ## Key Findings **V_Si (Silicon Vacancy) Centers in SiC:** The negatively charged silicon vacancy center (V_Si−) in silicon carbide (SiC) is an emerging color center for quantum technology covering quantum sensing, communication, and computing. **Metastable States and Spin Shelving:** Experimental investigations include measurements of spin-selective excited state lifetimes, ground state spin initialization via resonant and off-resonant laser excitation, as well as probing the intricate dynamics within the metastable state (MS) manifolds via spin manipulation combined with a delayed pulse measurement. **Intersystem Crossing (ISC):** Research establishes intrinsic spin dynamics of the V_Si− center at cubic lattice site (V2) in 4H-SiC by an in-depth electronic fine structure modeling including the intersystem-crossing and deshelving mechanisms. The V1 center has a metastable state with ~200 ns lifetime. **Decay Dynamics:** The upper ISC mechanism is governed by transition rates from the excited state to metastable states, consisting of transitions from the 4A2 spin quartet state to 2E and 2A1 spin-doublets, being assisted by both spin-orbit coupling and electron-phonon interaction. The search results provide detailed information on V_Si color centers in SiC, their metastable states, ISC mechanisms, and spin dynamics, which appears to be your main area of interest.  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/pdf/2307.13648  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] arXiv 2306.09435 multilevel Purcell effect vibrational modes molecular quantum optics  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] emission dynamics cavity QED biexponential decay cavity mode emitter off-resonant fraction spectral diffusion arXiv 2020 2021 2022 2023  -> [WebFetch]:
+       # V_Si (V2) Lifetime Parameters in 4H-SiC
+       
+       I cannot extract the requested numerical rate values from the provided content. The material appears to be a PDF file with encoded/compressed stream data that is not human-readable in this format.
+       
+       To obtain specific information about V_Si defect lifetimes in 4H-SiC, including:
+       - Excited state lifetimes
+       - Metastable state lifetimes
+       - Intersystem crossing (ISC) rates
+       - Deshelving rates
+       - Spin-dependent rate constants
+       - Biexponential decay characteristics
+       
+       You would need to:
+       
+       1. **Provide the decoded PDF content** as readable text
+       2. **Specify the exact publication** (author, year, journal) if this is from a research paper
+       3. **Check primary literature** such as:
+          - Articles on silicon vacancy color centers in SiC
+          - Studies on defect dynamics in wide-bandgap semiconductors
+          - Spin-qubit characterization papers focusing on SiC platforms
+       
+       If you can share the actual text content or bibliographic information, I can help extract and summarize the relevant numerical parameters while adhering to proper attribution standards.
+       
+       [Binary content (application/pdf, 1.4MB) also saved to /Users/oatpix/.claude/projects/-Users-oatpix-Desktop-LabAssistant/359e8a85-8972-4a3f-ace5-e033f4b8085f/tool-results/webfetch-1775755276240-b3ourt.pdf]  -> 1 result(s):
+       1. Web search results for query: "arXiv 2306.09435 multilevel Purcell effect vibrational modes molecular quantum optics"
+          https://arxiv.org/abs/2306.09435
+          I found the paper! Here's what I found about arXiv paper 2306.09435: **Title:** Multi-level Purcell effect and the impact of vibrational modes in molecular quantum optics **Authors:** Charlie Nation and 2 other authors **Publication Date:** June 15, 2023 **Overview:** The paper addresses the Purcell effect (the increased decay rate of a two-level system weakly coupled to an optical cavity) in the case where the two-level system is replaced by a multi-level interacting system. The research is motivated by experiments characterizing molecular systems via cavity interaction and studies a manifestation of the Purcell effect in a bio-inspired photosynthetic dimer, with particular focus on how molecular vibrational modes impact the system-cavity behavior in the Purcell regime. **Key Contribution:** The paper provides a theoretical picture in terms of an effective non-Hermitian Hamiltonian, which extends the Jaynes-Cummings model to describe a "multilevel" Purcell effect, where different levels have differing Purcell factors, with effective cooperativities mediated by coherent vibrational interactions.  -> 1 result(s):
+       1. Web search results for query: "emission dynamics cavity QED biexponential decay cavity mode emitter off-resonant fraction spectral diffusion arXiv 2020 2021 2022 2023"
+          https://arxiv.org/html/2601.05884
+          I've performed a web search for your query about emission dynamics, cavity QED, biexponential decay, and related topics. Here are the most relevant results: ## Key Papers Found:  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2306.09435  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/html/2412.00078  !! [WebFetch]:
+       Request failed with status code 404  -> [WebFetch]:
+       # Multi-level Purcell Effect in Molecular Quantum Optics
+       
+       **Title:** Multi-level Purcell effect and the impact of vibrational modes in molecular quantum optics
+       
+       **Authors:** Charlie Nation, Valentina Notararigo, Alexandra Olaya-Castro
+       
+       **Year:** 2023
+       
+       **arXiv ID:** 2306.09435
+       
+       ## Key Findings
+       
+       ### Multi-level Purcell Effect Definition
+       The research demonstrates that when a multi-level molecular system couples to an optical cavity, "different levels have differing Purcell factors, with effective cooperativities mediated by coherent vibrational interactions." This represents a departure from the canonical two-level Jaynes-Cummings picture.
+       
+       ### State-Dependent Purcell Factors
+       Rather than a single Purcell enhancement factor, the authors observe that each molecular eigenstate experiences distinct decay rate modifications. The effective cooperativities are expressed as:
+       
+       **C_i = g²_c,i(θ,φ) / (γ'_i · Γ'_c)**
+       
+       where the effective cavity couplings depend on both excitonic mixing angle θ and vibrational mixing angle φ.
+       
+       ### Effective Non-Hermitian Hamiltonian
+       The decay rates emerge from the effective non-Hermitian Hamiltonian:
+       
+       **H_eff = H - i∑_j (γ_j/2)L†_jL_j**
+       
+       The imaginary eigenvalue components directly encode decay rates of the corresponding states, revealing how cavity coupling modifies molecular dynamics.
+       
+       ### Vibronic Modification Mechanism
+       The research reveals that "molecular vibronic and excitonic delocalisations play a role" in determining how different states experience Purcell enhancement. This creates competition between states for cavity-mediated decay enhancement.
+       
+       ### Decay Dynamics
+       The system demonstrates exponential decay with modified rates: γ → γ(1 + F), where the Purcell factor F depends on state composition and vibrational coherences. This produces effective single-exponential decay for each level rather than multiexponential behavior.  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebFetch] https://arxiv.org/abs/2412.00078  [sub:Literature search: Hamiltonian learning cavity QED color centers]   [WebSearch] arXiv cavity QED lifetime measurement single emitter resonance detuning tuning curve Purcell factor experimental quantum dot silicon carbide  -> [WebFetch]:
+       # Research Summary
+       
+       **Title:** Learning the physics of open quantum systems from experiments
+       
+       **Authors:** Alexandra Ramôa
+       
+       **Year:** 2024
+       
+       **arXiv ID:** 2412.00078
+       
+       ## Adaptive Inference Methods
+       
+       The thesis employs "adaptive inference as a tool to characterize quantum systems using experimental data" with applications spanning sensing, calibration, control, and metrology. Key computational approaches include Bayesian experimental design paired with Sequential and Hamiltonian Monte Carlo techniques.
+       
+       ## Model Comparison Techniques
+       
+       The author's algorithms for learning Hamiltonian and Kraus operators demonstrate superior performance against existing benchmarks. Specifically, the work shows "robust performance, surpassing the built-in characterization functions of Qiskit" when applied to IBMQ quantum devices, using equivalent measurement counts.
+       
+       ## Methodological Foundation
+       
+       The thesis provides foundational material on Bayesian statistics, experimental design, and numerical integration methods, alongside a comprehensive literature review of quantum system characterization approaches.  -> 1 result(s):
+       1. Web search results for query: "arXiv cavity QED lifetime measurement single emitter resonance detuning tuning curve Purcell factor experimental quantum dot silicon carbide"
+          https://link.aps.org/doi/10.1103/PhysRevX.13.011005
+          The search has returned several highly relevant results on cavity QED with single emitters, including work on silicon carbide platforms. Here are the key findings: ## Key Research on Cavity QED with Single Emitters **Silicon Carbide Platform:** Silicon vacancy centers in 4H-silicon carbide (SiC) host a long-lived electronic spin and simultaneously possess spin-resolved optical transitions, making them a great candidate for implementing a spin-photon interface. These interfaces are achieved by integrating the emitter inside a fiber-based Fabry-Pérot microcavity. **Lifetime Measurements and Purcell Enhancement:** The lifetime reduces as the cavity becomes resonant with the zero-phonon line (ZPL), consistent with Purcell enhancement. The effective Purcell factors are calculated from the lifetime reduction, and cavity-emitter detuning is varied to observe lifetime-shortening as the cavity becomes resonant with the ZPL. **Tuning Curves and Resonance Detuning:** Lifetime measurements are performed with pulsed resonant excitation using short pulses and detection of photon sideband emission with the cavity detuned, allowing measurement of off-resonant lifetimes. **Quantum Dot Systems:** A large tuning range (from 42 ± 1 to 1692 ± 7 ps) of quantum dot radiative lifetime can be achieved while scanning the detuning between the quantum dot and the cavity, with up to 40-fold tuning through strong Purcell enhancement and inhibition effects. **Hybrid Integration on Silicon Carbide:** A hybrid micro-ring resonator coupled with self-assembled quantum dots enables cavity-enhanced deterministic single-photon emission. By introducing a micro-heater, photon emission can be locally and dynamically tuned over one free spectral range, allowing precise tuning of individual quantum dots in resonance with cavity modes and enhancing single-photon emission with a Purcell factor of about 4.9.  -> [Agent]:
+       I now have comprehensive coverage across all four topics. Let me compile the complete structured bibliography.
+       
+       ---
+       
+       # Structured Bibliography: Physics Literature for Cavity QED Lifetime Analysis
+       
+       ---
+       
+       ## TOPIC 1: Hamiltonian Learning / Model Learning from Quantum Optical Experiments
+       
+       ---
+       
+       ### Paper 1.1
+       **Granade, Ferrie, Wiebe, Cory — "Robust Online Hamiltonian Learning" (2012)**
+       - arXiv: 1207.1655 | *New J. Phys.* 14, 103013 (2012)
+       - **Key methods:** Combines Sequential Monte Carlo (SMC) with Bayesian experimental design to infer quantum Hamiltonian parameters online during experiments. Posterior distributions over parameters are updated using Bayes' rule after each measurement. Adaptive experiment design minimizes posterior entropy.
+       - **Critical equations:**
+         - Likelihood for qubit with dephasing: `Pr(0|ω;t) = e^(-t/T₂)cos²(ωt/2) + (1 - e^(-t/T₂))/2`
+         - Posterior update: `Pr(x|D;C) ∝ Pr(D|x;C) Pr(x)`
+         - Bayesian Cramer-Rao bound for certified error.
+       - **Relevance to analysis:** Foundational method for fitting parametric models (e.g., decay rate, coupling strength g) to time-resolved photoluminescence data from cavity QED. Adaptive experiment design tells you which detunings to probe next.
+       
+       ---
+       
+       ### Paper 1.2
+       **Wiebe, Granade, Ferrie, Cory — "Hamiltonian Learning and Certification Using Quantum Resources" (2014)**
+       - arXiv: 1309.0876 | *Phys. Rev. Lett.* 112, 190501 (2014)
+       - **Key methods:** Three protocols — CLE (classical likelihood), QLE (quantum simulator), IQLE (interactive). Uses Particle Guess Heuristic (PGH): chooses evolution time t inversely proportional to current parameter uncertainty. Ranks competing Hamiltonians via posterior particle weights.
+       - **Critical equations:**
+         - IQLE likelihood: `Pr(D|x̄ᵢ) = |⟨D|e^(iH₋t) e^(-iH(x̄ᵢ)t)|ψ⟩|²`
+         - Demonstrates exponential error reduction with polynomial sample scaling for Ising models.
+       - **Relevance:** The IQLE approach is applicable to comparing Jaynes-Cummings vs. multi-emitter Tavis-Cummings models given lifetime trajectory data.
+       
+       ---
+       
+       ### Paper 1.3
+       **Wang et al. — "Experimental Quantum Hamiltonian Learning" (2017)**
+       - arXiv: 1703.05402 | *Nat. Phys.* 13, 551 (2017)
+       - **Key methods:** Interfaces silicon-photonics quantum simulator with diamond NV center spin. SMC Bayesian inference learns the NV Hamiltonian parameter to uncertainty ~10⁻⁵. Explicitly uses **Bayes factor K** (ratio of average likelihoods) for model comparison. K = 560 in favor of improved two-parameter model over one-parameter baseline.
+       - **Relevance:** Demonstrates that model saturation in learning curves signals model deficiency — important diagnostic when fitting cavity QED lifetime data with competing physical models.
+       
+       ---
+       
+       ### Paper 1.4
+       **Flynn, Gentile, Wiebe, Santagati, Laing — "Quantum Model Learning Agent (QMLA)" (2021)**
+       - arXiv: 2112.08409 | *npj Quantum Inf.* 8, 43 (2022)
+       - **Key methods:** Forest search over candidate Hamiltonians. Models compared pairwise via **Bayes factors**: `B_ij = Pr(D|Ĥᵢ;E) / Pr(D|Ĥⱼ;E)`. **Elo rating scheme** ranks models from pairwise comparisons. Breeding generates new candidates from top performers. Identifies correct model 72% of instances from <0.2% of model space.
+       - **Relevance:** Directly applicable to automated model selection among: simple exponential decay (emitter only), Purcell-modified decay, Jaynes-Cummings oscillatory decay, biexponential from shelving, Tavis-Cummings superradiance/subradiance.
+       
+       ---
+       
+       ### Paper 1.5
+       **Wallace, Altmann, Gerardot, Gauger, Bonato — "Learning the dynamics of Markovian open quantum systems from experimental data" (2024)**
+       - arXiv: 2410.17942 | *Phys. Rev. Research* (2024)
+       - **Key methods:** Reversible-jump MCMC (rj-MCMC) explores model spaces of varying dimension. Core GKSL Lindblad framework: `ρ̇ = -i[H,ρ] + Σⱼ γⱼ(LⱼρL†ⱼ - {L†ⱼLⱼ,ρ}/2)`. Model ranking by posterior sampling frequency. Applied to single and paired quantum emitters; identified cooperative emission effects.
+       - **Key parameters:** For single emitter (d=2): 10 possible operators. For two emitters (d=4): 105 unique operator combinations.
+       - **Relevance:** Most directly applicable method — takes experimental time-resolved emission data, outputs ranked interpretable Lindblad models. Applied to quantum dot systems analogous to V_Si.
+       
+       ---
+       
+       ### Paper 1.6
+       **Fioroni, Rojkov, Reiter — "A learning agent-based approach to the characterization of open quantum systems (oQMLA)" (2025)**
+       - arXiv: 2501.05350 | *Phys. Rev. Applied* (2025)
+       - **Key methods:** Extends QMLA to open systems via Lindblad master equation: `∂ρ/∂t = Σᵢ αᵢ ℋ[hᵢ](ρ) + Σₖ Γₖ 𝒟[Lₖ](ρ)`. Genetic algorithm for model exploration; Bayesian inference for parameter estimation. Fitness function: `f(m) = 1/RMSE`.
+       - **Relevance:** Framework for automated discovery of which Lindblad jump operators (single emitter decay, collective decay, shelving) best explain experimental lifetime traces.
+       
+       ---
+       
+       ### Paper 1.7
+       **Yano, Yamamoto — "Quantum information criteria for model selection in quantum state estimation" (2023)**
+       - arXiv: 2304.10949 | *Phys. Rev. A* 108, 012401 (2023)
+       - **Key methods:** Quantum AIC/BIC based on quantum relative entropy instead of KL divergence. Two criteria:
+         - `QAIC_LL = -2ℓ_LL(θ̂_C) + p + Tr(Ĵ_Q(θ̂_C) Î_C(θ̂_C)⁻¹)`
+         - Classical shadow variant: `QTIC_shadow = -2ℓ_shadow + 2Tr(Î_Q^emp Ĵ_Q^emp ⁻¹)`
+       - Lower value = better model; automatically penalizes complexity.
+       - **Relevance:** Information-theoretic model selection tool for choosing between candidate decay models (single exponential vs. biexponential vs. JC oscillatory).
+       
+       ---
+       
+       ## TOPIC 2: Cavity QED with Color Centers / Solid State Emitters and Disorder
+       
+       ---
+       
+       ### Paper 2.1
+       **Lukin, Guidry, Yang et al. (Vučković group) — "Optical superradiance of a pair of color centers in an integrated silicon-carbide-on-insulator microresonator" (2022)**
+       - arXiv: 2202.04845 | *Phys. Rev. X* 13, 011005 (2023)
+       - **System:** Near-transform-limited V_Si defects in 4H-SiCOI microdisk resonators.
+       - **Key experimental parameters:**
+         - Single-emitter cooperativity: C = 0.6 (emitter A), C = 0.8 (emitter B)
+         - On-resonance lifetimes: 4.2 ns (A), 3.5 ns (B)
+         - Off-resonance lifetimes: 10.7 ns (A), 11.1 ns (B)  
+         - Bulk lifetime reference: 11.3 ns
+         - Purcell factors: 2.7× (A), 3.2× (B); max theoretical 77
+         - Optical linewidths on resonance: 54.3 MHz (A), 63.4 MHz (B)
+       - **Key physics:** g²(0) bunching observed — signature of superradiance from two coupled emitters sharing cavity mode. Multimode interference affects scattering dynamics.
+       - **Relevance:** Closest experimental analog to the experiment being analyzed; establishes baseline lifetimes, cooperativity ranges, and superradiance signatures for V_Si-SiC systems.
+       
+       ---
+       
+       ### Paper 2.2
+       **Lukin et al. (Vučković group) — "Mesoscopic cavity quantum electrodynamics with phase-disordered emitters in a Kerr nonlinear resonator" (2025)**
+       - arXiv: 2504.09324
+       - **System:** Silicon vacancy color centers in SiC WGM resonator.
+       - **Key experimental parameters:**
+         - Coupling: g/2π = 202 MHz; cavity decay κ/2π = 289 MHz; emitter decay γ/2π = 65 MHz
+         - 4g/κ = 3.2 (largest reported for atomic defect in cavity)
+         - Loaded Q = 1.13 × 10⁶; Purcell-enhanced lifetime = 1.3 ns (Γ = 122 MHz)
+       - **Key physics:** Spatial phase disorder φₙ in emitter coupling around WGM resonator leads to emergent **chirality** rather than superradiance/subradiance. Disorder parameter ξ_φ: 0 = maximum disorder (suppressed cross-correlations), 1 = no disorder. Also demonstrates in-situ Kerr nonlinearity.
+       - **Relevance:** Shows that spatial position disorder of emitters in ring resonator produces qualitatively different physics from inhomogeneous frequency disorder. Critical for interpreting photon correlation data.
+       
+       ---
+       
+       ### Paper 2.3
+       **Crook, Anderson, Miao et al. (Awschalom group) — "Purcell enhancement of a single silicon carbide color center with coherent spin control" (2020)**
+       - arXiv: 2003.00042 | *Nano Lett.* 20, 3427 (2020)
+       - **System:** Single neutral divacancy in 4H-SiC photonic crystal cavity (Q > 5,000).
+       - **Key results:** Purcell factor ≈ 50; increased ZPL photoluminescence and shortened excited-state lifetime; coherent spin control inside nanostructure maintained.
+       - **Relevance:** Establishes Purcell enhancement feasibility in SiC photonic crystals; demonstrates spin-photon interface for divacancy (analogy to V_Si).
+       
+       ---
+       
+       ### Paper 2.4
+       **Authors (arXiv 2501.04583) — "Cavity enhancement of V2 centers in 4H-SiC with a fiber-based Fabry-Pérot microcavity" (2025)**
+       - arXiv: 2501.04583 | *Optica Quantum* (2025)
+       - **Key experimental parameters:**
+         - Cavity finesse ≈ 40,000; membrane surface roughness ~400 pm RMS
+         - Lifetime reduction: 7.3 ns → 5.6 ns (free space to cavity-resonant)
+         - 13.3-fold enhancement of ZPL scattered photons; effective cooperativity = 0.30
+         - g²(0) = 0.024 (single-photon purity confirmed)
+       - **Relevance:** Most recent demonstration of V2 center Purcell enhancement in SiC Fabry-Pérot cavity with direct lifetime measurements before and after cavity coupling.
+       
+       ---
+       
+       ### Paper 2.5
+       **Blaha, Johnson, Rauschenbeutel, Volz — "Beyond the Tavis-Cummings model: revisiting cavity QED with atomic ensembles" (2021)**
+       - arXiv: 2107.04583 | *Phys. Rev. A* 105, 013719 (2022)
+       - **Key physics:** TC model breaks down when single-pass optical depth OD ≈ 1. Correct framework: cascaded atom-light interactions.
+         - TC validity: requires νFSR ≫ gN AND νFSR ≫ gN²/γl (or βN ≪ 1/2)
+         - Spatially extended ensemble: gN = √N · ḡ₁ (collective coupling grows as √N)
+         - Dense ensemble: γN = Nγ (collectively enhanced decay)
+       - **Relevance:** Defines when Tavis-Cummings applies to multi-emitter systems; large inter-emitter separation (as in ring resonator) keeps individual decay rates unchanged while √N collective coupling grows.
+       
+       ---
+       
+       ### Paper 2.6
+       **Patton, Norman, Mann et al. — "Polariton Creation in Coupled Cavity Arrays with Spectrally Disordered Emitters" (2021)**
+       - arXiv: 2112.15469
+       - **System:** Tavis-Cummings-Hubbard model; targeting SiC and diamond color center parameters.
+       - **Key physics:** Disordered TCHM Hamiltonian: `H = Σ{ωc,n a†a + Σm [ωe,n,m σ⁺σ⁻ + gn,m(a†σ⁻ + σ⁺a)] - J(a†an+1 + h.c.)}`; effective Hamiltonian adds loss terms `-i/2 Σ{κa†a + γσ⁺σ⁻}`. Disorder localizes polaritons when frequency difference between neighboring cavities exceeds hopping rate.
+       - **Relevance:** Framework for modeling how spectral disorder in ensemble of V_Si emitters affects collective cavity QED dynamics; defines participation ratios to quantify localization.
+       
+       ---
+       
+       ### Paper 2.7
+       **Wierzchucka, Piazza, Claeys — "Integrability, multifractality, and two-photon dynamics in disordered Tavis-Cummings models" (2023)**
+       - arXiv: 2312.03833 | *Phys. Rev. A* 109, 033716 (2024)
+       - **Key physics:** Disorder in coupling strengths splits degenerate dark/doublet states into bands while preserving triplet states as isolated eigenstates. Three eigenstate classes: dark states (localized, minimal light-matter interaction), doublet polaritons (multifractal), triplet polaritons (isolated). Permutation symmetry breakdown timescale: ∝ √N.
+       - **Relevance:** Explains how disorder-induced dark states in multi-emitter cavity systems create long-lived components in decay traces — possible source of biexponential behavior.
+       
+       ---
+       
+       ### Paper 2.8
+       **Solomon, Koppenhöfer, Mamaev et al. (Awschalom/Clerk/Dibos groups) — "Anomalous Purcell decay of strongly driven inhomogeneous emitters coupled to a cavity" (2024)**
+       - arXiv: 2309.16641
+       - **Key physics:** In the strong drive limit, inhomogeneously broadened emitters show counterintuitive *suppression* of Purcell enhancement at zero detuning. Off-resonant emitters create long-lived excitations that decay via: `A exp[-(t/τ₁)^d] + B exp(-t/τ₂) + C` (stretched exponential + exponential). Tavis-Cummings Hamiltonian governs: `H = Δc a†a + Σ δⱼ σ̂z/2 + Σ gⱼ(a†σ⁻ + aσ⁺) - i√κc βin(a† - a)`.
+       - **Relevance:** Directly identifies stretched/biexponential decay from inhomogeneous broadening in cavity QED — provides functional form and physical mechanism for fitting anomalous lifetime data.
+       
+       ---
+       
+       ## TOPIC 3: Bi-exponential / Non-exponential Decay in Cavity QED
+       
+       ---
+       
+       ### Paper 3.1
+       **Krimer, Liertzer, Rotter, Türeci — "Route from spontaneous decay to complex multimode dynamics in cavity QED" (2014)**
+       - arXiv: 1306.4787 | *Phys. Rev. A* 89, 033820 (2014)
+       - **Key physics:** Three dynamical regimes as coupling increases:
+         1. **Weak coupling (overdamped):** Single-exponential decay at Purcell-modified rate
+         2. **Moderate coupling (underdamped):** Oscillatory decay at vacuum Rabi frequency — produces *apparent biexponential* from beating
+         3. **Strong multimode coupling:** Revivals at cavity round-trip timescale
+       - **Central equation (Volterra integro-differential):** `ċ(t) = -(γ/π)∫₀ᵗ dt' ∫₀^∞ dω F(ω) e^(-i(ω-ωₐ)(t-t')) c(t')`
+       - **Critical parameter:** Nonlinear Lamb shift governs crossover between regimes.
+       - **Relevance:** Definitive theoretical framework explaining why cavity QED lifetime traces can show oscillations, biexponential behavior, or revivals depending on g, κ, γ ratios.
+       
+       ---
+       
+       ### Paper 3.2
+       **Cleveland, Welsch, Chen et al. — "A framework for extracting the rates of photophysical processes from biexponentially decaying photon emission data" (2024)**
+       - arXiv: 2408.12192
+       - **Key physics:** Biexponential decay from carrier trapping: `NX(t) = AX⁻ e^(-Γ₋t) + AX⁺ e^(-Γ₊t)`. Five-state model: |G⟩, |E⟩, |X⟩, |T⟩, |D⟩. Six transition rates: ΓXG, ΓXD, ΓXT, ΓTX, ΓTD, ΓDG.
+       - **Critical formula:** `ΓXG = Φ Γ₊Γ₋ / (Γ₋AX⁺ + Γ₊AX⁻)` extracts radiative rate from biexponential fit + quantum yield Φ.
+       - **Relevance:** Provides quantitative method to disentangle cavity-modified radiative decay from shelving/trapping-induced biexponential components.
+       
+       ---
+       
+       ### Paper 3.3
+       **Younesi, Luu, Linderälv et al. — "Unraveling the electronic structure of silicon vacancy centers in 4H-SiC" (2026)**
+       - arXiv: 2602.14818
+       - **Key physics for V_Si biexponential decay:** Optical decay is intrinsically biexponential due to ISC:
+         - **Fast component:** governed by upper ISC rate (7 ns for V_h, 8 ns for V_k)
+         - **Slow component:** governed by lower ISC rate (220 ns for V_h, 160 ns for V_k)
+       - **Transition energies:** V1 = 1.439 eV, V2 = 1.353 eV, V2' = 1.378 eV
+       - **Crystal-field splittings:** V_k quartet = 25 meV (T1↔E), V_h quartet = 5 meV
+       - **Relevance:** **Critical finding** — intrinsic V_Si optical lifetime data is biexponential due to shelving into metastable spin-doublet states. Any cavity QED experiment measuring V_Si lifetimes will observe this feature independent of cavity coupling.
+       
+       ---
+       
+       ### Paper 3.4
+       **Nation, Notararigo, Olaya-Castro — "Multi-level Purcell effect and the impact of vibrational modes in molecular quantum optics" (2023)**
+       - arXiv: 2306.09435 | *Phys. Rev. A* 108, 063712 (2023)
+       - **Key physics:** Different energy levels experience different Purcell factors: `Cᵢ = g²_{c,i}(θ,φ) / (γ'ᵢ · Γ'_c)`. Effective non-Hermitian Hamiltonian: `H_eff = H - i Σⱼ (γⱼ/2) L†ⱼLⱼ`. Each level decays as single exponential but with distinct rate → overall signal is multi-exponential.
+       - **Relevance:** Multilevel emitters (like V_Si with its quartet+doublet manifold) will show multi-exponential lifetime traces in cavity QED even in the Purcell regime.
+       
+       ---
+       
+       ### Paper 3.5
+       **Mlynek, Abdumalikov, Eichler, Wallraff (ETH) — "Observation of Dicke Superradiance for Two Artificial Atoms in a Cavity with High Decay Rate" (2014)**
+       - arXiv: 1412.2392 | *Nat. Commun.* 5, 5186 (2014)
+       - **Key physics:** Two-qubit superradiant state shows enhanced initial decay in time-resolved emission. Single qubit decay rate: `Γκ = κg²/|κ/2 + iΔr|²`. Two-qubit superradiant state: `ΔP(t) = 2P₀e^(-2Γ̄κt)(1 + 2Γ̄κt) - 2P̄(t)`.
+       - **Experimental parameters:** g/2π ≈ 3.5–3.7 MHz, κ/2π ≈ 43 MHz, Γnr/2π ≈ 0.04 MHz.
+       - **Relevance:** Superradiant two-emitter system produces qualitatively different (faster, non-exponential) decay vs. single emitter — a diagnostic signature in time-resolved PL.
+       
+       ---
+       
+       ### Paper 3.6
+       **Kuruma, Ota, Kakuda, Iwamoto, Arakawa — "Time-resolved vacuum Rabi oscillations in a quantum dot-nanocavity system" (2018)**
+       - arXiv: 1803.05618 | *Phys. Rev. B* 97, 235448 (2018)
+       - **Key physics:** Time-domain oscillations at vacuum Rabi frequency observed in PL from single QD in photonic crystal nanocavity (Q > 80,000). Oscillation modifications probe carrier capture and dephasing dynamics. Fitted using cavity QED master equation simulations.
+       - **Relevance:** Direct experimental demonstration that cavity QED oscillatory decay is measurable in time-resolved PL — validates using lifetime data to infer coupling parameters.
+       
+       ---
+       
+       ## TOPIC 4: Exotic Effects in Cavity QED (Superradiance, Subradiance, Dark States, Spin Dynamics)
+       
+       ---
+       
+       ### Paper 4.1
+       **Dong, Doherty, Economou — "Spin polarization through Intersystem Crossing in the silicon vacancy of silicon carbide" (2019)**
+       - arXiv: 1811.01398 | *Phys. Rev. B* 99, 184102 (2019)
+       - **Key physics:** ISC in V_Si driven by optical excitation + spin-orbit coupling + electron-phonon interaction. Different spin projections (ms = ±1/2, ±3/2 for spin-3/2 V_Si) of ground state manifold are polarized through distinct optical drives. Transition rates from excited 4A2 quartet to 2E and 2A1 spin-doublets determined by spin-orbit and vibronic matrix elements.
+       - **Relevance:** Provides the mechanism behind V_Si biexponential decay — ISC routes population to metastable spin-doublet states with ~160-220 ns lifetime, creating slow component in lifetime trace alongside ~7 ns fast component.
+       
+       ---
+       
+       ### Paper 4.2
+       **Liu, Kaiser, Bushmakin et al. — "The silicon vacancy centers in SiC: determination of intrinsic spin dynamics for integrated quantum photonics" (2023)**
+       - arXiv: 2307.13648 | *npj Quantum Inf.* 10, 60 (2024)
+       - **Key physics:** Complete spin-selective characterization of V_Si⁻ at cubic site (V2) in 4H-SiC including ISC and deshelving. All previously unknown spin-selective radiative and non-radiative decay rates determined. Results demonstrate feasibility of generating 3-photon GHZ/cluster states with existing cavity technology.
+       - **Relevance:** Comprehensive rate-constant characterization of the V_Si system — foundational reference for building accurate multi-level decay models.
+       
+       ---
+       
+       ### Paper 4.3
+       **Plankensteiner, Sommer, Reitz, Ritsch, Genes — "Enhanced collective Purcell effect of coupled quantum emitter systems" (2017)**
+       - arXiv: 1811.03442
+       - **Key physics:** Subradiant collective states of dipole-coupled emitters achieve dramatically enhanced cooperativity. Effective cooperativity: `C_eff(Δe) = G^T G / (κ γ_eff(Δe))`. For N equidistant emitters at d = 0.1λ: subradiant cooperativity scales as **N⁴**. Purcell factor: `F_p = 4C`.
+       - **Relevance:** Explains why two or more V_Si emitters in cavity can show qualitatively different (dramatically enhanced) decay rates compared to single emitter — subradiantly enhanced cooperativity creates long-lived but strongly cavity-coupled states.
+       
+       ---
+       
+       ### Paper 4.4
+       **Diniz, Portolan, Ferreira, Gérard, Bertet, Auffèves — "Strongly coupling a cavity to inhomogeneous ensembles of emitters" (2011)**
+       - arXiv: 1101.1842 | *Phys. Rev. A* 84, 063810 (2011)
+       - **Key physics:** Cavity coupling can protect polaritonic state from inhomogeneous broadening, yielding longer coherence times. Dark states emerge when two distinct emitter ensembles couple to the resonator — highly attractive for quantum memory. Coherence depends on spectral distribution *shape*, not just width.
+       - **Relevance:** Predicts dark states from two-ensemble coupling that could appear as additional slow decay components — relevant when V_Si emitters have two distinct spectral populations (V1/V2 or on/off resonant).
+       
+       ---
+       
+       ### Paper 4.5
+       **De Bernardis, Mercurio, De Liberato — "Nonperturbative cavity QED: is the Jaynes-Cummings model still relevant?" (2024)**
+       - arXiv: 2403.02402 | *PRX Quantum* (2024)
+       - **Key physics:** JCM fails when ζ = 4Ω²R/(ωcωeg) ~ O(1) (ultrastrong coupling). Standard Lindblad equations give unphysical ground state decay in USC regime. Solution: use "dressed" master equations in energy eigenbasis. Virtual photon population: `⟨GR|a†a|GR⟩ ∝ (ΩR/ωc)²`.
+       - **Relevance:** Provides bounds on when the standard JC model applies to V_Si cavity QED — confirms that for typical SiC parameters (g/2π ~ 200 MHz, ωc ~ 300 THz), USC corrections are negligible and standard JC/TC models are valid.
+       
+       ---
+       
+       ### Paper 4.6
+       **Wallace, Altmann, Gerardot, Gauger, Bonato — "Learning the dynamics of Markovian open quantum systems from experimental data" (2024)**
+       *(Also listed under Topic 1 — especially relevant here for identifying cooperative emission physics)*
+       - arXiv: 2410.17942
+       - **Additional relevance for Topic 4:** Applied directly to two coupled quantum emitters; algorithm identified two principal model classes with asymmetric excitation/emission pathways corresponding to superradiant/subradiant modes, without requiring *a priori* assumption of cooperative emission.
+       
+       ---
+       
+       ### Paper 4.7
+       **Solomon et al. (Awschalom/Clerk/Dibos groups) — "Anomalous Purcell decay of strongly driven inhomogeneous emitters" (2024)**
+       *(Also listed under Topic 2 — primary topic is exotic decay behavior)*
+       - arXiv: 2309.16641
+       - **Additional relevance for Topic 4:** Strong driving activates cavity-mediated spin-spin interactions between off-resonant and resonant emitters. This acts as a spin dynamics channel not present in standard single-emitter Purcell theory. Decay function: `A exp[-(t/τ₁)^d] + B exp(-t/τ₂) + C`.
+       
+       ---
+       
+       ## Summary of How These Papers Inform the Analysis Method
+       
+       | Physics Question | Key Papers |
+       |---|---|
+       | How to select between decay models (1-exp, 2-exp, JC oscillatory, TC collective) | 1.1, 1.4, 1.5, 1.7 (Bayes factors, rj-MCMC, QAIC) |
+       | Fitting Lindblad parameters to time-resolved PL data | 1.5, 1.6, 3.6 (rj-MCMC, RMSE fitness, JC simulation fitting) |
+       | Baseline V_Si lifetime parameters (free space, Purcell-enhanced) | 2.1, 2.4, 3.3 (7.3–11.3 ns free space; 1.3–5.6 ns Purcell-enhanced) |
+       | Why V_Si lifetime traces show biexponential decay intrinsically | 3.3, 4.1, 4.2 (ISC to metastable doublet: fast ~7-8 ns, slow ~160-220 ns) |
+       | When to use Tavis-Cummings vs. single-emitter Jaynes-Cummings | 2.5, 2.6, 2.7 (TC validity conditions; disorder effects) |
+       | Superradiance/subradiance signatures in lifetime data | 2.1, 3.5, 4.3 (bunching, enhanced/suppressed decay rates) |
+       | How cavity resonance tuning (e.g. gas tuning) maps to lifetime change | 2.1, 2.4 (detuning-dependent lifetime curves, Lorentzian Purcell enhancement) |
+       | Anomalous decay from inhomogeneous broadening or strong driving | 2.8, 3.1 (stretched exponential, double-peaked Purcell) |
+       | Multilevel emitter effects on Purcell modification | 3.4 (state-dependent Purcell factors from multilevel structure) |
+       agentId: ab82e9a020c0a6ed6 (use SendMessage with to: 'ab82e9a020c0a6ed6' to continue this agent)
+       <usage>total_tokens: 80139
+       tool_uses: 88
+       duration_ms: 554745</usage>>> Excellent — I now have everything I need: the experimental background, data structure, and a rich bibliography. Let me now write the complete plan.  [Write] /Users/oatpix/Desktop/LabAssistant/PLAN.md  -> [Write]:
+       File created successfully at: /Users/oatpix/Desktop/LabAssistant/PLAN.md>> `PLAN.md` is written. Here is the full reasoning and summary of what I produced:
+   
+   ---
+   
+   ## What I Did and Why
+   
+   ### Inputs gathered
+   - **Experiment background** (skill): single V_Si in a ring resonator (Q = 7.21×10⁵, λ ≈ 916 nm), two optical spin transitions separated by 1.075 GHz, TCSPC lifetime trace showing a "kink."
+   - **Data exploration** (subagent): 901 time bins at 10 ps/bin over a 9 ns window; Poissonian counting statistics; peak ~108 ungated counts; background ~1.6 counts.
+   - **Literature search** (subagent): 20+ papers across Hamiltonian learning, V_Si cavity QED, biexponential decay theory, and exotic cavity QED effects.
+   
+   ---
+   
+   ## Step 1 — Candidate Models (8 total, ordered by complexity)
+   
+   | Model | Physical Scenario |
+   |---|---|
+   | **M0** — Single exponential | Null hypothesis; emitter off-resonance |
+   | **M1** — Purcell-enhanced single decay | One spin transition resonant; weak-coupling JC |
+   | **M2** — Two transitions at different Purcell rates | **Primary kink hypothesis**: cavity resonant with one spin state, off-resonant with the other (Δ = 1.075 GHz >> κ/2π ≈ 454 MHz); produces biexponential |
+   | **M3** — Strong-coupling JC oscillations | 4g > κ + γ; vacuum Rabi oscillations in the lifetime trace |
+   | **M4** — Strong coupling + second spin transition | Oscillatory fast component + slow free-space exponential |
+   | **M5** — ISC shelving (intrinsic V_Si) | Metastable doublet (τ_slow ~160–220 ns) appears as near-flat offset in 9 ns window |
+   | **M6** — Spectral diffusion | Emitter hops between resonant/off-resonant states; kink timescale ~ 1/γ_SD |
+   | **M7** — Counter-propagating ring mode coupling | Backscattering creates two effective decay rates in the single-mode measurement |
+   
+   The **key physics insight** driving Model 2 as the primary hypothesis: with κ/2π ≈ 454 MHz and the spin splitting at 1.075 GHz ≈ 2.4κ, the off-resonant spin transition receives only ~1% of the Purcell enhancement of the resonant one — naturally producing two very different decay timescales.
+   
+   ---
+   
+   ## Step 2 — Fitting Method
+   
+   - **Correct likelihood**: Poissonian log-likelihood (not chi-squared), appropriate for photon-counting TCSPC data in the low-count regime.
+   - **IRF**: Extracted empirically from the rising edge of the excitation peak; treated as a fixed convolution kernel.
+   - **MCMC with physical priors**: κ is *fixed* from the measured Q; Δ_spin is *fixed* from spectroscopy; all other parameters have literature-informed log-uniform priors with hard physical bounds.
+   - **Numerical forward model**: QuTiP master equation for JC/strong-coupling models; analytical rate equations for biexponential/ISC/spectral-diffusion models.
+   - **Physical validity score** S_phys: the fraction of each parameter's posterior that lands within literature-established ranges for V_Si in SiC — a continuous soft penalty for physically unreasonable fits.
+   
+   ---
+   
+   ## Step 3 — Ranking
+   
+   A **composite score** = log Bayesian evidence (ln Z, from nested sampling) + log(S_phys) ranks all models. This:
+   1. Penalizes model complexity via Bayesian Occam's razor (embedded in ln Z)
+   2. Penalizes physically unreasonable parameters via S_phys
+   3. Is cross-checked with ΔBIC and structured-residuals tests (runs test, χ² test)
+   
+   Models within Bayes factor K < 3 of the leader are flagged as statistically indistinguishable — a crucial caveat given we have only one measurement.
+Done (success)  $3.7886  [842.4s]

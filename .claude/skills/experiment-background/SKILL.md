@@ -1,70 +1,32 @@
 ---
 name: experiment-background
-description: "Reference knowledge about the SnV- cavity QED experiment: system, data files, C/D transitions, angular coupling"
+description: "Reference knowledge about the V_Si cavity QED experiment: system, data file, optical transitions, possible physics."
 ---
 **Analysis goals**
-- How many emitters are present in the experimental data?
-- What is the nature of the coupling between such emitters and the cavity?
+- Which physical models best describe the data?
+- Is strong coupling present?
+- What is coupling "g" for this emitter-cavity system?
 
 **What is known about the experimental system:**
-- SnV- color centers in diamond, inside a cryostat at 4 Kelvin.
-- We are measuring a 1d photonic crystal cavity which is etched into the diamond.
-- Inside the cavity mode there may be multiple emitters.
-- The emitters may be at different spatial positions, at different frequencies, and at different linewidths.
-- At 4K, SnV- color centers feature two ZPL lines: the "C" and the "D" transition. Please read **Information about C/D** thoroughly.
+- We are measuring a SINGLE SiC color center (independently verified with a g(2) measurement.)
+- The color center is the V_Si defect (consider only cubic k-V_Si), emission at ~916 nm.
+- The V_Si has two optical transitions, one for the spin-1/2 state and one for the spin-3/2 state, separated by 1.075 GHz.
+- The color center is embedded in a ring resonator with two counter propagating modes. But the lifetime measurement is measured through one mode.
+- The cavity has quality factor Q = 7.21e5 (721,000).
 
 **Information about the experiment:**
-- Gas tuning is used to tune the cavity resonance.
-- At every interval, we take a time resolved emission decay measurement by applying an off-resonant green pulse. The green excitement is delivered to the emitters confocally, and the PL signal is collected confocally from the same spot. The measurement is reported to you where i=0 is where the laser is gated off.
-- At every interval, we record the cavity resonance. The cavity resonance is measured in cross-polarized reflectivity with a broadband (resonant) source. The source is delivered to the cavity confocally, and the cross-polarized signal is collected confocally from the same spot (from out-of-plane scattering). It's a Fano lineshape solely because of the incomplete polarization suppresion in the readout; it's not related to the color centers.
+- This measurement is a time-resolved lifetime measurement. X-axis is time bin and Y-axis is counts.
+- The excitation peak is present in the data, followed by the decay.
+- The measurement was integrated over X seconds.
 
-The instrument response has a finite decay timescale of order ~370 picoseconds past i=0 for the lifetime data. You do not need to convolve the IRF rigorously since most of the effects you'll see are after 370ps. Therefore truncating the data ~0.5 nanoseconds after i=0 is sufficient for handling the IRF.
 
-The resulting lifetime measurements are in `gas_tuning_lifetime_data.json`. We preprocessed the data for you in `load_lifetime_data` where the background is subtracted.
+**Problem statement**
+Although we are certain to be measuring only one emitter, the lifetime data is not represented by a single exponential decay. Rather, there exists a kink, or bend, in the lifetime decay which indicates interesting physics may be present.
 
-Also provided is the spatial off-resonant PL map (`spatial_PL_counts.json`, `off_resonant_PL_spetrum.json`), and the Fano resonance fits for the cavity at every gas tuning step (`gas_tuning_cavity_resonance_fits.json`).
+The resulting lifetime measurement is in `experimental_data/lifetime_data.dat`. We preprocessed the data for you in `load_timeresolved_data`, so the onset of the excitation (start of the rise) is at t=0.
 
-**Information about C/D:**
-In the off-resonant PL spectrum, you will be unable to discern which peaks correspond to C and which correspond to D transitions. That's why we have the lifetime data. The off-resonant PL spectrum rather tells us some rough upper bound on the number of transitions we might be able to couple, based on how many peaks there are in that PL spectrum (~N=4 maximum). Of course it's not guranteed that every peak couples to the cavity.
+**Additional considerations**
+- Spectral diffusion may be present in this system, but the rate of spectral diffusion is unknown.
+- If a stable emitter is strongly coupled to a cavity, we would expect to see Rabi oscillations in the lifetime trace.
 
-This 1D photonic crystal cavity happens to be rotated 55 degrees from the <100> crystallographic axis, and we need to consider differences in g_C and g_D of the same emitter due to angular alignment. Such angular component of g^2 is precisely (g_ang)^2 = | \mu \cdot E | ^ 2, which is:
-    exactly [1/2 * sin(55)^2 * (1 + sin(2*\theta))] for g_C_ang (the 55 here comes from the C out of plane angle), and
-    exactly [1/2 * (1 - sin(2*\theta))] for g_D_ang. See code below.
-Here, \theta = 55 degrees (absolute angle from <100>). Of course for one emitter with C and D transitions, the positional coupling component g_C_pos^2 and g_D_pos^2 are equal. You must use this information if you differentiate between C and D transitions in your models. (hint: g^2 = g_0 * g_pos^2 * g_ang^2) where g_0 contains Q, mode volume, etc - constant for all emitters in the same device.
-
-```
-def angular_coupling_ratio(theta_deg=0.0):
-    """Return (g_C_ang^2, g_D_ang^2) prefactors (unnormalised) for a cavity
-    at angle *theta_deg* from the <100> axis."""
-    theta = np.radians(theta_deg)
-    g2_C = 0.5 * np.sin(np.radians(55)) ** 2 * (1 + np.sin(2 * theta))
-    g2_D = 0.5 * (1 - np.sin(2 * theta))
-    return g2_D/g2_C
-```
-
-Also, the C and D peaks of one emitter should be between 800-1000 GHz apart (D is red relative to than C); variation of this number is often present due to natural strain from the photonic interfaces. This you must also take into account if you differentiate between C and D transitions in your models.
-
-**FIT NOTES: How to fit per-trace amplitude variation**
-Each lifetime trace may have a different overall photon count due to unrelated experimental factors. Treat per-trace amplitude as a nuisance parameter and eliminate it — analytically if your noise model permits, otherwise by normalisation. The C/D physics of interest (Purcell-enhanced decay rates and their cavity-wavelength dependence) is encoded entirely in the time-profile shape of each trace, not its absolute amplitude. For example:
-
-```
-def profile_amplitude(h_s, n_s):
-    """
-    Analytically profile out per-step Poisson amplitude: A_s* = sum(n_s) / sum(h_s).
-    """
-    denom = h_s.sum()
-    if denom <= 0:
-        return 0.0
-    return n_s.sum() / denom
-```
-
-**FIT NOTES: off-resonance lifetime**
-You should fix γ₀ = 1/τ_free as a hard constraint, rather than a free parameter for each emitter. Use the lifetime data which corresponds to the red-most cavity resonant wavelengths to extract γ₀. While fitting, the γ₀ for each emitter SHOULD NOT VARY more than 10% from this value.
-
-**FIT NOTES: avoid fitting emitters to degenerate wavelengths**
-For a multi emitter model, the wavelength of the different emitters should be distinguishable, not closely overlapping. The off-resonant PL spectrum provided to you in experimental_data/ should give you an idea where at least some of emitters are located in wavelength.
-
-**IMPORTANT: Known Physical Restrictions**
-- Use this as a FITTING CONSTRAINT on the relevant parameters: The lifetime measurement collects only photons within 619.5 ± 0.25 nm. Thus, any distinct lifetime features observed when the cavity is outside this window does not indicate an additional emitter; it must instead reflect another transition of the same emitter that shares the same excited state as a transition within the detection band. In other words, any emission enhancement peaks detected red of this range cannot be a C transition.
-- In fact, if you see an emission peak in the 619.5 ± 0.25 nm region, there MUST be a corresponding D transition. ONLY consider models which have BOTH C and D transitions, i.e. each emitter must have a C transition AND a D transition.
-- Since the instrument response is roughly lifetime 370 picoseconds, emitter lifetimes fitted to be below that number are not trustworthy.
+There are many possible explanations for the interesting lifetime decay shape, especially because you only have one measurement to base your analysis on. This requires you to not only generate an exploratory list of possible Hamiltonian/Lindbladian systems to describe the system, but also creative ways of testing your hypothesis for each model.
