@@ -1,0 +1,23 @@
+You have just executed your research plan (`PLAN.md`), and each phase of your research (described by `execution_checkpoints.json`) can be found under `analysis/`. The PLAN and subsequent analysis are based on information from the `experiment-background` skill. Invoke the `experiment-background` skill and review the PLAN and analysis.
+
+Your task is to design a follow-up study. Use the following 5 step process:
+
+1. Review the PLAN and your completed analysis. In a file `PLAN_Followup.md` write a summary of the PLAN, a phase-by-phase summary of what was accomplished and how, and the final findings of the analysis.
+
+2. Note any limitations, suspicious points, or nonidealities about any part of the analysis performed. Answer the following:
+- (IMPORTANT) Did you find any issues with the parameter bounds when fitting?
+- Is there a specific section of the data that your models failed to fit well?
+- (IMPORTANT) Did the analysis fail to address any aspect of the `experiment-background`?
+- (IMPORTANT) Did the analysis fail to address any aspect of the original PLAN?
+
+3. Note any additional physics which might help explain the data and include them in the follow-up.
+
+4. Design a follow-up analysis which addresses all these issues. You should dispatch a subagent with the `literature-search` SKILL to find helpful references from the literature. Write your final complete follow-up strategy in `PLAN_Followup.md`.
+- NOTE: If you change any aspect of the modelling (e.g. bounds) that would affect already-fitted models, you MUST fit them all again. If you have a specific reason for not re-running all models, you must state so. Ultimately we are comparing models to each other, so it is vital to maintain comparison metrics in a fair way. 
+
+5. Edit or add any Python tools (`tools/`) you need to achieve the follow-up analysis. Keep in mind the guidelines in `generate_tools_prompt`.
+
+6. Translate the `PLAN_Followup.md` analysis into up to additional 5 actionable checkpoints and ADD them to `execution_checkpoints.json`.
+
+When you are finished with above 6 steps, stop and don't do any further analysis yet.
+

@@ -12,6 +12,7 @@ gen_tools_prompt = open(f'{prompts_dir}/generate_tools_prompt.txt', 'r').read()
 revise_tools_prompt = open(f'{prompts_dir}/revise_tools_prompt.txt', 'r').read()
 gen_exec_checkpoints_prompt = open(f'{prompts_dir}/generate_execution_checkpoints_prompt.txt', 'r').read()
 execute_phase_prompt = open(f'{prompts_dir}/execute_plan_prompt.txt').read()
+post_analysis_prompt = open(f'{prompts_dir}/post_analysis_prompt.txt').read()
 interpret_results_prompt = open(f'{prompts_dir}/interpret_results_prompt.txt').read()
 
 full_planning_prompt = f"You are measuring unknown physics in a known experimental system.\n\n{make_plan_prompt}"
@@ -215,11 +216,12 @@ async def start_agent(user_prompt):
 
 
 print("starting...")
-asyncio.run(start_agent(full_planning_prompt))
+# asyncio.run(start_agent(full_planning_prompt))
 # asyncio.run(start_agent(full_revise_plan_prompt))
 # asyncio.run(start_agent(full_gen_tools_prompt))
 # asyncio.run(start_agent(revise_tools_prompt))
 # asyncio.run(start_agent(gen_exec_checkpoints_prompt))
-# asyncio.run(start_agent(execute_phase_prompt))
+asyncio.run(start_agent(execute_phase_prompt))
+# asyncio.run(start_agent(post_analysis_prompt))
 # asyncio.run(start_agent(interpret_results_prompt))
 

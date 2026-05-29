@@ -9,7 +9,7 @@ Run a comprehensive exploration of the experimental data files available in this
 
 ## Step 1 — Discover data files
 
-Use Glob to find all data files (`.json`, `.csv`, `.npy`, `.hdf5`, `.mat`, `.txt`, etc.) and any existing loader scripts (e.g. `tools/data_io.py`, `tools/load_*.py`). List what you find.
+Use Glob to find all data files (`.json`, `.csv`, `.npy`, `.hdf5`, `.mat`, `.txt`, `.dat`, etc.) and any existing loader scripts (e.g. `tools/data_io.py`, `tools/load_*.py`). List what you find.
 
 ## Step 2 — Run existing loaders (if present)
 

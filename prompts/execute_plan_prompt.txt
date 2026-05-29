@@ -1,6 +1,6 @@
 Objective: Identify the current progress of the discovery defined by your PLAN.md, implement the immediate next phase as a standalone Python script, and present all results of this phase.
 
-You must follow the workflow presented in `execution_checkpoints.json`. Always reference PLAN.md. Experimental details and helpful information can be found by invoking the `experiment-background` skill.
+You must follow the workflow presented in `execution_checkpoints.json`. Always reference PLAN.md (and PLAN_Followup.md if it exists). Experimental details and helpful information can be found by invoking the `experiment-background` skill. Run ONE PHASE ONLY.
 
 All your work will be under the analysis/ folder.
 
@@ -16,6 +16,8 @@ Step 2: Script Implementation (phase_N.py)
 - To maintain scientific consistency, you must use the tools outlined in your toolbox, located in the `tools/` folder.
 - Invoke the `experiment-background` skill to get hints on fitting data.
 - When fitting experimental data, make a few attempts to make sure you have the most faithful fit.
+- All code must use parallelization / multithreading wherever possible instead of loops.
+- Use `if __name__ == "__main__":` whenever appropriate.
 
 Step 3: Performance Audit - IMPORTANT
 - The code must be EFFICIENT in time, and results MUST CONVERGE in a reasonable time (<2 hours maximum).

@@ -28,3 +28,5 @@ IMPORTANT: Check if there are any FIT NOTES in the experiment-background skill a
 After writing all files, run each one and confirm it exits without errors. Report the output of each run in your final message.
 
 ## Note: You may edit functions in data_io.py to fit your needs but DO NOT edit `load_lifetime_data`.
+
+IMPORTANT: Make sure all parameter bounds are 1) consistent with the PLAN, and 2) consistent with real physics. Invoke the `literature-search` skill if you want to find information to check the bounds.
