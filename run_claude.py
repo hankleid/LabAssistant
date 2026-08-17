@@ -1,7 +1,14 @@
 import asyncio
 import json
+import os
 import re
 import time
+
+# Sonnet 4.6 supports up to 64k output tokens per turn; the SDK defaults to 32k,
+# which large generated phase scripts (e.g. the QuTiP fitting code) blow past in a
+# single Write. Raise the ceiling before the SDK spawns the underlying CLI.
+# os.environ["CLAUDE_CODE_MAX_OUTPUT_TOKENS"] = "64000"
+
 from claude_agent_sdk import query, ClaudeAgentOptions, AssistantMessage, ResultMessage, UserMessage, ToolResultBlock
 
 prompts_dir, tools_dir = "prompts", "tools"
@@ -17,7 +24,8 @@ interpret_results_prompt = open(f'{prompts_dir}/interpret_results_prompt.txt').r
 
 full_planning_prompt = f"You are measuring unknown physics in a known experimental system.\n\n{make_plan_prompt}"
 full_revise_plan_prompt = f"Read PLAN.md carefully in its entirety. Your task is to critically audit it on three axes and then revise it in-place. Do not summarize — edit PLAN.md directly to fix every problem you identify.\n\n---\n\n{revise_plan_prompt}"
-full_gen_tools_prompt = f"{gen_tools_prompt}\n\nSuggested Python modules: numpy, qutip, scipy.\n\nUse `conda activate 3p12` to use the right environment.\n\nAll your tools should go in LabAssistant/tools/."
+full_gen_tools_prompt = f"{gen_tools_prompt}\n\nSuggested Python modules: numpy, qutip, scipy.\n\nUse `/Users/oatpix/opt/anaconda3/envs/3p12/bin/python` to run Python (this env has qutip 5.2.3 installed).\n\nAll your new files should go in the `tools/` folder."
+full_execute_phase_prompt = f"{execute_phase_prompt}\n\nUse `/Users/oatpix/opt/anaconda3/envs/3p12/bin/python` to run Python (this env has qutip 5.2.3 installed)."
 
 def log(txt, path='log.txt'):
     with open(path, "a+") as f:
@@ -218,10 +226,10 @@ async def start_agent(user_prompt):
 print("starting...")
 # asyncio.run(start_agent(full_planning_prompt))
 # asyncio.run(start_agent(full_revise_plan_prompt))
-# asyncio.run(start_agent(full_gen_tools_prompt))
+asyncio.run(start_agent(full_gen_tools_prompt))
 # asyncio.run(start_agent(revise_tools_prompt))
-# asyncio.run(start_agent(gen_exec_checkpoints_prompt))
-asyncio.run(start_agent(execute_phase_prompt))
+asyncio.run(start_agent(gen_exec_checkpoints_prompt))
+# asyncio.run(start_agent(full_execute_phase_prompt))
 # asyncio.run(start_agent(post_analysis_prompt))
 # asyncio.run(start_agent(interpret_results_prompt))
 

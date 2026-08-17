@@ -1,4 +1,4 @@
-Invoke the `experiment-background` skill before proceeding. Then read PLAN.md in full. Then read the experimental data files to understand their structure. Your goal is to build the Python tools that a scientist would need to carry out every step of the plan.
+Invoke the `experiment-background` skill before proceeding. Then read PLAN.md in full. Then read the experimental data files to understand their structure. Then view any already existing tools in the `tools/` folder. Your goal is to build the additional Python tools that a scientist would need to carry out every step of the plan.
 
 ---
 
@@ -25,8 +25,13 @@ IMPORTANT: Check if there are any FIT NOTES in the experiment-background skill a
 
 ## Verification
 
-After writing all files, run each one and confirm it exits without errors. Report the output of each run in your final message.
+After writing all files, run each one and confirm it exits without errors. Report the output of each run in your final message. When checking the code, note the runtime and storage. Nothing should run at more than 3GB of RAM.
 
 ## Note: You may edit functions in data_io.py to fit your needs but DO NOT edit `load_lifetime_data`.
 
 IMPORTANT: Make sure all parameter bounds are 1) consistent with the PLAN, and 2) consistent with real physics. Invoke the `literature-search` skill if you want to find information to check the bounds.
+
+## TIPS FOR SUCCESS (to avoid hitting the 32,000 output token limit.)
+- Emit exactly one file-editing tool call (Write or Edit) per response. After it, STOP and wait for the tool result before writing anything else. NEVER emit two file edits in the same response.
+- Never add more than ~120 lines in a single tool call. If a function is longer, split it into sub-functions, write the signatures in the first response, then implement each function one-by-one in follow-up edits.
+- Keep comments very concise and economize your coding.

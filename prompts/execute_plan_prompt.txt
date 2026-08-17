@@ -10,10 +10,10 @@ Step 1: State Audit
 - IMPORTANT: Check the summary.md and determine if any more tests need to be run before starting the next phase. For example, did all results converge? Is all information present for the next phase? If not, you MUST complete the current phase.
 - When the phase is complete, explicitly state: "Current progress: Phase [N-1] complete. Now generating phase_[N]." And create the phase_[N]/ folder.
 
-Step 2: Script Implementation (phase_N.py)
+Step 2: Script(s) Implementation (phase_N.py)
 - All code should be compatible with the `3p12` conda environment.
-- In phase_[N]/ write a standalone Python script named phase_[N].py based on the task_description for that phase.
-- To maintain scientific consistency, you must use the tools outlined in your toolbox, located in the `tools/` folder.
+- In phase_[N]/ write at least one Python script named phase_[N]_[i].py based on the task_description for that phase. Break up the code into multiple Python files [i] to ensure you avoid hitting the maximum output tokens.
+- To maintain scientific consistency, you must use the tools outlined in your toolbox, located in the `tools/` folder. Make sure heavily repeated infrastructure is in `tools/` so that you don't have to repeat logic from phase to phase.
 - Invoke the `experiment-background` skill to get hints on fitting data.
 - When fitting experimental data, make a few attempts to make sure you have the most faithful fit.
 - All code must use parallelization / multithreading wherever possible instead of loops.
@@ -22,7 +22,7 @@ Step 2: Script Implementation (phase_N.py)
 Step 3: Performance Audit - IMPORTANT
 - The code must be EFFICIENT in time, and results MUST CONVERGE in a reasonable time (<2 hours maximum).
 - Explicitly enumerate all independent tasks in a comment at the top of the file. All independent tasks (e.g., fitting different models, processing different segments, running different configurations) must be dispatched concurrently using ProcessPoolExecutor or multiprocessing.Pool to minimize wall time. A sequential for-loop over independent tasks is never acceptable.
-- Before finalizing any depth or iteration parameters (e.g., number of steps, restarts, iterations, samples, or similar), you must first run a minimal timing probe: execute one representative unit of work (one task, one model, etc.) and measure its wall time. From that measurement, determine if the full computation will take less than 2 hours. Be conservative and assume tasks will take longer than you expect. Do not use plan-spec values blindly — treat them as upper bounds, not targets.
+- Before finalizing any depth or iteration parameters (e.g., number of steps, restarts, iterations, samples, or similar), you must first run a minimal timing probe: execute one representative unit of work (one task, one model, etc.) and measure its wall time. From that measurement, determine if the full computation will take less than 2 hours. Be conservative and assume tasks will take longer than you expect. Do not use plan-spec values blindly — treat them as upper bounds, not targets. In your probe you must include a RAM estimate and ensure your full script will remain under 3 GB of RAM.
 - Reduce the depth, number of walkers, iterations, or similar parameters in order to reduce the time complexity. It's essential that the fitting CONVERGES.
 - You may edit the Python tools (`tools/`) to support vectorization,multithreading, etc. You must take a note if you make any changes.
 
@@ -30,6 +30,7 @@ Step 4: Execution & Output Collection
 - You must check your code before running it. Make sure there are no variable name mismatches or other issues that would cause your code to crash after results converge.
 - Run the script using the terminal execution tool.
 - If the script is taking longer than 2 HOURS you MUST kill the process and review the code. Refer back to the Performance Audit (Step 3) and make changes.
+- VSCode should not be occupying more than 3GB of RAM throughout the exeution. Make sure the parallelization is written correctly and no more than 7 workers are active at once.
 - Ensure the script saves the following into phase_[N]/:
     - Figures: All diagnostic plots required by the PLAN.md (e.g. fits, residual heatmaps). ENSURE at least one figure superimposes the fits of all models onto the raw experimental data, for ease of human interpretation.
     - Data: JSON or CSV files containing the fitted parameters and/or key results.

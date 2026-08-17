@@ -2,7 +2,7 @@
 
 Work through every step of the plan as if you were a graduate student sitting down to implement it tomorrow. Flag and fix anything that is vague, underspecified, or would fail in practice.
 
-- **Computational feasibility.** IMPORTANT: Will this analysis conclude within 2 hours for an 8-core CPU machine? Prioritize evaluating as many models as possible -- instead, minimize the number of iterations/walkers/etc. necessary for converging results.
+- **Computational feasibility.** IMPORTANT: Will this analysis conclude within 2 hours for an 8-core CPU machine? Prioritize evaluating as many models as possible -- instead, minimize the number of iterations/walkers/etc. necessary for converging results. Double check the parallelization strategy and RAM usage.
 
 - **Algorithm specification.** Every fitting step must name specific algorithms, not just a method category. Explain precisely how outputs of one stage seed the next.
 
